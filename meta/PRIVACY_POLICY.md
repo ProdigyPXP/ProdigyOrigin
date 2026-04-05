@@ -1,4 +1,4 @@
-<h1 align="center">ProdigyPNP Privacy Policy</h1>
+<h1 align="center">ProdigyPXP Privacy Policy</h1>
 
 <p>
     We're not an <i>'evil'</i> megacorp. We're not collecting heavy personal data, so we'll keep our practices simple.
@@ -56,7 +56,7 @@
 - We do not allow anyone to read your user data **unless**
     - The data is aggregated and anonymized and used for internal operations in accordance with applicable privacy and other jurisdictional legal requirements;
         <!---
-        - For example, [infinitezero.net/analytics.json](https://infinitezero.net/analytics.json) is aggregated and anonymized to determine regions, operating systems, and browser usage. We only collect this to improve PHEx and estimate how many people use PHEx. -->
+        - For example, [prodigypxp.com/analytics.json](https://prodigypxp.com/analytics.json) is aggregated and anonymized to determine regions, operating systems, and browser usage. We only collect this to improve PHEx and estimate how many people use PHEx. -->
     - It's necessary for security purposes (ex. investigating abuse);
     - We need to do so to comply with applicable laws.
 

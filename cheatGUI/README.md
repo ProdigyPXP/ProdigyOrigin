@@ -2,7 +2,7 @@
 
 
 This is the main cheat menu GUI for ProdigyMathGameHacking.
-Originally made by [Will](https://github.com/MelnCat) and maintained by [ArcerionDev](https://github.com/ArcerionDev) and [PatheticMustan](https://github.com/PatheticMustan), and now maintained by [ProdigyPNP](https://github.com/ProdigyPNP).
+Originally made by [Will](https://github.com/MelnCat) and maintained by [ArcerionDev](https://github.com/ArcerionDev) and [PatheticMustan](https://github.com/PatheticMustan), and now maintained by [ProdigyPXP](https://github.com/ProdigyPXP).
 
 <br><br>
 

@@ -3,7 +3,7 @@
 	"version": "3.0.1",
 	"description": "Type declarations for Prodigy, the math game.",
 	"license": "MPL-2.0",
-	"author": "ProdigyPNP",
+	"author": "ProdigyPXP",
 	"scripts": {},
 	"dependencies": {
 		"typescript": "^5.0.2"
@@ -11,10 +11,10 @@
 	"keywords": [],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ProdigyPNP/ProdigyMathGameHacking.git#master"
+		"url": "git+https://github.com/ProdigyPXP/ProdigyMathGameHacking.git#master"
 	},
 	"bugs": {
-		"url": "https://github.com/ProdigyPNP/ProdigyMathGameHacking/issues"
+		"url": "https://github.com/ProdigyPXP/ProdigyMathGameHacking/issues"
 	},
-	"homepage": "https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/master/typings"
+	"homepage": "https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/master/typings"
 }

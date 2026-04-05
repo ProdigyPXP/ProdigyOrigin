@@ -32,7 +32,7 @@ function IndexPopup() {
     <main style={cardStyle}>
       <h1 style={{ margin: 0, fontSize: 22 }}>PHEx</h1>
       <p style={{ marginTop: 8, lineHeight: 1.45 }}>
-        cheatGUI bundle injection is enabled for Prodigy pages.
+        Patched game.min.js and cheatGUI injection is enabled for Prodigy pages.
       </p>
 
       <button
@@ -44,10 +44,14 @@ function IndexPopup() {
 
       <button
         style={{ ...buttonStyle, background: "#0ea5e9" }}
-        onClick={() => openTab("https://dsc.gg/ProdigyPNP")}
+        onClick={() => openTab("https://dsc.gg/ProdigyPXP")}
       >
         Open Discord
       </button>
+
+      <p style={{ marginTop: 12, fontSize: 12, opacity: 0.7 }}>
+        If you need help, join our Discord server.
+      </p>
     </main>
   )
 }

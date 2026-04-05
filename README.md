@@ -17,11 +17,11 @@
 		
 <p align="center">
 	<strong>
-		<a href="https://prodigypnp.com">Website</a>
+		<a href="https://prodigypxp.com">Website</a>
 		•
 		<a href="https://discord.gg/2qzTbdXSg9">Discord</a>
 		•
-		<a href="https://github.com/ProdigyPNP/ProdigyMathGameHacking/blob/master/meta/wiki/QUICKSTART.md">Installation</a>
+		<a href="https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/meta/wiki/QUICKSTART.md">Installation</a>
 		•
 		<a href="https://www.youtube.com/channel/UC9Q8ocvTML4jKYWbNbQHrGw">YouTube</a>
 	</strong>
@@ -33,7 +33,7 @@
 </a>
 
 <a href="../../pulse">
-	<img src="https://img.shields.io/github/commit-activity/m/ProdigyPNP/ProdigyMathGameHacking?style=flat-square">
+	<img src="https://img.shields.io/github/commit-activity/m/ProdigyPXP/ProdigyMathGameHacking?style=flat-square">
 </a>
 
 <p/>
@@ -130,7 +130,7 @@ We do not want your personal info. Please do not share it. Even if we wanted to,
 
 <details>
 <summary><b>Legal</b></summary><br>
-<p>If you have any legal problems to us, please email <a href = "mailto:prodigypnp@gmail.com">ProdigyPNP@gmail.com</a></p>
+<p>If you have any legal problems to us, please email <a href = "mailto:prodigypxp@gmail.com">ProdigyPXP@gmail.com</a></p>
 <br></details>
 
 <br>
@@ -163,7 +163,7 @@ ProdigyMathGameHacking was made by [all the people who have contributed to it](m
 This organization and repo is done for. We're not maintaining anything anymore, since we've shut down. If you're interested in developing with us, join us at [@ProdigyPXP](https://github.com/ProdigyPXP)- where we'll make new software, and perhaps one day new Prodigy hacks.
 
 <!--
-You can find our in-development code on [different branches of this repository](https://github.com/ProdigyPNP/ProdigyMathGameHacking/branches).
+You can find our in-development code on [different branches of this repository](https://github.com/ProdigyPXP/ProdigyMathGameHacking/branches).
 
 If you're interested in simple beta testing, open the hacks as usual, scroll down to "Beta Testing", and you can find a bunch of beta/WIP hacks.
 -->
@@ -172,9 +172,9 @@ If you're interested in simple beta testing, open the hacks as usual, scroll dow
 
 
 ## Components
-- [P-NP](https://github.com/ProdigyPNP/P-NP) - The serverside part of ProdigyPNP, the reason why we could modify the game code we loaded.
+- [P-NP](https://github.com/ProdigyPXP/P-NP) - The serverside part of ProdigyPXP, the reason why we could modify the game code we loaded.
 - [ProdigyMathGameHacking](../..) - The ProdigyMathGameHacking Repository
-- [PHEx](PHEx/) - The Prodigy Hacking Extension, used to inject our modified game files into Prodigy.
+- [extension](extension/) - The Prodigy Hacking Extension, used to inject our modified game files into Prodigy.
 - [cheatGUI](cheatGUI/) - The cheat GUI, for user convenience, and it's pretty.
 - [docs](docs/) - Our documentation of Prodigy, used to find functions to build the hacks. However, it may be slightly outdated, since it's not maintained.
 - [meta](meta/) - Information on this repository.
@@ -183,5 +183,5 @@ If you're interested in simple beta testing, open the hacks as usual, scroll dow
 <hr>
 
 <h1 align="center">
-<a href = "https://dsc.gg/ProdigyPNP"><img src="https://readme-jokes.vercel.app/api" alt="Jokes Card" width=700/></a>
+<a href = "https://dsc.gg/ProdigyPXP"><img src="https://readme-jokes.vercel.app/api" alt="Jokes Card" width=700/></a>
 	</h1>

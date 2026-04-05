@@ -68,7 +68,7 @@ On this day, [Prodigy](https://prodigy.com) added a [devtool disabler](https://g
 ### Debugger Scope Ages
 `04/12/2020 - 04/15/2020`
 
-On these days, multiple variables were used to obtain the [Prodigy's scopes](https://github.com/ProdigyPNP/ProdigyMathGameHacking/blob/master/docs/classes/_player_d_.player.md), and access the `instance` objects. This revived free membership hacks.
+On these days, multiple variables were used to obtain the [Prodigy's scopes](https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/docs/classes/_player_d_.player.md), and access the `instance` objects. This revived free membership hacks.
 <br><br><br>
  
 
@@ -76,7 +76,7 @@ On these days, multiple variables were used to obtain the [Prodigy's scopes](htt
 ### Redirector Ages
 `04/15/2020 - 11/13/2020`
 
-After many days, the [Redirector hack](https://github.com/ProdigyPNP/P-NP) was created, which would use a modified version of prodigy's game files. This would not be patched for a very long time. It was suceeded by the [PHEx extension](https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/master/PHEx).
+After many days, the [Redirector hack](https://github.com/ProdigyPXP/P-NP) was created, which would use a modified version of prodigy's game files. This would not be patched for a very long time. It was suceeded by the [PHEx extension](https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/master/PHEx).
 <br><br><br>
 
 
@@ -85,7 +85,7 @@ After many days, the [Redirector hack](https://github.com/ProdigyPNP/P-NP) was c
 ### Content Security Patch
 `06/10/2020`
 
-On June 10th, Prodigy added content security headers. This caused the addition of another extension, Anti-CSP, to help with hacks. Having this many extensions for one job was tiring, and later PMGH introduced [PHEx](https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/master/PHEx).
+On June 10th, Prodigy added content security headers. This caused the addition of another extension, Anti-CSP, to help with hacks. Having this many extensions for one job was tiring, and later PMGH introduced [PHEx](https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/master/PHEx).
 <br><br><br>
  
 
@@ -116,7 +116,7 @@ On September 18th, Prodigy patched the `hack` variable by redirecting to a 404 p
 ### Chrome Extension Releases
 `10/21/2020 - 11/11/20`
 
-On October 21st, Google accepted the [PHEx (Prodigy Hacking Extension)](https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/master/PHEx) extension submission to the [Chrome Web Store](https://chrome.google.com/webstore). The extension works exacatly the same as the Redirector Hack, but is much easier as you only have to install our extension without importing the JSON file into Redirector.
+On October 21st, Google accepted the [PHEx (Prodigy Hacking Extension)](https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/master/PHEx) extension submission to the [Chrome Web Store](https://chrome.google.com/webstore). The extension works exacatly the same as the Redirector Hack, but is much easier as you only have to install our extension without importing the JSON file into Redirector.
 <br><br><br>
  
 
@@ -156,15 +156,15 @@ On November 19th, [Natsumi](https://github.com/Patheticmustan) bypassed the [SHA
 ### The end of PMGH
 `04/06/2022`
 
-On April 6, 2022, [Prodigy-Hacking/](https://github.com/Prodigy-Hacking)[ProdigyMathGameHacking](https://github.com/Prodigy-Hacking/ProdigyMathGameHacking) and [Prodigy-Hacking/](https://github.com/Prodigy-Hacking)[P-NP](https://github.com/Prodigy-Hacking/P-NP) were deleted due to a DMCA takedown. [P-NP](https://github.com/Prodigy-Hacking/P-NP) technically hosts a copy of Prodigy's code, except it's modified to allow the running of hacks. [PHEx](https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/master/PHEx/build) was [taken off the Chrome Web Store](https://chrome.google.com/webstore/detail/gjabpajagbgoifbkflgojeojmnlmioea).
+On April 6, 2022, [Prodigy-Hacking/](https://github.com/Prodigy-Hacking)[ProdigyMathGameHacking](https://github.com/Prodigy-Hacking/ProdigyMathGameHacking) and [Prodigy-Hacking/](https://github.com/Prodigy-Hacking)[P-NP](https://github.com/Prodigy-Hacking/P-NP) were deleted due to a DMCA takedown. [P-NP](https://github.com/Prodigy-Hacking/P-NP) technically hosts a copy of Prodigy's code, except it's modified to allow the running of hacks. [PHEx](https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/master/PHEx/build) was [taken off the Chrome Web Store](https://chrome.google.com/webstore/detail/gjabpajagbgoifbkflgojeojmnlmioea).
 <br><br><br>
 
 
 
-### The rise of ProdigyPNP
+### The rise of ProdigyPXP
 `04/07/2022`
 
-Not too late after [Prodigy Hacking Official](https://github.com/Prodigy-Hacking)'s repositories were taken down by the DMCA, [gemsvidø](https://github.com/afkvido), [Eris](https://github.com/Erisfiregamer1), [donaldli2020](https://github.com/donaldli2020), and [Apocalyptic](I forgot your link) came together and formed a new organization called [ProdigyPNP](https://github.com/ProdigyPNP). This organization was dedicated to keeping Prodigy hacks alive, no matter what DMCA comes at us. *bless the demon king that gemsvido had many local clones, also the github fork network is a thing.*
+Not too late after [Prodigy Hacking Official](https://github.com/Prodigy-Hacking)'s repositories were taken down by the DMCA, [gemsvidø](https://github.com/alexey-max-fedorov), [Eris](https://github.com/Erisfiregamer1), [donaldli2020](https://github.com/donaldli2020), and [Apocalyptic](I forgot your link) came together and formed a new organization called [ProdigyPXP](https://github.com/ProdigyPXP). This organization was dedicated to keeping Prodigy hacks alive, no matter what DMCA comes at us. *bless the demon king that gemsvido had many local clones, also the github fork network is a thing.*
 <br><br><br>
 
 
@@ -181,12 +181,12 @@ After fixing the broken P-NP and PHEx, Prodigy hacks were back up, just like bef
 ### Error 48
 `08/21/2022`
 
-Prodigy had made a patch to P-NP, and with only [gemsvidø](https://github.com/afkvido) who doesn't know shit about P-NP to fix it, there was no way ProdigyPNP could continue. However, `_.player` and other lodash things still worked, but it didn't let you play the game with hacks on, making things really inconvenient.
+Prodigy had made a patch to P-NP, and with only [gemsvidø](https://github.com/alexey-max-fedorov) who doesn't know shit about P-NP to fix it, there was no way ProdigyPXP could continue. However, `_.player` and other lodash things still worked, but it didn't let you play the game with hacks on, making things really inconvenient.
 <br><br><br>
 
 
-### The fall of ProdigyPNP
+### The fall of ProdigyPXP
 `09/07/2022`
 
-[ProdigyPNP closed down](https://github.com/ProdigyPNP/ProdigyMathGameHacking/blob/master/.github/ANNOUNCEMENT.md).
+[ProdigyPXP closed down](https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/.github/ANNOUNCEMENT.md).
 <br><br><br>

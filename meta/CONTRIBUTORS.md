@@ -4,12 +4,12 @@
 
 
 
-<h1 align=center>ProdigyPNP's Contributors</h1>
-<p>Thank you to everyone who made ProdigyPNP possible. It wouldn't be possible without y'all.</p>
+<h1 align=center>ProdigyPXP's Contributors</h1>
+<p>Thank you to everyone who made ProdigyPXP possible. It wouldn't be possible without y'all.</p>
 
 
-## [gemsvidø](https://github.com/afkvido)
-Alpha Prime of ProdigyPNP. Successfully implemented [hosted](https://github.com/hostedposted)'s loader into [PHEx 3.0.0](https://github.com/ProdigyPNP/ProdigyMathGameHacking/pull/53#pullrequestreview-1064480572).
+## [gemsvidø](https://github.com/alexey-max-fedorov)
+Alpha Prime of ProdigyPXP. Successfully implemented [hosted](https://github.com/hostedposted)'s loader into [PHEx 3.0.0](https://github.com/ProdigyPXP/ProdigyMathGameHacking/pull/53#pullrequestreview-1064480572).
 <br><br>
 
 ## [Natsumi](https://github.com/PatheticMustan)
@@ -21,7 +21,7 @@ Original Collaborator. ArcerionDev is the owner of the original project's Discor
 <br><br>
 
 ### [donaldli2020](https://github.com/donaldli2020)
-One of the ProdigyPNP Alphas, also an original Contributor.
+One of the ProdigyPXP Alphas, also an original Contributor.
 <br><br>
 
 ## [Yama](https://github.com/vibinyama)
@@ -37,7 +37,7 @@ Original Collaborator, did some code work.
 <br><br>
 
 ## [MelnCat](https://github.com/MelnCat)
-Original Creator of [Will's Cheat Menu](https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/f4adfae299bdce3378d75728931cda17655f8ece/willsCheatMenu), the cheat GUI for Prodigy Hacks.
+Original Creator of [Will's Cheat Menu](https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/f4adfae299bdce3378d75728931cda17655f8ece/willsCheatMenu), the cheat GUI for Prodigy Hacks.
 <br><br>
 
 ### [Exoticc](https://github.com/Exoticc)
@@ -56,8 +56,8 @@ Original Collaborator.
 Original Collaborator.
 <br><br>
 
-### [ProdigyPNPEnthusiast](https://github.com/ProdigyPNPEnthusiast)
-Made a [really nice pull request](https://github.com/ProdigyPNP/P-NP/pull/19) for P-NP that cleaned up it's code.
+### [ProdigyPXPEnthusiast](https://github.com/ProdigyPXPEnthusiast)
+Made a [really nice pull request](https://github.com/ProdigyPXP/P-NP/pull/19) for P-NP that cleaned up it's code.
 <br><br>
 
 ### [Sacred](https://github.com/sacredofficial)
@@ -93,9 +93,9 @@ Contributor.
 <br><br>
 
 ## [Eris](https://github.com/Erisfiregamer1)
-Former one of the ProdigyPNP Alphas. Made the biggest contribution to [fixing P-NP](https://github.com/ProdigyPNP/P-NP/pull/2).
+Former one of the ProdigyPXP Alphas. Made the biggest contribution to [fixing P-NP](https://github.com/ProdigyPXP/P-NP/pull/2).
 <br><br>
 
 ### [hostedposted](https://github.com/hostedposted)
-Owner of the Prodigy Cheat Dashboard, and a Contributor. [Also attempted to document Prodigy's API](https://github.com/ProdigyAPI). Helped ProdigyPNP with PHEx Mv3.
+Owner of the Prodigy Cheat Dashboard, and a Contributor. [Also attempted to document Prodigy's API](https://github.com/ProdigyAPI). Helped ProdigyPXP with PHEx Mv3.
 <br><br>

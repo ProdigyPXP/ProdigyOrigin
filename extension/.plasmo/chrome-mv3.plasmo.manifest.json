@@ -1,0 +1,37 @@
+{
+  "icons": {
+    "16": "./gen-assets/icon16.plasmo.png",
+    "32": "./gen-assets/icon32.plasmo.png",
+    "48": "./gen-assets/icon48.plasmo.png",
+    "64": "./gen-assets/icon64.plasmo.png",
+    "128": "./gen-assets/icon128.plasmo.png"
+  },
+  "manifest_version": 3,
+  "action": {
+    "default_icon": {
+      "16": "./gen-assets/icon16.plasmo.png",
+      "32": "./gen-assets/icon32.plasmo.png",
+      "48": "./gen-assets/icon48.plasmo.png",
+      "64": "./gen-assets/icon64.plasmo.png",
+      "128": "./gen-assets/icon128.plasmo.png"
+    },
+    "default_popup": "./popup.html"
+  },
+  "version": "3.1.0",
+  "author": "ProdigyPXP",
+  "name": "Prodigy Hacking Extension | PHEx",
+  "description": "Free and open source hacks for Prodigy Math Game",
+  "background": {
+    "service_worker": "./static/background/index.ts"
+  },
+  "permissions": [
+    "scripting",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.prodigygame.com/*",
+    "https://raw.githubusercontent.com/*"
+  ]
+}

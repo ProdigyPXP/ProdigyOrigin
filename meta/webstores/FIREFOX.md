@@ -12,4 +12,4 @@
 7. Once you enter a world, wait 5-15 seconds.
 8. In the top left corner of your screen, you should see a dropdown arrow. Click the dropdown arrow to open the hacks.
 9. Congrats, you've successfully achived hacking in the Prodigy Math Game.
-10. Join [our discord server](https://dsc.gg/ProdigyPNP) for more!
+10. Join [our discord server](https://dsc.gg/ProdigyPXP) for more!

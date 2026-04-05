@@ -20,7 +20,7 @@ import openChat from "../utils/chat";
 
 
 // Begin open chat
-new Hack(category.player, "Open ProdigyPNP Chat", "Opens a chat for ProdigyPNP users").setClick(async () => {
+new Hack(category.player, "Open ProdigyPXP Chat", "Opens a chat for ProdigyPXP users").setClick(async () => {
     return openChat();
 });
 // end open chat

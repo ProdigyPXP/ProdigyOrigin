@@ -84,7 +84,7 @@ menuleft.append(disc);
 const subtitle = document.createElement("h3");
 subtitle.style.fontSize = "20px";
 subtitle.innerHTML = `
-<p>Join our Discord <a href='https://dsc.gg/ProdigyPNP'>https://dsc.gg/ProdigyPNP</a>!</p>
+<p>Join our Discord <a href='https://dsc.gg/ProdigyPXP'>https://dsc.gg/ProdigyPXP</a>!</p>
 
 <hr>
 `;
@@ -184,15 +184,15 @@ if (process.env.NODE_ENV === "development") {
 
 
 
-        if (!(await License.fire("ProdigyPNP", `
+        if (!(await License.fire("ProdigyPXP", `
             <p>
-            <a href="https://github.com/ProdigyPNP/ProdigyMathGameHacking/blob/master/README.md">This is free and open-source software</a>.
+            <a href="https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/README.md">This is free and open-source software</a>.
             If you paid for this or accessed this behind a paywall/AdFly link, demand a refund. If you sell this software, or otherwise make a commercial advantage from it, you are violating
-            <a href = "https://github.com/ProdigyPNP/ProdigyMathGameHacking/blob/master/LICENSE.txt">our license</a>.
+            <a href = "https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/LICENSE.txt">our license</a>.
             </p>
         `)).value) {
 
-            if (!(await NoLicense.fire("ProdigyPNP License", `
+            if (!(await NoLicense.fire("ProdigyPXP License", `
                 <p>
                 <strong>You need to agree to our license to use our hacks. If you changed your mind and now agree to our license, reload Prodigy.</strong>
                 </p>

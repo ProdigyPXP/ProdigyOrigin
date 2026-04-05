@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ProdigyPNP/ProdigyMathGameHacking.git#master"
+    "url": "git+https://github.com/ProdigyPXP/ProdigyMathGameHacking.git#master"
   },
   "keywords": [],
-  "author": "ProdigyPNP",
+  "author": "ProdigyPXP",
   "license": "MPL-2.0",
   "dependencies": {
     "sweetalert2": "npm:sweetalert2-neutral@11.22.2-neutral"
@@ -35,7 +35,7 @@
     "typescript": "^6.0.2"
   },
   "bugs": {
-    "url": "https://github.com/ProdigyPNP/ProdigyMathGameHacking/issues"
+    "url": "https://github.com/ProdigyPXP/ProdigyMathGameHacking/issues"
   },
-  "homepage": "https://github.com/ProdigyPNP/ProdigyMathGameHacking/tree/master#readme"
+  "homepage": "https://github.com/ProdigyPXP/ProdigyMathGameHacking/tree/master#readme"
 }
