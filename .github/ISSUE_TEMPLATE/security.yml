@@ -2,7 +2,7 @@ name: "Security issue"
 description: "Report a security issue to help us improve Prodigy Hacks."
 title: "[SE] title"
 labels: ["Is: Bug", "Priority: High"]
-assignees: ["afkvido"]
+assignees: ["alexey-max-fedorov"]
 body:
 
   - type: textarea

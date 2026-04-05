@@ -1,7 +1,7 @@
 name: "Other"
 description: "Submit a blank issue to ProdigyMathGameHacking."
 title: "[O] title"
-assignees: ["afkvido"]
+assignees: ["alexey-max-fedorov"]
 body:
 
   - type: textarea

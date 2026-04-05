@@ -14,7 +14,7 @@ updates:
     commit-message:
       prefix: "[cheatGUI]"      
     assignees:
-      - "afkvido"
+      - "alexey-max-fedorov"
       - "donaldli2022"  
 
 
@@ -26,7 +26,7 @@ updates:
     commit-message:
       prefix: "[PHEx]"      
     assignees:
-      - "afkvido"
+      - "alexey-max-fedorov"
       - "donaldli2022"       
       
       
@@ -38,7 +38,7 @@ updates:
     commit-message:
       prefix: "[typings]"      
     assignees:
-      - "afkvido"
+      - "alexey-max-fedorov"
       - "donaldli2022"  
       
 
@@ -50,7 +50,7 @@ updates:
     commit-message:
       prefix: "[docs]"      
     assignees:
-      - "afkvido"
+      - "alexey-max-fedorov"
       - "donaldli2022"  
       
       
@@ -62,5 +62,5 @@ updates:
     commit-message:
       prefix: "[Actions]"      
     assignees:
-      - "afkvido"
+      - "alexey-max-fedorov"
       - "donaldli2022"     

@@ -3,7 +3,7 @@
 <h2 align="center"><a href="https://discord.gg/2qzTbdXSg9">Our Discord server: discord.gg/2qzTbdXSg9</a></h1>
 
 
-# ProdigyPNP Code of Conduct
+# ProdigyPXP Code of Conduct
 
 Our goal was to improve Prodigy's security, not ruining the game for profit. We won't sell our hacks, or put ads.
 
@@ -19,7 +19,7 @@ You may ***never***:
 - Claim ownership of our hacks 😠
 - Modify our hacks slightly just to add your own ads 🤨
 
-If you're gonna talk about our hacks (on YouTube or other social media platforms), please please pretty please [credit us properly](https://github.com/ProdigyPNP/ProdigyMathGameHacking/blob/master/YOUTUBE_ATTRIBUTION.md).
+If you're gonna talk about our hacks (on YouTube or other social media platforms), please please pretty please [credit us properly](https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/YOUTUBE_ATTRIBUTION.md).
 
 It hurts our souls when skids take credit for our hacks and don't even link us.
 

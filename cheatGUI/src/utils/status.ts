@@ -33,14 +33,14 @@ export function statusMessage () {
 
             const enabled = data.enabled;
 
-            if (enabled.value === false) {
+            if (enabled === false) {
                 return console.log("Status message is disabled.");
             } else {
 
                 await Swal.fire({
-                    title: data.get("title"),
-                    html: data.get("html"),
-                    icon: data.get("icon"),
+                    title: data.title,
+                    html: data.html,
+                    icon: data.icon,
                 });
 
             }

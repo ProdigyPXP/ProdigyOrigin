@@ -16,11 +16,11 @@
 | = 2.2.0 | Full functionality of Infinite Zero, other than public-game.min.js |
 | = 2.1.9 | Functionality not guaranteed. Infinite Zero is not implemented.     |
 | < 2.1.9 | Hacks don't work, as we only fixed P-NP in versions 2.1.9 and above  |
-| < 2.1.5 | Major Vulnerability - [these versions use prodigyhacking.ml](https://github.com/Prodigy-Hacking/ProdigyMathGameHacking/releases/2.1.5), a domain that [we](https://github.com/ProdigyPNP) or [PMGH](https://github.com/Prodigy-Hacking) do not control. |
+| < 2.1.5 | Major Vulnerability - [these versions use prodigyhacking.ml](https://github.com/Prodigy-Hacking/ProdigyMathGameHacking/releases/2.1.5), a domain that [we](https://github.com/ProdigyPXP) or [PMGH](https://github.com/Prodigy-Hacking) do not control. |
 
 
 ## Reporting a Vulnerability
 
-Report on Discord: https://dsc.gg/ProdigyPNP
+Report on Discord: https://dsc.gg/ProdigyPXP
 
-Report on GitHub: https://github.com/ProdigyPNP/ProdigyMathGameHacking/issues
+Report on GitHub: https://github.com/ProdigyPXP/ProdigyMathGameHacking/issues

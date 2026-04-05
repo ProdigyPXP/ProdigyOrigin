@@ -2,7 +2,8 @@
 // Registers declarativeNetRequest rules for blocking/modifying requests
 
 const RULES: chrome.declarativeNetRequest.Rule[] = [
-  // Block original game.min.js
+  // BLOCK original game.min.js — content script handles replacement via direct extension URL
+  // (DNR extensionPath redirects cause "pending" requests; direct chrome-extension:// loads work)
   {
     id: 1,
     priority: 1,
@@ -26,15 +27,7 @@ const RULES: chrome.declarativeNetRequest.Rule[] = [
           operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE
         },
         {
-          header: "content-security-policy",
-          operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE
-        },
-        {
           header: "X-Frame-Options",
-          operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE
-        },
-        {
-          header: "x-frame-options",
           operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE
         }
       ]
@@ -43,18 +36,7 @@ const RULES: chrome.declarativeNetRequest.Rule[] = [
       urlFilter: "*://*.prodigygame.com/*",
       resourceTypes: [
         chrome.declarativeNetRequest.ResourceType.MAIN_FRAME,
-        chrome.declarativeNetRequest.ResourceType.SUB_FRAME,
-        chrome.declarativeNetRequest.ResourceType.STYLESHEET,
-        chrome.declarativeNetRequest.ResourceType.SCRIPT,
-        chrome.declarativeNetRequest.ResourceType.IMAGE,
-        chrome.declarativeNetRequest.ResourceType.FONT,
-        chrome.declarativeNetRequest.ResourceType.OBJECT,
-        chrome.declarativeNetRequest.ResourceType.XMLHTTPREQUEST,
-        chrome.declarativeNetRequest.ResourceType.PING,
-        chrome.declarativeNetRequest.ResourceType.CSP_REPORT,
-        chrome.declarativeNetRequest.ResourceType.MEDIA,
-        chrome.declarativeNetRequest.ResourceType.WEBSOCKET,
-        chrome.declarativeNetRequest.ResourceType.OTHER
+        chrome.declarativeNetRequest.ResourceType.SUB_FRAME
       ]
     }
   },

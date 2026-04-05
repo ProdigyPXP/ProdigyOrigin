@@ -205,7 +205,7 @@ if (process.env.NODE_ENV === "development") {
             } else {
 
                 // Reload Prodigy
-                document.location = "";
+                location.reload();
             }
 
 
