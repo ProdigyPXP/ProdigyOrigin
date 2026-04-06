@@ -1,8 +1,6 @@
 # Cheat GUI
 
-
-This is the main cheat menu GUI for ProdigyMathGameHacking.
-Originally made by [Will](https://github.com/MelnCat) and maintained by [ArcerionDev](https://github.com/ArcerionDev) and [PatheticMustan](https://github.com/PatheticMustan), and now maintained by [ProdigyPXP](https://github.com/ProdigyPXP).
+This is the main cheat menu GUI for Prodigy Origin.
 
 <br><br>
 
