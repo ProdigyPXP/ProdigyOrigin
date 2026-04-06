@@ -1,7 +1,7 @@
 import type { PlasmoCSConfig } from "plasmo"
 
 /**
- * PHEx Bridge — Isolated World Content Script
+ * Prodigy Origin Bridge — Isolated World Content Script
  *
  * Sets the default remote game URL synchronously so the MAIN world script
  * can read it immediately. Then reads chrome.storage.local for custom
@@ -16,16 +16,16 @@ export const config: PlasmoCSConfig = {
 const defaultGameUrl = "https://raw.githubusercontent.com/ProdigyPXP/P-NP/patched/game.min.js"
 
 // Synchronous — MAIN world can read this immediately
-document.documentElement.setAttribute("data-phex-game-url", defaultGameUrl)
+document.documentElement.setAttribute("data-origin-game-url", defaultGameUrl)
 
 // Async override from storage (custom dev URLs)
-chrome.storage.local.get(["phexGameUrl", "phexGuiUrl"], (result) => {
-  if (result.phexGameUrl) {
-    document.documentElement.setAttribute("data-phex-game-url", result.phexGameUrl)
+chrome.storage.local.get(["originGameUrl", "originGuiUrl"], (result) => {
+  if (result.originGameUrl) {
+    document.documentElement.setAttribute("data-origin-game-url", result.originGameUrl)
   }
-  if (result.phexGuiUrl) {
-    document.documentElement.setAttribute("data-phex-gui-url", result.phexGuiUrl)
+  if (result.originGuiUrl) {
+    document.documentElement.setAttribute("data-origin-gui-url", result.originGuiUrl)
   }
   // Signal that final URLs (including any overrides) are now set
-  document.documentElement.setAttribute("data-phex-ready", "1")
+  document.documentElement.setAttribute("data-origin-ready", "1")
 })
