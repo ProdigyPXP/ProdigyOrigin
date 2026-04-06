@@ -285,16 +285,6 @@ new Hack(category.player, "Set Bounty Points").setClick(async () => {
 
 
 
-// Begin Obtain Conjure Cubes
-new Hack(category.player, "Obtain Conjure Cubes").setClick(async () => {
-    const cubes = await NumberInput.fire("Conjure Cubes", "How many conjure cubes do you want to get? (Max 99)", "question");
-    if (cubes.value === undefined) return;
-    for (let i = 0; i < Math.min(99, +cubes.value); i++) {
-        prodigy.giftBoxController.receiveGiftBox(null, getItem("giftBox", 1));
-    }
-    return Toast.fire("Success!", `You have gained ${cubes.value} conjure cube${cubes.value != 1 ? "s" : ""}.`, "success");
-});
-// End Obtain Conjure Cubes
 
 
 

@@ -38,16 +38,6 @@ new Hack(category.misc, "Skip Tutorial").setClick(async () => {
 
 
 
-// Begin Disable Monster Encounters
-new Toggler(category.misc, "Disable Monster Encounters").setEnabled(async () => {
-	_.constants.constants["GameConstants.Debug.SCALE_ENCOUNTER_DISTANCE"] = 0;
-	return Toast.fire("Enabled!", "Monsters will no longer battle you.", "success");
-
-}).setDisabled(() => {
-	_.constants.constants["GameConstants.Debug.SCALE_ENCOUNTER_DISTANCE"] = 1;
-	return Toast.fire("Disabled!", "Monsters will now battle you.", "success");
-});
-// End Disable Monster Encounters
 
 
 // Begin FPS Counter
@@ -78,33 +68,6 @@ try {
 }
 
 
-// Begin Bobbify
-new Hack(category.misc, "Bobbify", "Converts your account into Bobby Fancywoman.").setClick(async () => {
-	if (!(
-		await Confirm.fire("Are you sure you want your account to be turned into Bobby Fancywoman?", "This action is not reversable.")
-	).value) return;
-
-	player.name.data.nickname = null;
-	player.name.data.firstName = 44;
-	player.name.data.middleName = 754;
-	player.name.data.lastName = 882;
-	player.data.stars = -1e22;
-	player.data.level = 69;
-
-	player.appearance.setGender("male");
-	player.appearance.setEyeColor(1);
-	player.appearance.setFace(4);
-	player.appearance.setHair(19, 1);
-	player.appearance.setSkinColor(1);
-	player.equipment.setFollow(19);
-	player.equipment.setHat(19);
-	player.equipment.setBoots(19);
-	player.equipment.setOutfit(19);
-	player.equipment.setWeapon(19);
-
-	return Toast.fire("Bobbified!", "You are now Bobby Fancywoman.", "success");
-});
-// End Bobbify
 
 
 

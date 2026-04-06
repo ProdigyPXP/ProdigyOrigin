@@ -103,7 +103,6 @@ export const category = {
 	misc: addArea("Miscellaneous Mods"),
 	utility: addArea("Utility Mods"),
 	beta: addArea("Beta Testing | Beta Mods may damage your account"),
-	patched : addArea("Patched Mods")
 };
 
 

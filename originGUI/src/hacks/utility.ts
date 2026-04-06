@@ -119,12 +119,6 @@ new Hack(category.utility, "Update menu", "Updates menu to the latest version wi
 
 
 
-// Begin Disable Inactivity Kick
-new Hack(category.utility, "Disable inactivity kick", "Keeps you from being logged out for inactivity.").setClick(async () => {
-    _.constants.constants["GameConstants.Inactivity.LOG_OUT_TIMER_SECONDS"] = 0;
-    return Toast.fire("Success!", "You now will never be logged out!", "success");
-});
-// End Disable Inactivity Kick
 
 
 

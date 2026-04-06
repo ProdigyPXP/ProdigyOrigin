@@ -42,43 +42,6 @@ new Hack(category.beta, "Switch Branch", "Loads a different branch of Prodigy Or
 
 
 
-// Begin get all Runes
-new Hack(category.beta, "Get all Runes [BETA]").setClick(async () => {
-    if (!(await Confirm.fire({
-            title: "Hang on!",
-            html: "This hack may damage your account with various bugs, for example you may be unable to do Rune Run.<br><br>Proceed?",
-            icon: "warning"
-        })).value) {
-        return;
-    }
-
-    const amount = parseInt((await NumberInput.fire({
-        title: "Amount",
-        text: "How many of each would you like?",
-        icon: "question",
-        inputValidator: (res: any) => res ? "" : "Please select which you'd like to get."
-    })).value);
-    if (isNaN(amount)) return;
-    let mod;
-
-
-    Array.from(_.instance.prodigy.gameContainer._inversifyContainer._bindingDictionary._map).forEach(e => {
-        try {
-            // @ts-expect-error
-            if (_.instance.prodigy.gameContainer.get(e[0]).battleData) {
-                // @ts-expect-error
-                mod = e[0];
-            }
-        } catch {
-            // @ts-expect-error
-            console.log(`Error for ${e[0]}`);
-        }
-    });
-
-    _.instance.prodigy.gameContainer.get(mod).battleData._secureCharacterState._data.inventory.orb = runeify(_.gameData.orb, amount);
-    return Toast.fire("Runes Added!", "Your runes have been added!", "success");
-});
-// End get all Runes
 
 
 
