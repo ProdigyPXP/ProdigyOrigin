@@ -37,7 +37,7 @@ async function collectSourceFiles (directory) {
 
 function createScssPlugin () {
 	return {
-		name: "cheatgui-scss",
+		name: "origingui-scss",
 		setup (build) {
 			build.onLoad({ filter: /\.s[ac]ss$/i }, async args => {
 				const result = sass.compile(args.path, {
@@ -51,7 +51,7 @@ function createScssPlugin () {
 				return {
 					contents: `(() => {
 const css = ${JSON.stringify(processed.css)};
-const styleId = "cheatgui-styles";
+const styleId = "origingui-styles";
 const style = document.getElementById(styleId) || document.createElement("style");
 
 style.id = styleId;
@@ -87,7 +87,7 @@ export async function buildBundle ({ mode = "production" } = {}) {
 		stdin: {
 			contents: entrySource,
 			resolveDir: rootDir,
-			sourcefile: "cheatgui-entry.ts",
+			sourcefile: "origingui-entry.ts",
 			loader: "ts",
 		},
 		bundle: true,
