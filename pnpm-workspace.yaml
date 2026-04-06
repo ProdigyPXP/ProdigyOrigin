@@ -2,3 +2,10 @@ packages:
   - "originGUI"
   - "typings"
   - "extension"
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+  - '@parcel/watcher'
+  - lmdb
+  - msgpackr-extract
+  - sharp
