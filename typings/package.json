@@ -6,7 +6,7 @@
 	"author": "alexey-max-fedorov",
 	"scripts": {},
 	"dependencies": {
-		"typescript": "^5.0.2"
+		"typescript": "^6.0.2"
 	},
 	"keywords": [],
 	"repository": {
