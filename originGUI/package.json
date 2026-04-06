@@ -1,7 +1,7 @@
 {
-  "name": "cheatgui",
+  "name": "origingui",
   "version": "3.0.1",
-  "description": "Prodigy Hack GUI",
+  "description": "Prodigy Origin mod menu",
   "main": "dist/bundle.js",
   "scripts": {
     "setup": "pnpm install",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ProdigyPXP/ProdigyMathGameHacking.git#master"
   },
   "keywords": [],
-  "author": "ProdigyPXP",
+  "author": "alexey-max-fedorov",
   "license": "MPL-2.0",
   "dependencies": {
     "sweetalert2": "npm:sweetalert2-neutral@11.22.2-neutral"
