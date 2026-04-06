@@ -56,3 +56,10 @@ pids
 .env.test.local
 .env.production.local
 .env.local
+
+# Extension build output
+extension/build/
+extension/.plasmo/cache/
+
+# MCP debug config
+.mcp.json
