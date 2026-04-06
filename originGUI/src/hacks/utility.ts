@@ -107,12 +107,12 @@ new Hack(category.utility, "Save Character", "Helps fix bugs where not all hacks
 
 // Begin Update menu
 new Hack(category.utility, "Update menu", "Updates menu to the latest version without needing to reload.").setClick(async () => {
-    document.getElementById("cheat-menu")?.remove();
-    document.getElementById("menu-toggler")?.remove();
+    document.getElementById("origin-menu")?.remove();
+    document.getElementById("origin-toggler")?.remove();
     (async () => {
-        eval(await (await fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyMathGameHacking/master/cheatGUI/dist/bundle.js?updated=${Date.now()}`)).text()); // updated parameter is so browser ignores cached version
+        eval(await (await fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyMathGameHacking/master/originGUI/dist/bundle.js?updated=${Date.now()}`)).text()); // updated parameter is so browser ignores cached version
     })();
-    return Toast.fire("Updated!", "Cheat menu was updated.", "success");
+    return Toast.fire("Updated!", "Mod menu was updated.", "success");
 });
 // End Update menu
 
@@ -134,13 +134,13 @@ new Hack(category.utility, "Disable inactivity kick", "Keeps you from being logg
 // Begin Enable menu resize drag
 new Toggler(category.utility, "Enable menu resize", "Allows you to resize the menu via dragging the bottom right corner.").setEnabled(async () => {
     // @ts-expect-error
-    document.getElementById("cheat-menu").style.resize = "both";
+    document.getElementById("origin-menu").style.resize = "both";
     return Toast.fire("Success!", "Drag the bottom right corner of the menu to resize it.", "success");
 }).setDisabled(() => {
     // @ts-expect-error
-    document.getElementById("cheat-menu").style.resize = "none";
-    // document.getElementById("cheat-menu").style.height = dimensions.height;
-    // document.getElementById("cheat-menu").style.width = dimensions.width;
+    document.getElementById("origin-menu").style.resize = "none";
+    // document.getElementById("origin-menu").style.height = dimensions.height;
+    // document.getElementById("origin-menu").style.width = dimensions.width;
     return Toast.fire("Success!", "The menu position is now locked.", "success");
 });
 // End Enable menu resize drag

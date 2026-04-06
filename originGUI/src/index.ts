@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Prodigy Cheat GUI
+// Prodigy Origin Mod Menu
 
 import { io } from "socket.io-client"; // Import socket.io-client
 import "./style.scss"; // Import SCSS style
@@ -7,14 +7,14 @@ import { _ } from "./utils/util"; // Import Prodigy typings
 import { statusMessage } from "./utils/status"; // Import status message
 import Swal from "sweetalert2"; // Import Swal
 import { License, NoLicense } from "./utils/swal";
-import openChat from "./utils/chat";
+
 
 export const menu = document.createElement("div"); // Create cheat menu element
 export const wrapper = document.getElementById("game-wrapper"); // Create game wrapper
 
-document.getElementById("cheat-menu")?.remove(); // Remove any existing menu if present
-document.getElementById("menu-toggler")?.remove(); // Remove any existing menu togglers if present
-menu.id = "cheat-menu"; // Set menu ID to cheat-menu
+document.getElementById("origin-menu")?.remove(); // Remove any existing menu if present
+document.getElementById("origin-toggler")?.remove(); // Remove any existing menu togglers if present
+menu.id = "origin-menu"; // Set menu ID to cheat-menu
 
 
 menu.style = "position: fixed;top: -10%;left: 10%;right: 10%;width: 80%;height: 80%;z-index: 2;background-color: rgba(0, 0, 0, 0.5);backdrop-filter: blur(5px);"; // Set menu style
@@ -22,7 +22,7 @@ menu.style = "position: fixed;top: -10%;left: 10%;right: 10%;width: 80%;height: 
 wrapper?.prepend(menu);
 
 export const toggler = document.createElement("button"); // Create menu toggler
-toggler.id = "menu-toggler";
+toggler.id = "origin-toggler";
 
 
 let visible = false;
@@ -71,14 +71,14 @@ function addArea (title: string) {
 
 const title = document.createElement("h1");
 title.classList.add("menu-title");
-title.innerText = "Prodigy Hacks";
+title.innerText = "Prodigy Origin";
 title.style.textAlign = "center";
 menuleft.append(title);
 
 const disc = document.createElement("h2");
 disc.style.fontSize = "25px";
 disc.style.color = "white";
-disc.innerHTML = "<br>Press SHIFT to show/hide the menu. Scroll down in the menu for more hacks.";
+disc.innerHTML = "<br>Press SHIFT to show/hide the menu. Scroll down in the menu for more mods.";
 menuleft.append(disc);
 
 const subtitle = document.createElement("h3");
@@ -94,16 +94,16 @@ menuleft.append(subtitle);
 
 
 export const category = {
-	player: addArea("Player Hacks"),
-	inventory: addArea("Inventory Hacks"),
-	location: addArea("Location Hacks"),
-	pets: addArea("Pet Hacks"),
-	battle: addArea("Battle Hacks"),
-	minigames: addArea("Minigame Hacks"),
-	misc: addArea("Miscellaneous Hacks"),
-	utility: addArea("Utility Hacks"),
-	beta: addArea("Beta Testing | Beta Hacks may damage your account"),
-	patched : addArea("Patched Hacks")
+	player: addArea("Player Mods"),
+	inventory: addArea("Inventory Mods"),
+	location: addArea("Location Mods"),
+	pets: addArea("Pet Mods"),
+	battle: addArea("Battle Mods"),
+	minigames: addArea("Minigame Mods"),
+	misc: addArea("Miscellaneous Mods"),
+	utility: addArea("Utility Mods"),
+	beta: addArea("Beta Testing | Beta Mods may damage your account"),
+	patched : addArea("Patched Mods")
 };
 
 
@@ -146,18 +146,18 @@ document.addEventListener("keydown", function (event) {
 
 		if (shownMenu == true) {
 			// Cheats are shown, so let's hide them.
-			console.log("Hiding cheat menu...");
-			document.getElementById("cheat-menu").style.display = "none";
-			document.getElementById("menu-toggler").style.display = "none";
+			console.log("Hiding mod menu...");
+			document.getElementById("origin-menu").style.display = "none";
+			document.getElementById("origin-toggler").style.display = "none";
 			shownMenu = false;
-			console.log("Hidden cheat menu.");
+			console.log("Hidden mod menu.");
 		} else {
 			// Cheats are hidden, so let's show them.
-			console.log("Showing cheat menu...");
-			document.getElementById("cheat-menu").style.display = "block";
-			document.getElementById("menu-toggler").style.display = "block";
+			console.log("Showing mod menu...");
+			document.getElementById("origin-menu").style.display = "block";
+			document.getElementById("origin-toggler").style.display = "block";
             shownMenu = true;
-			console.log("Shown cheat menu.");
+			console.log("Shown mod menu.");
 		}
 	}
 });
@@ -170,8 +170,8 @@ if (process.env.NODE_ENV === "development") {
 		if (used) return;
 		used = true;
 		socket.disconnect();
-		document.getElementById("cheat-menu")?.remove();
-		document.getElementById("menu-toggler")?.remove();
+		document.getElementById("origin-menu")?.remove();
+		document.getElementById("origin-toggler")?.remove();
 		eval(data);
 	});
 }
@@ -184,7 +184,7 @@ if (process.env.NODE_ENV === "development") {
 
 
 
-        if (!(await License.fire("ProdigyPXP", `
+        if (!(await License.fire("Prodigy Origin", `
             <p>
             <a href="https://github.com/ProdigyPXP/ProdigyMathGameHacking/blob/master/README.md">This is free and open-source software</a>.
             If you paid for this or accessed this behind a paywall/AdFly link, demand a refund. If you sell this software, or otherwise make a commercial advantage from it, you are violating
@@ -192,15 +192,15 @@ if (process.env.NODE_ENV === "development") {
             </p>
         `)).value) {
 
-            if (!(await NoLicense.fire("ProdigyPXP License", `
+            if (!(await NoLicense.fire("Prodigy Origin License", `
                 <p>
-                <strong>You need to agree to our license to use our hacks. If you changed your mind and now agree to our license, reload Prodigy.</strong>
+                <strong>You need to agree to our license to use Prodigy Origin. If you changed your mind and now agree to our license, reload Prodigy.</strong>
                 </p>
             `)).value) {
 
                 // Play Prodigy without hacks
-                document.getElementById("cheat-menu")?.remove(); // Remove any existing menu if present
-                document.getElementById("menu-toggler")?.remove(); // Remove any existing menu togglers if present
+                document.getElementById("origin-menu")?.remove(); // Remove any existing menu if present
+                document.getElementById("origin-toggler")?.remove(); // Remove any existing menu togglers if present
 
             } else {
 

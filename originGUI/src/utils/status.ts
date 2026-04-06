@@ -1,27 +1,5 @@
 import { Swal } from "../utils/swal";  // Import Swal
 
-/*
-export async function statusMessage () {
-
-
-    const UpdateToMv3 = Swal.mixin({
-        title: "PHEx 3.0.0",
-        icon: "info",
-        showCancelButton: true,
-        showConfirmButton: true,
-        confirmButtonText: "Update to 3.0.0",
-        cancelButtonText: "I've already updated.",
-        html: "<p>WE DID IT!! PHEx 3.0.0 IS NOW RELESED!!!</p> </p>We've released a new version of PHEx! We strongly reccomend updating to PHEx 3.0.0.</p><p><a href=https://github.com/ProdigyPXP/ProdigyMathGameHacking/releases/latest>Update now!</a></p>"
-
-    });
-
-    if (await (await UpdateToMv3.fire()).value) {
-        window.location.href = "https://github.com/ProdigyPXP/ProdigyMathGameHacking/releases/latest";
-    };
-
-}
-*/
-
 
 
 
@@ -29,7 +7,7 @@ export async function statusMessage () {
 export function statusMessage () {
 
 
-    fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyMathGameHacking/master/cheatGUI/statusmessage.json?updated=${Date.now()}`).then(response => response.json()).then(async data => {
+    fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyMathGameHacking/master/originGUI/statusmessage.json?updated=${Date.now()}`).then(response => response.json()).then(async data => {
 
             const enabled = data.enabled;
 
