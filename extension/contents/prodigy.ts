@@ -195,8 +195,13 @@ function rewriteDocument(): void {
   }
 
   try {
+    // Strip auth code/state params — they're one-time tokens and re-fetching
+    // them triggers a redirect to play.prodigygame.com (CORS block).
+    const rewriteUrl = new URL(location.href)
+    rewriteUrl.searchParams.delete("code")
+    rewriteUrl.searchParams.delete("state")
     const xhr = new XMLHttpRequest()
-    xhr.open("GET", location.href, false)
+    xhr.open("GET", rewriteUrl.href, false)
     xhr.send()
 
     if (xhr.status === 200 && xhr.responseText) {
