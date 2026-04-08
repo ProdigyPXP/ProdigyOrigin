@@ -13,8 +13,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.7.0",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.39",
