@@ -293,20 +293,5 @@ function rewriteDocument(): void {
     attributeFilter: ["data-origin-ready"]
   })
 
-  // Safety timeout: if ready signal never comes, fall back to default URL
-  setTimeout(() => {
-    if (!window.__ORIGIN_GAME_URL__) {
-      bridgeObserver.disconnect()
-      // Read whatever is available (sync default URL at minimum)
-      readUrlsFromBridge()
-      if (!window.__ORIGIN_GAME_URL__) {
-        console.warn("[Origin] Bridge never signaled ready, no URL available")
-        return
-      }
-      console.log("[Origin] Bridge timeout — using fallback URL")
-      rewriteDocument()
-    }
-  }, 500)
-
   console.log("[Origin] Content script loaded — waiting for bridge ready signal")
 })()

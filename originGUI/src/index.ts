@@ -112,12 +112,7 @@ if (!localStorage.hasTip) {
 	    await Swal.fire({
 		    title: 'Welcome!',
 		    html: `To get started with the hacks, click this dropdown!`,
-	        icon: 'info',
-		    backdrop: `
-		        url("https://i.imgur.com/CdV9piu.png")
-		        left top
-		        no-repeat
-		    `
+	        icon: 'info'
        });
 	})();
 	localStorage.hasTip = true;
