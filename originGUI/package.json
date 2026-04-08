@@ -1,6 +1,6 @@
 {
   "name": "origingui",
-  "version": "3.0.1",
+  "version": "4.1.0",
   "description": "Prodigy Origin mod menu",
   "main": "dist/bundle.js",
   "scripts": {

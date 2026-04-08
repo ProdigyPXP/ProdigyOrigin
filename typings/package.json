@@ -1,20 +1,20 @@
 {
-	"name": "prodigy-declarations",
-	"version": "3.0.1",
-	"description": "Type declarations for Prodigy, the math game.",
-	"license": "MPL-2.0",
-	"author": "alexey-max-fedorov",
-	"scripts": {},
-	"dependencies": {
-		"typescript": "^6.0.2"
-	},
-	"keywords": [],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ProdigyPXP/ProdigyOrigin.git#master"
-	},
-	"bugs": {
-		"url": "https://github.com/ProdigyPXP/ProdigyOrigin/issues"
-	},
-	"homepage": "https://github.com/ProdigyPXP/ProdigyOrigin/tree/master/typings"
+  "name": "prodigy-declarations",
+  "version": "4.1.0",
+  "description": "Type declarations for Prodigy, the math game.",
+  "license": "MPL-2.0",
+  "author": "alexey-max-fedorov",
+  "scripts": {},
+  "dependencies": {
+    "typescript": "^6.0.2"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProdigyPXP/ProdigyOrigin.git#master"
+  },
+  "bugs": {
+    "url": "https://github.com/ProdigyPXP/ProdigyOrigin/issues"
+  },
+  "homepage": "https://github.com/ProdigyPXP/ProdigyOrigin/tree/master/typings"
 }
