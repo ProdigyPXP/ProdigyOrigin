@@ -10,7 +10,7 @@ Prodigy Origin enhances your Prodigy Math Game experience with community-built m
 
 | Browser | Link |
 |---------|------|
-| Chrome | Chrome Web Store (coming soon) |
+| Chrome | [Chrome Web Store](https://chrome.google.com/webstore/detail/mbjjannikkfihddnepoionimbedjnbib) |
 | Firefox | Firefox Add-ons (coming soon) |
 | Edge | Edge Add-ons (coming soon) |
 | Manual | [Manual install guides](meta/manual/) |
