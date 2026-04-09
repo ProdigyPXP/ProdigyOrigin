@@ -1,3 +1,5 @@
+<img width="1400" height="560" alt="Untitled design" src="https://github.com/user-attachments/assets/63fef069-8dff-463f-9aad-2ec779009eb7" />
+
 # Prodigy Origin
 
 **Free and open source mods for [Prodigy Math Game](https://prodigygame.com).**
