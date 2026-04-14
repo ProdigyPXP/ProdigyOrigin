@@ -83,7 +83,10 @@ menuleft.append(disc);
 const subtitle = document.createElement("h3");
 subtitle.style.fontSize = "20px";
 subtitle.innerHTML = `
-<p>Join our Discord <a href='https://dsc.gg/ProdigyPXP'>https://dsc.gg/ProdigyPXP</a>!</p>
+<p style="display:flex;justify-content:space-between;align-items:center;">
+    <span>Join our Discord <a href='https://dsc.gg/ProdigyPXP'>https://dsc.gg/ProdigyPXP</a>!</span>
+    <a href='https://extension.prodigyorigin.com' style="font-size:14px;">⭐ Rate 5 Stars</a>
+</p>
 
 <hr>
 `;
