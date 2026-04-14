@@ -223,6 +223,21 @@ new Hack(category.player, "Set Gold").setClick(async () => {
 
 
 
+// Begin Set Magicoin
+new Hack(category.player, "Set Magicoin", "Set your Magicoin amount.").setClick(async () => {
+    const amt = await NumberInput.fire("Magicoin Amount", "What number do you want to set your Magicoin to?", "question");
+    if (amt.value === undefined) return;
+    try {
+        (player as any)._secureInventory._cacheByPath.currency[27].stackable.quantity = +amt.value;
+        return Toast.fire("Done!", `Magicoin set to ${amt.value}.`, "success");
+    } catch (e) {
+        return Swal.fire("Error", "Failed to set Magicoin. The path may have changed.", "error");
+    }
+});
+// End Set Magicoin
+
+
+
 
 
 

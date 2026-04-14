@@ -98,6 +98,7 @@ export const category = {
 	location: addArea("Location Mods"),
 	pets: addArea("Pet Mods"),
 	battle: addArea("Battle Mods"),
+	battlepass: addArea("Battle Pass Mods"),
 	minigames: addArea("Minigame Mods"),
 	misc: addArea("Miscellaneous Mods"),
 	utility: addArea("Utility Mods"),

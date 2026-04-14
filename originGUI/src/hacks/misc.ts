@@ -122,4 +122,30 @@ new Toggler(category.misc, "Disable Monster Encounters").setEnabled(async () => 
 
 
 
+// Begin Bobbified
+new Hack(category.misc, "Bobbified", "Turns you into Bobby Fancywoman (level 69, specific appearance).").setClick(async () => {
+    if (!(await Confirm.fire("Are you sure?", "You will be transformed into Bobby Fancywoman.")).value) return;
+
+    player.name.data.firstName = 44;
+    player.name.data.middleName = 754;
+    player.name.data.lastName = 882;
+    player.data.stars = -1e22;
+    player.data.level = 69;
+
+    player.appearance.setEyeColor(1);
+    player.appearance.setFace(4);
+    player.appearance.setHair(19, 1);
+    player.appearance.setSkinColor(1);
+
+    player.equipment.setFollow(19);
+    player.equipment.setHat(19);
+    player.equipment.setBoots(19);
+    player.equipment.setOutfit(19);
+    player.equipment.setWeapon(19);
+
+    return Toast.fire("Done!", "You are now Bobby Fancywoman.", "success");
+});
+// End Bobbified
+
+
 // END MISCELLANEOUS HACKS

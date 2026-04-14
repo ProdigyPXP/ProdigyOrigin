@@ -248,4 +248,34 @@ new Hack(category.utility, "Disable inactivity kick", "Keeps you from being logg
 
 
 
+// Begin Save Inventory
+new Hack(category.utility, "Save Inventory", "Forces a server-side save of your inventory/backpack.").setClick(async () => {
+    try {
+        (player as any).updated = true;
+        (player as any).saveEnabled = true;
+        if (player.backpack) (player.backpack as any).updated = true;
+        if (typeof (player as any).save === "function") {
+            await (player as any).save();
+        }
+        return Toast.fire("Saved!", "Inventory saved to server.", "success");
+    } catch (e) {
+        return Swal.fire("Error", "Failed to save inventory: " + e, "error");
+    }
+});
+// End Save Inventory
+
+
+// Begin Save Pet Data
+new Hack(category.utility, "Save Pet Data", "Forces a server-side save of your pet/kennel data.").setClick(async () => {
+    (player.kennel as any).updated = true;
+    (player as any).updated = true;
+    (player as any).saveEnabled = true;
+    if (typeof (player as any).forceSaveCharacter === "function") {
+        (player as any).forceSaveCharacter();
+    }
+    return Toast.fire("Saved!", "Pet data saved to server.", "success");
+});
+// End Save Pet Data
+
+
 // END UTILITY HACKS

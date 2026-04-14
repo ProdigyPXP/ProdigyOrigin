@@ -211,4 +211,59 @@ new Hack(category.pets, "Delete Pet", "Delete a pet.").setClick(async () => {
 
 
 
+// Begin All Pets Level 150
+new Hack(category.pets, "All Pets Level 150", "Replaces all pets with every pet at level 150. WARNING: Erases current pet data.").setClick(async () => {
+    if (!(await Confirm.fire("Are you sure?", "This will erase all your current pet data and replace it with every pet at level 150.")).value) return;
+
+    try {
+        const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
+
+        const getHpFromPet = (level: number, petGameData: any) => {
+            const statValue = petGameData.data.statHealth;
+            const level1Hp = (500 / 1.25) * Math.pow(Math.pow(1.25, 0.25), statValue - 1);
+            const hpInc = (100 / 1.25) * Math.pow(Math.pow(1.25, 0.25), statValue - 1);
+            return Math.ceil(level1Hp + (level - 1) * hpInc);
+        };
+
+        const getXP = (level: number) => {
+            if (level === 1) return 0;
+            if (level === 2) return 10;
+            const offsetLevel = level - 2;
+            const xpConstant = 1.042;
+            return Math.round((((1 - Math.pow(xpConstant, offsetLevel)) / (1 - xpConstant)) * 20) + 10);
+        };
+
+        const level = 150;
+        const xp = getXP(level);
+        // @ts-expect-error
+        const pets = _.gameData.pet;
+
+        player.kennel.data.length = 0;
+
+        pets.forEach((pet: any) => {
+            player.kennel.addPet(pet.ID, getHpFromPet(level, pet), xp, level);
+        });
+
+        player.kennel._encounterInfo._data.pets = pets.map((pet: any) => ({
+            firstSeenDate: Date.now() - randomIntFromInterval(20000, 120000),
+            ID: pet.ID,
+            timesBattled: 1,
+            timesRescued: 1,
+            rescueAttempts: 1,
+        }));
+
+        // Fix broken pets
+        // @ts-expect-error
+        player.kennel.petTeam.forEach(v => {
+            if (v && (v as any).assignRandomSpells) (v as any).assignRandomSpells();
+        });
+
+        return Swal.fire("Done!", "All pets added at level 150. Leave the game open for ~2 minutes to fully sync.", "success");
+    } catch (e) {
+        return Swal.fire("Error", "Failed to add pets: " + e, "error");
+    }
+});
+// End All Pets Level 150
+
+
 // END PET HACKS

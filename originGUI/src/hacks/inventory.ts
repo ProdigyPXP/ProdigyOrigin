@@ -235,4 +235,26 @@ new Hack(category.inventory, "Remove item").setClick(async () => {
 
 
 
+// Begin Get All Gems
+new Hack(category.inventory, "Get All Gems", "Adds one of each gem type to your backpack and saves.").setClick(async () => {
+    const gemIds = [3, 4, 10, 11, 17];
+    gemIds.forEach(id => {
+        const existing = (player.backpack.data.key as any[]).find((e: any) => e.ID === id);
+        if (existing) {
+            existing.N += 1;
+        } else {
+            (player.backpack.data.key as any[]).push({ ID: id, N: 1 });
+        }
+    });
+    (player.appearance as any).updated = true;
+    (player as any).updated = true;
+    (player as any).saveEnabled = true;
+    if (typeof (player as any).forceSaveCharacter === "function") (player as any).forceSaveCharacter();
+    (player as any).appearanceChanged = true;
+    (player.backpack as any).updated = true;
+    return Toast.fire("Done!", "All gems added to your backpack.", "success");
+});
+// End Get All Gems
+
+
 // END INVENTORY HACKS
