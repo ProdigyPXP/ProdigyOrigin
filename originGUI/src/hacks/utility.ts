@@ -72,11 +72,12 @@ new Hack(category.utility, "Load local character [Local]", "Loads your character
                 "accept-language": "en-US,en;q=0.9",
                 authorization: localStorage.JWT_TOKEN,
                 "content-type": "application/json",
-                "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
-                "sec-ch-ua-mobile": "?0",
-                "sec-fetch-dest": "empty",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "same-site"
+                // Browsers set these automatically — kept for reference
+                // "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
+                // "sec-ch-ua-mobile": "?0",
+                // "sec-fetch-dest": "empty",
+                // "sec-fetch-mode": "cors",
+                // "sec-fetch-site": "same-site"
             },
             referrer: "https://play.prodigygame.com/",
             referrerPolicy: "strict-origin-when-cross-origin",
