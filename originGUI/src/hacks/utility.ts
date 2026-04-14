@@ -28,19 +28,21 @@ new Hack(category.utility, "Grab UserID of all players on screen", "Shows you th
     const users : object = current.playerList;
     if (Object.keys(users).length === 0) {
         return Toast.fire("No players found.", "There are no other players on the screen.", "error");
-    } else {
-
-        let contents : string = "";
-        let i : number = 0;
-
-        await Object.keys(users).map((user : string) => {
-            const name : string = Object.entries(users)[i][1].nameText.textSource.source;
-            contents += `<li>uID: ${user} - ${name}</li>`;
-            i++;
-        });
-
-        return Swal.fire({title: "All players on the screen:", html: contents, icon: "info" });
     }
+
+    const ul = document.createElement("ul");
+    for (const [user, data] of Object.entries(users)) {
+        let name = "Unknown";
+        try {
+            name = (data as any).nameText.textSource.source;
+        } catch {
+            // player entity may be partially initialized
+        }
+        const li = document.createElement("li");
+        li.textContent = `uID: ${user} - ${name}`;
+        ul.append(li);
+    }
+    return Swal.fire({ title: "All players on the screen:", html: ul, icon: "info" });
 });
 
 
