@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core"
+    ]
+  }
+}
