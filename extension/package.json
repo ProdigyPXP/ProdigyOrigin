@@ -25,7 +25,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "plasmo": "^0.90.5",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "manifest": {
     "name": "Prodigy Origin | Prodigy Mod Hack",
