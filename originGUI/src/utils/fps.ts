@@ -1,4 +1,5 @@
 import { wrapper } from "../index";
+import { _ } from "./util";
 
 const FPSc = document.createElement("button"); // Create menu toggler
 let fpsInterval: ReturnType<typeof setInterval> | null = null;
