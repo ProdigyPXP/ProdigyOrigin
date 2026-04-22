@@ -674,7 +674,7 @@ new Hack(category.player, "Copy Account", "Copy Account From userID").setClick(a
 
     // Only proceed with POST if confirmed
     try {
-        await fetch(`https://api.prodigygame.com/game-api/v3/characters/${userID}`, {
+        const resp = await fetch(`https://api.prodigygame.com/game-api/v3/characters/${userID}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.JWT_TOKEN
@@ -685,6 +685,9 @@ new Hack(category.player, "Copy Account", "Copy Account From userID").setClick(a
             }),
             method: "POST"
         });
+        if (!resp.ok) {
+            return Toast.fire("Error", `Failed to copy account: ${resp.status} ${resp.statusText}`, "error");
+        }
         return Toast.fire("Success!", "Copied Account Successfully! Please reload.", "success");
     } catch (err) {
         return Toast.fire("Error", `Network error while copying account: ${err instanceof Error ? err.message : "Unknown error"}`, "error");
