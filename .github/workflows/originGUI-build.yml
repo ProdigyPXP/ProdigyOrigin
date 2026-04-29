@@ -1,6 +1,7 @@
 name: Autobuild originGUI
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
