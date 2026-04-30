@@ -10,6 +10,8 @@ function Popup() {
   const [guiUrl, setGuiUrl] = useState("");
   const [saved, setSaved] = useState(false);
   const [devOpen, setDevOpen] = useState(false);
+  const [devUnlocked, setDevUnlocked] = useState(false);
+  const [challengeInput, setChallengeInput] = useState("");
 
   useEffect(() => {
     chrome.storage.local.get(["originGameUrl", "originGuiUrl"], (res) => {
@@ -104,60 +106,100 @@ function Popup() {
                 ⚠️ Do not change these unless you know what you're doing.
               </p>
 
-              <label className="field">
-                <span className="field-label">Patched game.min.js URL</span>
-                <input
-                  type="text"
-                  value={gameUrl}
-                  onChange={(e) => setGameUrl(e.target.value)}
-                  placeholder="default: P-NP/master/dist"
-                  className="field-input"
-                />
-              </label>
+              {devUnlocked ? (
+                <>
+                  <label className="field">
+                    <span className="field-label">Patched game.min.js URL</span>
+                    <input
+                      type="text"
+                      value={gameUrl}
+                      onChange={(e) => setGameUrl(e.target.value)}
+                      placeholder="default: P-NP/master/dist"
+                      className="field-input"
+                    />
+                  </label>
 
-              <label className="field">
-                <span className="field-label">Mod bundle URL</span>
-                <input
-                  type="text"
-                  value={guiUrl}
-                  onChange={(e) => setGuiUrl(e.target.value)}
-                  placeholder="default: baked into patched game"
-                  className="field-input"
-                />
-              </label>
+                  <label className="field">
+                    <span className="field-label">Mod bundle URL</span>
+                    <input
+                      type="text"
+                      value={guiUrl}
+                      onChange={(e) => setGuiUrl(e.target.value)}
+                      placeholder="default: baked into patched game"
+                      className="field-input"
+                    />
+                  </label>
 
-              <div className="button-row">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={handleSave}
-                  className="btn-flex"
-                >
-                  <Save size={14} />
-                  <AnimatePresence mode="wait" initial={false}>
-                    {saved ? (
-                      <motion.span
-                        key="saved"
-                        initial={{ opacity: 0, y: -4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 4 }}
-                      >
-                        Saved!
-                      </motion.span>
-                    ) : (
-                      <motion.span key="save">Save</motion.span>
-                    )}
-                  </AnimatePresence>
-                </Button>
-                <Button variant="ghost" size="sm" onClick={handleReset}>
-                  <RotateCcw size={14} />
-                  Reset
-                </Button>
-              </div>
+                  <div className="button-row">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={handleSave}
+                      className="btn-flex"
+                    >
+                      <Save size={14} />
+                      <AnimatePresence mode="wait" initial={false}>
+                        {saved ? (
+                          <motion.span
+                            key="saved"
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 4 }}
+                          >
+                            Saved!
+                          </motion.span>
+                        ) : (
+                          <motion.span key="save">Save</motion.span>
+                        )}
+                      </AnimatePresence>
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={handleReset}>
+                      <RotateCcw size={14} />
+                      Reset
+                    </Button>
+                  </div>
 
-              <p className="helper">
-                Leave blank to use defaults. Reload the Prodigy tab after saving.
-              </p>
+                  <p className="helper">
+                    Leave blank to use defaults. Reload the Prodigy tab after saving.
+                  </p>
+                </>
+              ) : (
+                <div className="field">
+                  {(() => {
+                    const checkAnswer = () => {
+                      const answer = challengeInput.trim().toLowerCase();
+                      if (["i++", "i++;", "i += 1", "i += 1;"].includes(answer)) {
+                        setDevUnlocked(true);
+                      }
+                    };
+                    return (
+                      <>
+                        <label className="field-label" htmlFor="dev-challenge-input">
+                          How is i usually incremented in for loops?
+                        </label>
+                        <input
+                          id="dev-challenge-input"
+                          type="text"
+                          value={challengeInput}
+                          onChange={(e) => setChallengeInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              checkAnswer();
+                            }
+                          }}
+                          className="field-input"
+                        />
+                        <button
+                          onClick={checkAnswer}
+                          style={{ marginTop: 8 }}
+                        >
+                          Submit
+                        </button>
+                      </>
+                    );
+                  })()}
+                </div>
+              )}
             </div>
           </motion.div>
         )}
