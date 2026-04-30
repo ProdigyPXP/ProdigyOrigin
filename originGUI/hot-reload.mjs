@@ -42,6 +42,7 @@ async function rebuild () {
 
 	try {
 		await buildBundle({ mode: "development" });
+		await fs.promises.appendFile(bundlePath, "\n/* DEV BUNDLE */");
 		const data = await fs.promises.readFile(bundlePath, "utf8");
 		io.emit("update", data);
 	} catch (error) {

@@ -39,6 +39,7 @@ Prodigy Origin is a monorepo for modding Prodigy Math Game. It is maintained by 
 4. **MV3 only** — no MV2 APIs. Use declarativeNetRequest, not webRequest.
 5. **The onreset injection trick is intentional and critical** — do not replace it with script tag injection or other methods. It's the only reliable way to inject code into the MAIN world under MV3 CSP restrictions.
 6. **Graceful degradation** — if patches fail, set `patchDegraded: true` and create a GitHub issue.
+7. **Dev bundle guard** — Before committing or pushing `originGUI/dist/bundle.js`, check that the file does NOT end with `/* DEV BUNDLE */`. If it does, stop — run `cd originGUI && pnpm build` to rebuild the production bundle before proceeding.
 
 ## Build Commands
 
