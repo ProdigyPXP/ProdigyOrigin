@@ -1,5 +1,5 @@
 import { TODO } from "../../../typings/util"; // Import Prodigy Util typings
-import { _ } from "../utils/util";  // Import Prodigy typings and VERY_LARGE_NUMBER
+import { _, VERY_LARGE_NUMBER, player } from "../utils/util";  // Import Prodigy typings and VERY_LARGE_NUMBER
 import { Swal, Toast } from "../utils/swal";  // Import Swal, Toast, Confirm, Input, and NumberInput from swal
 
 
@@ -99,3 +99,43 @@ export const getPet = async (text: string): Promise<number | undefined> => {
 	});
 	return pet.value;
 };
+
+// Follow-pet ID blacklist (legacy epics excluded from general "all pets" operations)
+export const PET_BLACKLIST: number[] = [125, 126, 127, 128, 129, 134, 135, 136, 137];
+
+export function obtainAllPets(): void {
+    // @ts-expect-error
+    _.gameData.pet.forEach(x => {
+        player.kennel.addPet(x.ID, VERY_LARGE_NUMBER, 26376, 100);
+    });
+    player.kennel._encounterInfo._data.pets = [];
+    _.gameData.pet.map((pet: { ID: number }) => {
+        player.kennel._encounterInfo._data.pets.push({
+            firstSeenDate: Date.now(),
+            ID: pet.ID,
+            timesBattled: 1,
+            timesRescued: 1
+        });
+    });
+    // @ts-expect-error
+    player.kennel.petTeam.forEach(v => {
+        if (v && (v as any).assignRandomSpells)(v as any).assignRandomSpells();
+    });
+}
+
+export function obtainAllItems(amount: number): void {
+    ids.forEach(id => {
+        // @ts-expect-error
+        player.backpack.data[id] = itemify(_.gameData[id].filter(l => id === "follow" ? !PET_BLACKLIST.includes(l.ID) : l), amount);
+    });
+    // @ts-expect-error
+    _.gameData.dorm.forEach(x =>
+        // @ts-expect-error
+        player.house.data.items[x.ID] = { A: [], N: amount });
+}
+
+export function removeBountyNotes(): void {
+    // @ts-expect-error
+    const bountyIndex = () => player.backpack.data.item.findIndex(v => v.ID === 84 || v.ID === 85 || v.ID === 86);
+    while (bountyIndex() > -1) player.backpack.data.item.splice(bountyIndex(), 1);
+}

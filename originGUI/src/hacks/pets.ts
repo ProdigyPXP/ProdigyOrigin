@@ -6,7 +6,7 @@ import { Swal, Toast, NumberInput, Confirm } from "../utils/swal";  // Import Sw
 import { category } from "../index";  // Import the mod menu bases.
 import Hack from "../class/Hack";
 import { _, VERY_LARGE_NUMBER, player } from "../utils/util";  // Import Prodigy typings and VERY_LARGE_NUMBER
-import { getPet } from "../utils/hackify"; // Import getPet
+import { getPet, obtainAllPets } from "../utils/hackify"; // Import getPet
 // END IMPORTS
 
 
@@ -22,30 +22,7 @@ new Hack(category.pets, "Get All Pets").setClick(async () => {
     }
 
 
-    // add pets
-    // @ts-expect-error
-    _.gameData.pet.forEach(x => {
-        player.kennel.addPet(x.ID, VERY_LARGE_NUMBER, 26376, 100);
-    });
-
-
-    // add encounter info
-    player.kennel._encounterInfo._data.pets = [];
-    _.gameData.pet.map((pet: {
-        ID: number
-    }) => {
-        player.kennel._encounterInfo._data.pets.push({
-            firstSeenDate: Date.now(),
-            ID: pet.ID,
-            timesBattled: 1,
-            timesRescued: 1
-        });
-    });
-    // Fix broken pets
-    // @ts-expect-error
-    player.kennel.petTeam.forEach(v => {
-        if (v && (v as any).assignRandomSpells)(v as any).assignRandomSpells();
-    });
+    obtainAllPets();
 
     return Toast.fire("Success!", "All pets have been added!", "success");
 });

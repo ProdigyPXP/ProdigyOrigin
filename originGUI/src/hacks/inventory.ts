@@ -7,7 +7,7 @@ import { category } from "../index"; // Import the mod menu bases.
 import Hack from "../class/Hack";
 import { Swal, Toast, Confirm, NumberInput } from "../utils/swal"; // Import Swal, Toast, NumberInput, and Confirm from swal
 import { _, saveCharacter, player } from "../utils/util"; // Import Prodigy typings
-import { names, ids, itemify } from "../utils/hackify"; // Import some conversion functions and arrays
+import { names, ids, itemify, obtainAllItems, removeBountyNotes, PET_BLACKLIST } from "../utils/hackify"; // Import some conversion functions and arrays
 // END IMPORTS
 
 
@@ -22,22 +22,8 @@ new Hack(category.inventory, "Item stacker").setClick(async () => {
     const num = await NumberInput.fire("Amount", "How many of every item would you like?", "question");
     if (!num.value) return;
     if (!(await Confirm.fire("Are you sure you want to get all items in the game?")).value) return;
-    ids.forEach(id => {
-        // @ts-expect-error
-        player.backpack.data[id] = itemify(_.gameData[id].filter(l => id === "follow" ? ![125, 126, 127, 128, 129, 134, 135, 136, 137].includes(l.ID) : l), num.value);
-    });
-    // @ts-expect-error
-    _.gameData.dorm.forEach(x =>
-        player.house.data.items[x.ID] = {
-            A: [],
-            N: num.value
-        }
-    );
-
-    // Remove bounty notes... because they're very spammy
-    // @ts-expect-error
-    const bountyIndex = () => player.backpack.data.item.findIndex(v => v.ID === 84 || v.ID === 85 || v.ID === 86);
-    while (bountyIndex() > -1) player.backpack.data.item.splice(bountyIndex(), 1);
+    obtainAllItems(num.value);
+    removeBountyNotes();
 
     return Toast.fire("Success!", "All items added!", "success");
 });
@@ -80,7 +66,7 @@ new Hack(category.inventory, "Selector (Basic)").setClick(async () => {
         if (!(await Confirm.fire(`Are you sure you want to get all ${name.toLowerCase()}?`)).value) return;
         // @ts-expect-error
         player.backpack.data[id] = itemify(_.gameData[id].filter(a => {
-            return id === 'follow' ? ![125, 126, 127, 128, 129, 134, 135, 136, 137].includes(a.ID) : a
+            return id === 'follow' ? !PET_BLACKLIST.includes(a.ID) : a
         }), amt.value);
         Toast.fire(
             `${name} Added!`,

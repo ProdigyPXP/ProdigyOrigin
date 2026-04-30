@@ -6,8 +6,8 @@ import { Swal, Toast, NumberInput, Input, Confirm } from "../utils/swal"; // Imp
 import { category } from "../index"; // Import the mod menu bases.
 import Toggler from "../class/Toggler";
 import Hack from "../class/Hack";
-import { _, getItem, VERY_LARGE_NUMBER, prodigy, saveCharacter, player} from "../utils/util";  // Import Prodigy typings and VERY_LARGE_NUMBER
-import { ids, itemify } from "../utils/hackify";  // Import useful arrays and functions
+import { _, getItem, prodigy, saveCharacter, player} from "../utils/util";  // Import Prodigy typings and VERY_LARGE_NUMBER
+import { itemify, obtainAllPets, obtainAllItems, removeBountyNotes, PET_BLACKLIST } from "../utils/hackify";  // Import useful arrays and functions
 
 
 // END IMPORTS
@@ -88,22 +88,8 @@ new Hack(category.player, "Max Account").setClick(async () => {
     // INVENTORY HACKS
 
 
-    // Get 1 of all items
-    const num : number = 1;
-
-    ids.forEach(id => {
-        // @ts-expect-error
-        player.backpack.data[id] = itemify(_.gameData[id].filter(l => id === "follow" ? ![125, 126, 127, 128, 129, 134, 135, 136, 137].includes(l.ID) : l), num);
-    });
-    // @ts-expect-error
-    _.gameData.dorm.forEach(x =>
-        // @ts-expect-error
-        player.house.data.items[x.ID] = { A: [], N: num });
-
-    // Remove bounty notes
-    // @ts-expect-error
-    const bountyIndex = () => player.backpack.data.item.findIndex(v => v.ID === 84 || v.ID === 85 || v.ID === 86);
-    while (bountyIndex() > -1) player.backpack.data.item.splice(bountyIndex(), 1);
+    obtainAllItems(1);
+    removeBountyNotes();
     Toast.fire("Success!", "All items added!", "success");
 
     console.log("All items added!");
@@ -124,7 +110,7 @@ new Hack(category.player, "Max Account").setClick(async () => {
         const amt : number = 6969420;
         // @ts-expect-error
         player.backpack.data[id] = itemify(_.gameData[id].filter(a => {
-            return id === 'follow' ? ![125, 126, 127, 128, 129, 134, 135, 136, 137].includes(a.ID) : a
+            return id === 'follow' ? !PET_BLACKLIST.includes(a.ID) : a
         }), amt);
         
 
@@ -135,31 +121,7 @@ new Hack(category.player, "Max Account").setClick(async () => {
     // PET HACKS
 
 
-    // Get All Pets
-
-    // add pets
-    // @ts-expect-error
-    _.gameData.pet.forEach(x => {
-        player.kennel.addPet(x.ID, VERY_LARGE_NUMBER, 26376, 100);
-    });
-
-    // add encounter info
-    player.kennel._encounterInfo._data.pets = [];
-    _.gameData.pet.map((pet: {
-        ID: number
-    }) => {
-        player.kennel._encounterInfo._data.pets.push({
-            firstSeenDate: Date.now(),
-            ID: pet.ID,
-            timesBattled: 1,
-            timesRescued: 1
-        });
-    });
-    // Fix broken pets
-    // @ts-expect-error
-    player.kennel.petTeam.forEach(v => {
-        if (v && (v as any).assignRandomSpells)(v as any).assignRandomSpells();
-    });
+    obtainAllPets();
     console.log("Added all pets.");
 
 

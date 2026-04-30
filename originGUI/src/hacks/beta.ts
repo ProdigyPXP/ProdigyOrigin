@@ -9,7 +9,7 @@ import { category } from "../index"; // Import the mod menu bases.
 import Toggler from "../class/Toggler";
 import Hack from "../class/Hack";
 import { _, getItem, VERY_LARGE_NUMBER, prodigy, saveCharacter, player, current} from "../utils/util";  // Import prodigy typings, and VERY_LARGE_NUMBER
-import { ids, itemify, runeify, getPet } from "../utils/hackify"; // Import runeify and some arrays
+import { itemify, runeify, getPet, obtainAllPets, obtainAllItems, removeBountyNotes } from "../utils/hackify"; // Import runeify and some arrays
 import { PopupInterval } from "../utils/popupCloser";
 // END IMPORTS
 
@@ -256,23 +256,8 @@ new Hack(category.beta, "Hypermax Account [BETA]").setClick(async () => {
 
 
 
-    // Get 990000 of all items
-    const num = 990000;
-
-    ids.forEach(id => {
-        // @ts-expect-error
-        player.backpack.data[id] = itemify(_.gameData[id].filter(l => id === "follow" ? ![125, 126, 127, 128, 129, 134, 135, 136, 137].includes(l.ID) : l), num);
-    });
-    // @ts-expect-error
-    _.gameData.dorm.forEach(x =>
-        // @ts-expect-error
-        player.house.data.items[x.ID] = { A: [], N: num }
-    );
-
-    // Remove bounty notes
-    // @ts-expect-error
-    const bountyIndex = () => player.backpack.data.item.findIndex(v => v.ID === 84 || v.ID === 85 || v.ID === 86);
-    while (bountyIndex() > -1) player.backpack.data.item.splice(bountyIndex(), 1);
+    obtainAllItems(990000);
+    removeBountyNotes();
     Toast.fire("Success!", "All items added!", "success");
 
     console.log("All items added!");
@@ -284,46 +269,13 @@ new Hack(category.beta, "Hypermax Account [BETA]").setClick(async () => {
     console.log("Added all mounts.");
 
 
-    // Get 990000 of all furniture
-    const amt = 990000;
-    _.gameData.dorm.forEach(x =>
-        // @ts-expect-error
-        player.house.data.items[x.ID] = { A: [], N: amt }
-    );
-    console.log("Added 990000 of all furniture.");
-
-
     // INVENTORY HACKS
     // ============================================
     // ============================================
     // PET HACKS
 
 
-    // Get All Pets
-
-    // add pets
-    // @ts-expect-error
-    _.gameData.pet.forEach(x => {
-        player.kennel.addPet(x.ID, VERY_LARGE_NUMBER, 26376, 100);
-    });
-
-    // add encounter info
-    player.kennel._encounterInfo._data.pets = [];
-    _.gameData.pet.map((pet: {
-        ID: number
-    }) => {
-        player.kennel._encounterInfo._data.pets.push({
-            firstSeenDate: Date.now(),
-            ID: pet.ID,
-            timesBattled: 1,
-            timesRescued: 1
-        });
-    });
-    // Fix broken pets
-    // @ts-expect-error
-    player.kennel.petTeam.forEach(v => {
-        if (v && (v as any).assignRandomSpells)(v as any).assignRandomSpells();
-    });
+    obtainAllPets();
     console.log("Added all pets.");
 
 
