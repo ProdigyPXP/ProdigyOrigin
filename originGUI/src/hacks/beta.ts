@@ -196,7 +196,7 @@ new Hack(category.beta, "Hypermax Account [BETA]").setClick(async () => {
 
 
     // Set the players conjure cubes to 100 (max)
-    for (let i = 0; i < Math.min(99, 100); i++) {
+    for (let i = 0; i < 99; i++) {
         prodigy.giftBoxController.receiveGiftBox(null, getItem("giftBox", 1));
     }
     console.log("Obtained 100 conjure cubes.");
@@ -207,9 +207,8 @@ new Hack(category.beta, "Hypermax Account [BETA]").setClick(async () => {
     console.log("Set player's wins to VERY_LARGE_NUMBER");
 
 
-    // Set the player's losses to -9223372036854775808 (Java long limit, ik its irrelevant)
-    player.data.loss = -9223372036854775808;
-    console.log("Set player's losses to -9223372036854775808.");
+    player.data.loss = 0;
+    console.log("Set player's losses to 0.");
 
 
 

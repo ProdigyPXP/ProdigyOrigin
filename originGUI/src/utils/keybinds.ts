@@ -54,6 +54,7 @@ window.addEventListener("keydown", event => {
 
 
 
+	// TODO: Test this and expose as a "Keyboard Mode" mod (WASD + hotkey config in the menu)
 	/*
 	if (event.code === "KeyL") {
 		Phaser.GAMES[0].state.states.Login._gameObj.user.x = Phaser.GAMES[0].input.mousePointer.position.x;

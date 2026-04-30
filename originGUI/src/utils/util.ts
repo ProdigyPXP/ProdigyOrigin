@@ -56,9 +56,6 @@ export const getItem = <T extends GameItemKey>(type: T, id: number): Item<T> | n
 /** 9000000000 */
 export const VERY_LARGE_NUMBER = 9e9;
 
-/**  */
-export const states = Object.fromEntries(_.instance.game.state.states);
-
 /** Attempts to force the charecter to save. */
 export const saveCharacter = () => {
 	_.network.processPlayer = true;
@@ -91,5 +88,3 @@ export const locations = {
 	lamplight: joinAsset("lamplight.png")
 };
 
-/** rando */
-export const pickRandom = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];

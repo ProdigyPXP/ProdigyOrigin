@@ -57,7 +57,7 @@ try {
 	let canSpinBackup: unknown = null;
 	new Toggler(category.misc, "Unlimited Spins", "Lets you spin the wheel as many times as you want!").setEnabled(async () => {
 		canSpinBackup = player.canSpin; // capture original on first enable
-		player.canSpin = (() => { true; });
+		player.canSpin = () => true;
 		return Toast.fire("Enabled!", "You can now spin the wheel as many times as you want!", "success");
 	}).setDisabled(async() => {
 		player.canSpin = canSpinBackup;

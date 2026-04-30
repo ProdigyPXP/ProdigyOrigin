@@ -184,4 +184,3 @@ if (process.env.NODE_ENV === "development") {
 // Display status message.
 statusMessage();
 
-console.log("yo");

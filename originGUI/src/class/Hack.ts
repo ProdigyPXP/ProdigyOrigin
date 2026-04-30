@@ -5,8 +5,7 @@ import { saveCharacter } from "../utils/util";
 export default class Hack {
 	public element: HTMLButtonElement;
 	public name: string;
-	// @ts-expect-error
-	private description: String;
+	private description: string;
 
 	constructor(
 		public parent: HTMLDivElement,

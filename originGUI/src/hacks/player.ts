@@ -64,7 +64,7 @@ new Hack(category.player, "Max Account").setClick(async () => {
 
 
     // Set the players conjure cubes to 100 (max)
-    for (let i = 0; i < Math.min(99, 100); i++) {
+    for (let i = 0; i < 99; i++) {
         prodigy.giftBoxController.receiveGiftBox(null, getItem("giftBox", 1));
     }
     console.log("Obtained 100 conjure cubes.");
