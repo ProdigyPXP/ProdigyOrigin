@@ -37,6 +37,16 @@ new Hack(category.beta, "Switch Branch", "Loads a different branch of Prodigy Or
 
     if (!branch) return;
 
+    if (branch !== "master") {
+        if (!(await Confirm.fire({
+            title: "Warning: Untrusted Code",
+            html: "Loading a non-master branch will execute untrusted JavaScript in your Prodigy session. This may compromise your account or data.<br><br>Are you sure you want to continue?",
+            icon: "warning"
+        })).value) {
+            return;
+        }
+    }
+
     return await eval(await (await fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyOrigin/${branch}/originGUI/dist/bundle.js`)).text());
 });
 
