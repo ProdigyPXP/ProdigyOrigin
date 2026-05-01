@@ -59,7 +59,7 @@ pids
 
 # Extension build output
 extension/build/
-extension/.plasmo/cache/
+extension/.plasmo/
 extension/firefox/build/
 extension/firefox/.plasmo/
 
