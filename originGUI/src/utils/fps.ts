@@ -1,4 +1,5 @@
 import { wrapper } from "../index";
+import { player } from "./util";
 
 const FPSc = document.createElement("button"); // Create menu toggler
 let fpsInterval: ReturnType<typeof setInterval> | null = null;
@@ -25,6 +26,6 @@ function activate () : void {
 
 
     fpsInterval = setInterval(() => {
-        FPSc.innerText = _.player.game.fps._framerate.toFixed(2) + " FPS";
+        FPSc.innerText = player.game.fps._framerate.toFixed(2) + " FPS";
     }, 300);
 }
