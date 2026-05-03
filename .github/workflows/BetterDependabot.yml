@@ -42,9 +42,15 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         git add .
+        git diff --staged --quiet originGUI/package.json || echo "ORIGIN_GUI_CHANGED=true" >> $GITHUB_ENV
         git commit -s -m "Update dependencies" || echo "No changes"
     - name: Push changes to GitHub
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
+    - name: Trigger originGUI build
+      if: env.ORIGIN_GUI_CHANGED == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh workflow run originGUI-build.yml --ref ${{ github.ref_name }}
