@@ -2,11 +2,20 @@
 
 ## Listing description (plain text, for Chrome Web Store description field)
 
+```
 PLAY ORIGIN — The Ultimate Mod Hack for Online Math Games
 
 Transform the way you play. Play Origin is a free, open-source browser extension that injects a powerful in-game mod menu directly into your favorite online math game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers.
 
 If you've ever wished you could just enjoy the adventure without farming the same battles for hours, this extension is built for you.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DISCLAIMER
+
+Play Origin is in no way associated with Prodigy Education Inc. The extension package does not contain any of Prodigy Education's copyrighted or trademarked assets.
+
+(Note to Prodigy Education employees: I would love to help improve your codebase this summer — I am currently looking for work. You can reach me at alexey.max.fedorov@gmail.com.)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -87,6 +96,8 @@ Modders, tinkerers, and curious developers who want to see how a commercial HTML
 
 Educators who use Prodigy in classrooms and want students to focus on the math instead of being distracted by the constant Membership upsell prompts.
 
+Content creators making videos or streams about Prodigy or mod tools — Play Origin gives you a controlled environment to demonstrate features and showcase content.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 WHAT IT IS NOT
@@ -126,7 +137,7 @@ INSTALLATION
 1. Click "Add to Chrome" at the top of this page.
 2. Confirm the install when Chrome asks.
 3. Open a new tab and go to math.prodigygame.com.
-4. Log in to your Prodigy account as you normally would.
+4. Log in to your account as you normally would.
 5. The mod menu will appear in the corner of the screen once the game finishes loading.
 6. Click the menu, explore the tabs, and play the way you've always wanted to.
 
@@ -150,6 +161,11 @@ Prodigy markets itself as an educational platform that makes math fun for kids. 
 
 We built Play Origin because we believe a free educational game should actually be free. Not free-with-an-asterisk. Not free-but-most-of-it-is-locked. Just free. The math is the point. Everything else should be along for the ride.
 
+Play Origin is also an open-source security awareness project. For over five years, the community has been discovering and documenting bugs in the math game — client-side vulnerabilities, unvalidated game logic, and exploitable systems — and encouraging its developers to fix them. Many of these issues have remained unaddressed for half a decade. The visibility this project brings is part of an ongoing effort to motivate the fixes that paid audits apparently have not.
+
 If that resonates with you, install the extension, share it with someone who'd benefit, and star the project on GitHub. That's how it stays alive.
 
-Made with care by the ProdigyPXP community. Open source forever.
+Maintained by Alexey Fedorov. Open source forever.
+
+(To Prodigy Education employees: I am looking for work and would genuinely enjoy helping improve your codebase. Reach out at alexey.max.fedorov@gmail.com.)
+```
