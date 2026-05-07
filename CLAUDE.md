@@ -1,6 +1,6 @@
-# Prodigy Origin — Claude Configuration
+# Play Origin — Claude Configuration
 
-Monorepo for modding Prodigy Math Game, maintained by **ProdigyPXP**.
+Monorepo for modding online math games (formerly modding Prodigy Math Game), maintained by **ProdigyPXP**.
 
 ## Detailed Docs
 

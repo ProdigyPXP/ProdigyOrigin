@@ -29,7 +29,7 @@
   },
   "manifest": {
     "name": "Play Origin | Math game Mod Hack",
-    "description": "The ultimate open source mod loader for Prodigy Math Game",
+    "description": "The ultimate open-source mod loader for online math games.",
     "author": "ProdigyPXP",
     "permissions": [
       "declarativeNetRequest",

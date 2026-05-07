@@ -2,7 +2,7 @@
 
 # Play Origin
 
-**Free and open source mods for [Prodigy Math Game](https://prodigygame.com).**
+**Free and open-source mods for online math games.**
 
 > Formerly **Prodigy Origin** — see [`meta/REBRAND.md`](meta/REBRAND.md) for the rebrand summary. The repo name and `prodigyorigin.com` domain stay.
 
