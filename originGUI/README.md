@@ -1,6 +1,6 @@
 # Cheat GUI
 
-This is the main cheat menu GUI for Prodigy Origin.
+This is the main cheat menu GUI for Play Origin (formerly Prodigy Origin).
 
 <br><br>
 

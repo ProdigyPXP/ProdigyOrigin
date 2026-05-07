@@ -19,7 +19,7 @@ import { PopupInterval } from "../utils/popupCloser";
 
 
 // Begin Switch Branch
-new Hack(category.beta, "Switch Branch", "Loads a different branch of Prodigy Origin for you.").setClick(async () => {
+new Hack(category.beta, "Switch Branch", "Loads a different branch of Play Origin for you.").setClick(async () => {
 
     const branches_fetch : string = await (await fetch("https://api.github.com/repos/ProdigyPXP/ProdigyOrigin/branches")).text()
     let branches : Map<string, string> = new Map();

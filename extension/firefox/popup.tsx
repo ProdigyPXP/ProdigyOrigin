@@ -40,9 +40,9 @@ function Popup() {
   return (
     <div className="popup-root">
       <div className="popup-header">
-        <img src={logoUrl} alt="Prodigy Origin" className="popup-logo" />
+        <img src={logoUrl} alt="Play Origin" className="popup-logo" />
         <div>
-          <h1 className="popup-title">Prodigy Origin</h1>
+          <h1 className="popup-title">Play Origin</h1>
           <p className="popup-eyebrow">Mod Loader · v4.2.1</p>
         </div>
       </div>

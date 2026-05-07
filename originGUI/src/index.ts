@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Prodigy Origin Mod Menu
+// Play Origin Mod Menu
 
 import { io } from "socket.io-client"; // Import socket.io-client
 import "./style.scss"; // Import SCSS style
@@ -70,7 +70,7 @@ function addArea (title: string) {
 
 const title = document.createElement("h1");
 title.classList.add("menu-title");
-title.innerText = "Prodigy Origin";
+title.innerText = "Play Origin";
 title.style.textAlign = "center";
 menuleft.append(title);
 

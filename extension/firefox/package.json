@@ -2,7 +2,7 @@
   "name": "prodigy-origin-extension-firefox",
   "version": "4.2.1",
   "private": true,
-  "description": "Prodigy Origin — Firefox MV3 build",
+  "description": "Play Origin — Firefox MV3 build",
   "scripts": {
     "dev": "plasmo dev --target=firefox-mv3",
     "build": "plasmo build --target=firefox-mv3",
@@ -25,7 +25,7 @@
     "typescript": "^6.0.2"
   },
   "manifest": {
-    "name": "Prodigy Origin | Prodigy Mod Hack",
+    "name": "Play Origin | Math game Mod Hack",
     "description": "The ultimate open source mod loader for Prodigy Math Game",
     "author": "ProdigyPXP",
     "permissions": [

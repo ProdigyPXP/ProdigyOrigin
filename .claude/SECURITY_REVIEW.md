@@ -1,4 +1,4 @@
-# ProdigyOrigin Security & Cleanup Handoff
+# Play Origin Security & Cleanup Handoff
 
 Generated from security + simplification audit (2026-04-30). Execute in a fresh session.
 

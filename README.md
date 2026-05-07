@@ -1,12 +1,14 @@
 <img width="1400" height="560" alt="Untitled design" src="https://github.com/user-attachments/assets/63fef069-8dff-463f-9aad-2ec779009eb7" />
 
-# Prodigy Origin
+# Play Origin
 
 **Free and open source mods for [Prodigy Math Game](https://prodigygame.com).**
 
-Prodigy Origin enhances your Prodigy Math Game experience with community-built mods, delivered through a simple browser extension.
+> Formerly **Prodigy Origin** — see [`meta/REBRAND.md`](meta/REBRAND.md) for the rebrand summary. The repo name and `prodigyorigin.com` domain stay.
 
-> **Looking for Prodigy hacks?** Prodigy Origin is the ultimate open source mod loader and hack tool for Prodigy Math Game.
+Play Origin is a free, open-source mod loader for online math games — delivered as a simple browser extension. It adds a full cheat menu to your favorite math game with one click.
+
+> **Looking for math-game hacks?** Play Origin is the ultimate open-source mod loader and cheat tool for online math games.
 
 ## [Install](https://extension.prodigyorigin.com)
 
@@ -21,7 +23,7 @@ Prodigy Origin enhances your Prodigy Math Game experience with community-built m
 
 - Blocks the original game code and loads a patched version with mods enabled
 - Removes Content Security Policy restrictions
-- Injects the **Prodigy Origin** mod menu into the game
+- Injects the **Play Origin** mod menu into the game
 - Configurable custom game/mod bundle URLs via the extension popup
 - Custom login background and logo
 

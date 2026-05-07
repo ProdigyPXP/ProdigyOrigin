@@ -1,7 +1,7 @@
 # Origin GUI — Mod Tracker
 
 Re-tested against Prodigy Math Game version **2026.18.1** on **2026-04-13** after OriginGUI mod repairs.
-Extension: Prodigy Origin (P-NP patched game).
+Extension: Play Origin (P-NP patched game).
 
 **Legend:**  
 ✅ Working · ⚠️ Partial · ❌ Broken · ⏭️ Not tested (destructive/requires game state) · 🔒 Acknowledged patched

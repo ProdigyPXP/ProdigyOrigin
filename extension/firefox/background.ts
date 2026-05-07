@@ -1,4 +1,4 @@
-// Background service worker for Prodigy Origin — Firefox MV3 variant
+// Background service worker for Play Origin — Firefox MV3 variant
 // Identical rules to the chromium build, but uses string literals for
 // declarativeNetRequest action/header/resource types. Firefox's DNR supports
 // all of these values but does not expose the Chromium enum OBJECTS

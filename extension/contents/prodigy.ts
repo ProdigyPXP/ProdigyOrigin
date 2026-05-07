@@ -16,7 +16,7 @@ declare global {
 }
 
 /**
- * Prodigy Origin Content Script — SRI Bypass via Document Rewrite + Direct URL Replacement
+ * Play Origin Content Script — SRI Bypass via Document Rewrite + Direct URL Replacement
  *
  * The bridge script (ISOLATED world) sets data-origin-game-url synchronously
  * with the default remote GitHub URL for the patched game, then asynchronously

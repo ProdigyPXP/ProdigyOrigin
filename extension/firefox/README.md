@@ -1,4 +1,4 @@
-# Prodigy Origin — Firefox build
+# Play Origin — Firefox build
 
 Parallel Plasmo project targeting `firefox-mv3`. The Chromium build lives one
 directory up in `extension/` and is published to the Chrome Web Store. This

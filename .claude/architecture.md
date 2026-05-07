@@ -3,7 +3,7 @@
 ## Packages
 
 - **originGUI/** — In-game mod menu (TypeScript, bundled with esbuild). Injected into the Prodigy game page.
-- **extension/** — Plasmo-based MV3 Chrome extension (Prodigy Origin):
+- **extension/** — Plasmo-based MV3 Chrome extension (Play Origin):
   - Blocks original `game.min.js` via declarativeNetRequest
   - Removes CSP/X-Frame-Options headers
   - Injects patched game code + mod menu bundle via the `onreset` attribute trick

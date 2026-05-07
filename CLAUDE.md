@@ -17,3 +17,9 @@ Monorepo for modding Prodigy Math Game, maintained by **ProdigyPXP**.
 5. The **`onreset` injection trick** is intentional and critical — do not replace it with script tags or other methods
 6. **Graceful degradation** — if patches fail, set `patchDegraded: true` and open a GitHub issue
 7. **Dev bundle guard** — before committing `originGUI/dist/bundle.js`, confirm it does NOT end with `/* DEV BUNDLE */`; if it does, run `cd originGUI && pnpm build` first
+
+## Branding (Play Origin / Prodigy Origin)
+
+This project rebranded from **Prodigy Origin** to **Play Origin** on 2026-05-06. The full extension/store name is **Play Origin | Math game Mod Hack**.
+
+The legacy name "Prodigy Origin" still appears in URLs and code identifiers — see [`meta/REBRAND.md`](meta/REBRAND.md) for the full list of what stayed and why. Any changes to user-facing branding must be applied consistently across all 4 repos: ProdigyOrigin, P-NP, website, and redirect.

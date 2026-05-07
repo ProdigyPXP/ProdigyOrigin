@@ -1,7 +1,7 @@
 {
   "name": "origingui",
   "version": "4.2.1",
-  "description": "Prodigy Origin mod menu",
+  "description": "Play Origin mod menu",
   "main": "dist/bundle.js",
   "scripts": {
     "setup": "pnpm install",

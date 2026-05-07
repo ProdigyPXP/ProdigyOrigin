@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version-sync: bump the top-level "version" field in all Prodigy Origin
+# version-sync: bump the top-level "version" field in all Play Origin
 # package.json files, the version: in CITATION.cff, AND the VERSION
 # constant in P-NP/src/constants.ts.
 set -euo pipefail

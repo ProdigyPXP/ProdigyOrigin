@@ -1,4 +1,4 @@
-// Background service worker for Prodigy Origin
+// Background service worker for Play Origin
 // Registers declarativeNetRequest rules for blocking/modifying requests
 
 const RULES: chrome.declarativeNetRequest.Rule[] = [

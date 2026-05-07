@@ -1,13 +1,13 @@
 ---
 name: version-sync
-description: Synchronize the version field across every package.json in the Prodigy Origin monorepo AND the sibling P-NP repo to a single target version. Bumps only — does not commit, tag, or push.
+description: Synchronize the version field across every package.json in the Play Origin monorepo AND the sibling P-NP repo to a single target version. Bumps only — does not commit, tag, or push.
 ---
 
 # Version Sync
 
 ## Overview
 
-Prodigy Origin spans multiple packages that must share a single version number:
+Play Origin spans multiple packages that must share a single version number:
 
 - `extension/package.json` (Plasmo-built Chrome extension)
 - `originGUI/package.json` (mod menu bundle)

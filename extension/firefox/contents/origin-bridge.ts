@@ -1,7 +1,7 @@
 import type { PlasmoCSConfig } from "plasmo"
 
 /**
- * Prodigy Origin Bridge — Isolated World Content Script
+ * Play Origin Bridge — Isolated World Content Script
  *
  * Sets the default remote game URL synchronously so the MAIN world script
  * can read it immediately. Then reads chrome.storage.local for custom
