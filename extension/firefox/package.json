@@ -31,7 +31,8 @@
     "author": "ProdigyPXP",
     "permissions": [
       "declarativeNetRequest",
-      "storage"
+      "storage",
+      "unlimitedStorage"
     ],
     "host_permissions": [
       "*://*.prodigygame.com/*",
