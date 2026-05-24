@@ -1,6 +1,7 @@
 {
   "name": "prodigy-origin-extension",
-  "version": "4.3.0",
+  "version": "4.4.0",
+  "type": "module",
   "private": true,
   "description": "Plasmo-based Play Origin browser extension",
   "scripts": {
@@ -10,7 +11,8 @@
     "build:firefox": "plasmo build --target=firefox-mv3",
     "package": "plasmo package",
     "package:firefox": "plasmo package --target=firefox-mv3",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test \"tests/**/*.test.ts\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
