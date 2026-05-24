@@ -6,7 +6,7 @@ import logoUrl from "data-base64:./assets/icon.png";
 import "./style.css";
 
 function Popup() {
-  const [gameUrl, setGameUrl] = useState("");
+  const [manifestUrl, setManifestUrl] = useState("");
   const [guiUrl, setGuiUrl] = useState("");
   const [saved, setSaved] = useState(false);
   const [devOpen, setDevOpen] = useState(false);
@@ -14,15 +14,15 @@ function Popup() {
   const [challengeInput, setChallengeInput] = useState("");
 
   useEffect(() => {
-    chrome.storage.local.get(["originGameUrl", "originGuiUrl"], (res) => {
-      setGameUrl(res.originGameUrl ?? "");
+    chrome.storage.local.get(["originManifestUrl", "originGuiUrl"], (res) => {
+      setManifestUrl(res.originManifestUrl ?? "");
       setGuiUrl(res.originGuiUrl ?? "");
     });
   }, []);
 
   const handleSave = () => {
     chrome.storage.local.set(
-      { originGameUrl: gameUrl, originGuiUrl: guiUrl },
+      { originManifestUrl: manifestUrl, originGuiUrl: guiUrl },
       () => {
         setSaved(true);
         setTimeout(() => setSaved(false), 2000);
@@ -31,8 +31,8 @@ function Popup() {
   };
 
   const handleReset = () => {
-    chrome.storage.local.remove(["originGameUrl", "originGuiUrl"], () => {
-      setGameUrl("");
+    chrome.storage.local.remove(["originManifestUrl", "originGuiUrl"], () => {
+      setManifestUrl("");
       setGuiUrl("");
     });
   };
@@ -43,7 +43,7 @@ function Popup() {
         <img src={logoUrl} alt="Play Origin" className="popup-logo" />
         <div>
           <h1 className="popup-title">Play Origin</h1>
-          <p className="popup-eyebrow">Mod Loader · v4.4.0</p>
+          <p className="popup-eyebrow">Mod Loader · v4.4.1</p>
         </div>
       </div>
 
@@ -109,12 +109,12 @@ function Popup() {
               {devUnlocked ? (
                 <>
                   <label className="field">
-                    <span className="field-label">Patched game.min.js URL</span>
+                    <span className="field-label">patches.json URL</span>
                     <input
                       type="text"
-                      value={gameUrl}
-                      onChange={(e) => setGameUrl(e.target.value)}
-                      placeholder="default: P-NP/master/dist"
+                      value={manifestUrl}
+                      onChange={(e) => setManifestUrl(e.target.value)}
+                      placeholder="default: P-NP/master/dist/manifest.json"
                       className="field-input"
                     />
                   </label>
@@ -125,7 +125,7 @@ function Popup() {
                       type="text"
                       value={guiUrl}
                       onChange={(e) => setGuiUrl(e.target.value)}
-                      placeholder="default: baked into patched game"
+                      placeholder="default: from manifest.defaultMenuUrl"
                       className="field-input"
                     />
                   </label>

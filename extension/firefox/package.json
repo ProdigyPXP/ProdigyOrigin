@@ -1,6 +1,6 @@
 {
   "name": "prodigy-origin-extension-firefox",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "private": true,
   "description": "Play Origin — Firefox MV3 build",
   "scripts": {
