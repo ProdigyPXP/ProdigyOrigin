@@ -3,6 +3,13 @@ packages:
   - "typings"
   - "extension"
   - "extension/firefox"
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+  sharp: true
 onlyBuiltDependencies:
   - '@swc/core'
   - esbuild
