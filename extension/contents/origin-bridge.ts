@@ -1,37 +1,46 @@
 import type { PlasmoCSConfig } from "plasmo"
 
 /**
- * Play Origin Bridge — Isolated World Content Script
+ * Play Origin Bridge — ISOLATED-world content script.
  *
- * Sets the default remote game URL synchronously so the MAIN world script
- * can read it immediately. Then reads chrome.storage.local for custom
- * overrides and updates the attribute + sets a ready signal.
+ * The MAIN-world script (contents/prodigy.ts) cannot call chrome.* APIs.
+ * It dispatches `__origin_patch_request__` on `document` with the captured
+ * game URL; this bridge forwards the request to the background service worker
+ * via chrome.runtime.sendMessage, then dispatches `__origin_patch_response__`
+ * back with the result.
+ *
+ * Default world is ISOLATED — leaving the `world:` field unset avoids the
+ * Parcel transformer rejecting it.
  */
 export const config: PlasmoCSConfig = {
   matches: ["https://math.prodigygame.com/*"],
   run_at: "document_start"
 }
 
-// Default: fetch patched game from P-NP dist/ on master
-const defaultGameUrl = "https://raw.githubusercontent.com/ProdigyPXP/P-NP/master/dist/game.min.js"
+type RequestDetail = { originalUrl: string }
+type ResponseDetail =
+  | { ok: true; patchedBundle: string }
+  | { ok: false; error: string }
 
-// Synchronous — MAIN world can read this immediately
-document.documentElement.setAttribute("data-origin-game-url", defaultGameUrl)
+document.addEventListener("__origin_patch_request__", (e: Event) => {
+  const detail = (e as CustomEvent<RequestDetail>).detail
+  if (!detail || typeof detail.originalUrl !== "string") return
 
-// Async override from storage (custom dev URLs)
-chrome.storage.local.get(["originGameUrl", "originGuiUrl"], (result) => {
-  if (chrome.runtime.lastError) {
-    console.warn("[Origin] storage error:", chrome.runtime.lastError.message)
-    // Still set ready so the game loads with the default URL
-    document.documentElement.setAttribute("data-origin-ready", "1")
-    return
-  }
-  if (result.originGameUrl) {
-    document.documentElement.setAttribute("data-origin-game-url", result.originGameUrl)
-  }
-  if (result.originGuiUrl) {
-    document.documentElement.setAttribute("data-origin-gui-url", result.originGuiUrl)
-  }
-  // Signal that final URLs (including any overrides) are now set
-  document.documentElement.setAttribute("data-origin-ready", "1")
+  chrome.runtime
+    .sendMessage({ type: "GET_PATCHED_BUNDLE", originalUrl: detail.originalUrl })
+    .then((response: ResponseDetail) => {
+      document.dispatchEvent(
+        new CustomEvent<ResponseDetail>("__origin_patch_response__", { detail: response })
+      )
+    })
+    .catch((err: unknown) => {
+      const message = err instanceof Error ? err.message : String(err)
+      document.dispatchEvent(
+        new CustomEvent<ResponseDetail>("__origin_patch_response__", {
+          detail: { ok: false, error: `bridge: ${message}` }
+        })
+      )
+    })
 })
+
+console.log("[Origin] bridge active")
