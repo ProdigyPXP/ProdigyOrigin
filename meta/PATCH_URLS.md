@@ -25,6 +25,18 @@
    ```
 6. Merge `v4.4.0-client` → `master`. Tag `v4.4.0`. Publish extension builds.
 
+## v4.4.1 schema change (2026-05-24)
+
+manifest.json now includes a top-level `defaultMenuUrl` field (string).
+The patcher's suffix no longer bakes in the mod-bundle URL; the extension
+sets `window.__ORIGIN_MENU_URL__` from popup override or manifest.defaultMenuUrl.
+
+The popup `originGameUrl` storage key is now `originManifestUrl`.
+
+Pre-master checklist (unchanged from v4.4.0-client):
+- [ ] extension/lib/patch-urls.ts:5 — change branch ref to "master"
+- [ ] extension/firefox/lib/patch-urls.ts:5 — change branch ref to "master"
+
 ## Why this file exists
 
 The previous (pre-v4.4.0) extension fetched `game.min.js` directly from P-NP `master` and was always release-ready. Client-side patching introduces a manifest URL that has to be branch-pinned during testing so the live extension doesn't pick up a half-finished manifest. This file makes the branch flip a single, auditable step.

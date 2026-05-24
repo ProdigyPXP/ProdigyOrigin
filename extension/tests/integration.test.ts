@@ -75,6 +75,7 @@ test("override URL takes priority over manifest.defaultMenuUrl", () => {
   const resolved = override || manifest.defaultMenuUrl;
   assert.equal(resolved, "https://custom.example/m.js");
 
-  const resolved2 = "" || manifest.defaultMenuUrl;
+  const emptyOverride: string = "";
+  const resolved2 = emptyOverride || manifest.defaultMenuUrl;
   assert.equal(resolved2, "https://default.example/m.js");
 });
