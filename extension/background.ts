@@ -4,8 +4,9 @@
 // 1. DNR rules: BLOCK original game.min.js + strip CSP/X-Frame-Options +
 //    redirect login background and logo.
 // 2. Handle GET_PATCHED_BUNDLE messages from the ISOLATED-world bridge:
-//    fetch manifest.json, check the cache, fetch + patch the original on miss,
-//    return the patched JS source.
+//    fetch manifest.json (popup may override URL), check the cache,
+//    fetch + patch the original on miss, prepend the resolved menu-URL
+//    global, return the patched JS source.
 
 import {
   MANIFEST_URL,
@@ -97,8 +98,21 @@ chrome.runtime.onInstalled.addListener(async () => {
   console.log("[Origin] DeclarativeNetRequest rules registered successfully")
 })
 
-const fetchManifest = async (): Promise<Manifest> => {
-  const r = await fetch(MANIFEST_URL, { cache: "default" })
+const readOverrides = async (): Promise<{
+  manifestUrlOverride: string
+  guiUrlOverride: string
+}> => {
+  const storage = chrome.storage.local as unknown as StorageLocalApi
+  const res = await storage.get(["originManifestUrl", "originGuiUrl"])
+  const manifestUrlOverride =
+    typeof res.originManifestUrl === "string" ? res.originManifestUrl : ""
+  const guiUrlOverride =
+    typeof res.originGuiUrl === "string" ? res.originGuiUrl : ""
+  return { manifestUrlOverride, guiUrlOverride }
+}
+
+const fetchManifest = async (url: string): Promise<Manifest> => {
+  const r = await fetch(url, { cache: "default" })
   if (!r.ok) throw new Error(`manifest.json HTTP ${r.status}`)
   const json = (await r.json()) as unknown
   return validateManifest(json)
@@ -114,12 +128,17 @@ const fetchOriginal = async (url: string): Promise<string> => {
   return body
 }
 
-const getOrBuildPatchedBundle = async (originalUrl: string): Promise<string> => {
+// Returns the wrapped patched bundle (prefix + patched + suffix) WITHOUT the
+// menu-URL global prepended. The menu URL is resolved per-request and
+// prepended at the call site so popup changes don't invalidate the cache.
+const getOrBuildWrappedBundle = async (
+  originalUrl: string,
+  manifest: Manifest
+): Promise<string> => {
   const storage = chrome.storage.local as unknown as StorageLocalApi
   const gameClientVersion = gameVersionFromUrl(originalUrl)
   if (!gameClientVersion) throw new Error(`unparseable originalUrl: ${originalUrl}`)
 
-  const manifest = await fetchManifest()
   const cached = await getCachedBundle(storage)
   if (
     cached &&
@@ -140,17 +159,36 @@ const getOrBuildPatchedBundle = async (originalUrl: string): Promise<string> => 
   for (const rule of manifest.rules) {
     console.log(`[Origin] rule "${rule.id}" matched ${perRuleCounts[rule.id] ?? 0}x`)
   }
-  const patchedBundle = wrapWithPrefixSuffix(patchedCore, manifest.prefix, manifest.suffix)
+  const wrapped = wrapWithPrefixSuffix(patchedCore, manifest.prefix, manifest.suffix)
 
   const entry: CacheEntry = {
     gameClientVersion,
     manifestHash: manifest.hash,
-    patchedBundle,
+    patchedBundle: wrapped,
     storedAt: Date.now()
   }
   await setCachedBundle(storage, entry)
   console.log(`[Origin] cache STORED for ${gameClientVersion}`)
-  return patchedBundle
+  return wrapped
+}
+
+const getOrBuildPatchedBundle = async (originalUrl: string): Promise<string> => {
+  const { manifestUrlOverride, guiUrlOverride } = await readOverrides()
+  const manifestUrl = manifestUrlOverride || MANIFEST_URL
+  if (manifestUrlOverride) {
+    console.log(`[Origin] using manifest URL override: ${manifestUrl}`)
+  }
+
+  const manifest = await fetchManifest(manifestUrl)
+  const wrapped = await getOrBuildWrappedBundle(originalUrl, manifest)
+
+  const resolvedMenuUrl = guiUrlOverride || manifest.defaultMenuUrl
+  if (guiUrlOverride) {
+    console.log(`[Origin] using menu URL override: ${resolvedMenuUrl}`)
+  }
+  const menuUrlPrefix =
+    `globalThis.__ORIGIN_MENU_URL__=${JSON.stringify(resolvedMenuUrl)};\n`
+  return menuUrlPrefix + wrapped
 }
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {

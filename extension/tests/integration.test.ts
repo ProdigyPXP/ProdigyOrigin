@@ -1,4 +1,4 @@
-import { describe, it } from "node:test"
+import { describe, it, test } from "node:test"
 import assert from "node:assert/strict"
 import { applyPatchRules, wrapWithPrefixSuffix, type PatchRule } from "../lib/patches.ts"
 import { validateManifest } from "../lib/manifest.ts"
@@ -57,3 +57,24 @@ describe("end-to-end: validateManifest → applyPatchRules → wrapWithPrefixSuf
     assert.throws(() => validateManifest({ ...SYNTHETIC_MANIFEST, schemaVersion: 99 }))
   })
 })
+
+test("menu-URL prefix is prepended to wrapped bundle", () => {
+  const wrapped = wrapWithPrefixSuffix("body", "prefix", "suffix");
+  const menuUrl = "https://example.com/m.js";
+  const finalBundle =
+    `globalThis.__ORIGIN_MENU_URL__=${JSON.stringify(menuUrl)};\n${wrapped}`;
+  assert.ok(finalBundle.startsWith(
+    `globalThis.__ORIGIN_MENU_URL__="https://example.com/m.js";\n`
+  ));
+  assert.ok(finalBundle.includes("prefix\nbody\nsuffix"));
+});
+
+test("override URL takes priority over manifest.defaultMenuUrl", () => {
+  const manifest = { defaultMenuUrl: "https://default.example/m.js" };
+  const override = "https://custom.example/m.js";
+  const resolved = override || manifest.defaultMenuUrl;
+  assert.equal(resolved, "https://custom.example/m.js");
+
+  const resolved2 = "" || manifest.defaultMenuUrl;
+  assert.equal(resolved2, "https://default.example/m.js");
+});
