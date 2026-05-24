@@ -10,13 +10,13 @@ Play Origin is a free, open-source mod loader for online math games — delivere
 
 > **Looking for math-game hacks?** Play Origin is the ultimate open-source mod loader and cheat tool for online math games.
 
-## [Install](https://extension.prodigyorigin.com)
+## [Install](https://extension.playorig.in)
 
 | Browser | Link |
 |---------|------|
-| Chrome | [chrome.prodigyorigin.com](https://chrome.prodigyorigin.com/) |
-| Firefox | [firefox.prodigyorigin.com](https://firefox.prodigyorigin.com) |
-| Edge | [edge.prodigyorigin.com](https://edge.prodigyorigin.com) |
+| Chrome | [chrome.playorig.in](https://chrome.playorig.in/) |
+| Firefox | [firefox.playorig.in](https://firefox.playorig.in) |
+| Edge | [edge.playorig.in](https://edge.playorig.in) |
 | Manual | [Manual install guides](meta/manual/) |
 
 ## Features

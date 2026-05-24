@@ -1,8 +1,15 @@
 # Play Origin Privacy Policy
 
-_Last updated: April 7, 2026_
+_Last updated: May 24, 2026_
 
 Play Origin (formerly Prodigy Origin) is a free, open-source browser extension.
+
+## Scope
+
+This privacy policy covers the browser extension itself. However, please note:
+
+- The website [playorig.in](https://playorig.in) uses [Vercel Web Analytics](https://vercel.com/docs/analytics) and is subject to their privacy policy.
+- Browser extension web stores (Chrome Web Store, Microsoft Edge Add-ons, Firefox Add-ons) may collect analytics data independently. Each platform maintains its own respective privacy policy.
 
 ## Data Collection
 
