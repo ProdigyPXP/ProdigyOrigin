@@ -1,7 +1,6 @@
 {
   "name": "prodigy-origin-extension",
   "version": "4.4.0",
-  "type": "module",
   "private": true,
   "description": "Plasmo-based Play Origin browser extension",
   "scripts": {
