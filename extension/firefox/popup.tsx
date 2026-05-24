@@ -43,7 +43,7 @@ function Popup() {
         <img src={logoUrl} alt="Play Origin" className="popup-logo" />
         <div>
           <h1 className="popup-title">Play Origin</h1>
-          <p className="popup-eyebrow">Mod Loader · v4.2.1</p>
+          <p className="popup-eyebrow">Mod Loader · v4.4.0</p>
         </div>
       </div>
 
