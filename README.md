@@ -73,6 +73,19 @@ Load the unpacked extension from `extension/build/chrome-mv3-dev/` in Chrome.
 
 Navigate to [math.prodigygame.com](https://math.prodigygame.com/) — press **SHIFT** to toggle the mod menu.
 
+## How it works (v4.4.0)
+
+The extension fetches `manifest.json` from the sibling [P-NP](https://github.com/ProdigyPXP/P-NP)
+repo, fetches the original `game.min.js` directly from `code.prodigygame.com`, applies
+the manifest's regex find/replace rules locally in the background service worker,
+wraps the patched output with the manifest's prefix and suffix, and caches the result
+in `chrome.storage.local` keyed by `{gameClientVersion, manifestHash}`. The patched
+bundle is then injected into the page via the `onreset` attribute trick.
+
+P-NP's GitHub Action runs every 2 hours, verifies the rules against the latest
+Prodigy build, and commits a fresh `manifest.json` whenever rules or wrappers change.
+The Firefox build uses a document-rewrite variant of the same pipeline.
+
 ## License
 
 [Mozilla Public License 2.0](LICENSE.txt)
