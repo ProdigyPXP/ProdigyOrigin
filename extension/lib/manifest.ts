@@ -7,6 +7,7 @@ export type Manifest = {
   rules: PatchRule[]
   prefix: string
   suffix: string
+  defaultMenuUrl: string
 }
 
 const isPatchRule = (v: unknown): v is PatchRule => {
@@ -44,6 +45,9 @@ export const validateManifest = (value: unknown): Manifest => {
   }
   if (typeof m.suffix !== "string") {
     throw new Error("manifest.suffix must be a string")
+  }
+  if (typeof m.defaultMenuUrl !== "string") {
+    throw new Error("manifest.defaultMenuUrl must be a string")
   }
   return m as unknown as Manifest
 }

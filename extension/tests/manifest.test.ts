@@ -1,4 +1,4 @@
-import { describe, it } from "node:test";
+import { describe, it, test } from "node:test";
 import assert from "node:assert/strict";
 import { validateManifest, type Manifest } from "../lib/manifest.ts";
 
@@ -10,7 +10,8 @@ const VALID: Manifest = {
     { id: "r1", description: "", find: "a", flags: "g", replace: "b", minMatches: 1 }
   ],
   prefix: "PRE",
-  suffix: "POST"
+  suffix: "POST",
+  defaultMenuUrl: "https://example.com/bundle.js"
 };
 
 describe("validateManifest", () => {
@@ -48,4 +49,40 @@ describe("validateManifest", () => {
     assert.throws(() => validateManifest({ ...VALID, prefix: null }));
     assert.throws(() => validateManifest({ ...VALID, suffix: null }));
   });
+});
+
+test("validateManifest accepts defaultMenuUrl", () => {
+  const ok = validateManifest({
+    schemaVersion: 1,
+    patcherVersion: "4.4.1",
+    hash: "deadbeefcafebabe",
+    rules: [],
+    prefix: "P",
+    suffix: "S",
+    defaultMenuUrl: "https://example.com/bundle.js"
+  });
+  assert.equal(ok.defaultMenuUrl, "https://example.com/bundle.js");
+});
+
+test("validateManifest rejects manifest missing defaultMenuUrl", () => {
+  assert.throws(() => validateManifest({
+    schemaVersion: 1,
+    patcherVersion: "4.4.1",
+    hash: "deadbeefcafebabe",
+    rules: [],
+    prefix: "P",
+    suffix: "S"
+  }), /defaultMenuUrl/);
+});
+
+test("validateManifest rejects non-string defaultMenuUrl", () => {
+  assert.throws(() => validateManifest({
+    schemaVersion: 1,
+    patcherVersion: "4.4.1",
+    hash: "deadbeefcafebabe",
+    rules: [],
+    prefix: "P",
+    suffix: "S",
+    defaultMenuUrl: 42
+  }), /defaultMenuUrl/);
 });

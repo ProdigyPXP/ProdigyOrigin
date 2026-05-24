@@ -9,6 +9,7 @@ const SYNTHETIC_MANIFEST = {
   hash: "abc123def4567890",
   prefix: "/* PRE */",
   suffix: "/* POST */",
+  defaultMenuUrl: "https://example.com/bundle.js",
   rules: [
     {
       id: "singleton-exposure",
