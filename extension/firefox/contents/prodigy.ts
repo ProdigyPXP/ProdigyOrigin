@@ -13,6 +13,7 @@ declare global {
     __ORIGIN_INJECTED__?: boolean
     __ORIGIN_REWRITTEN__?: boolean
     __ORIGIN_MANIFEST_URL__?: string
+    __ORIGIN_GUI_URL_OVERRIDE__?: string
   }
 }
 
@@ -76,10 +77,10 @@ function injectGameClientSide(originalGameUrl: string): void {
     console.error("[Origin] no manifest URL available")
     return
   }
+  const guiOverride = window.__ORIGIN_GUI_URL_OVERRIDE__ ?? ""
 
-  console.log(`[Origin] Firefox inline-injecting (manifest=${manifestUrl}, game=${originalGameUrl})`)
-  const inlineJs = buildInlineInjector(manifestUrl, originalGameUrl)
-  // Execute via onreset (synchronous, MAIN world). Same trick used everywhere.
+  console.log(`[Origin] Firefox inline-injecting (manifest=${manifestUrl}, game=${originalGameUrl}, guiOverride=${guiOverride ? "set" : "none"})`)
+  const inlineJs = buildInlineInjector(manifestUrl, originalGameUrl, guiOverride)
   document.documentElement.setAttribute("onreset", inlineJs)
   document.documentElement.dispatchEvent(new CustomEvent("reset"))
   document.documentElement.removeAttribute("onreset")
@@ -141,11 +142,18 @@ const integrityObserver = new MutationObserver((mutations) => {
 
 // ─── Document rewrite (load page only) ───
 
-function readManifestUrlFromBridge(): void {
-  const url = document.documentElement?.getAttribute("data-origin-manifest-url")
-  if (url) {
-    window.__ORIGIN_MANIFEST_URL__ = url
-    console.log("[Origin] manifest URL:", url)
+function readBridgeAttributes(): void {
+  const manifestUrl = document.documentElement?.getAttribute("data-origin-manifest-url")
+  if (manifestUrl) {
+    window.__ORIGIN_MANIFEST_URL__ = manifestUrl
+    console.log("[Origin] manifest URL:", manifestUrl)
+  }
+  const guiOverride = document.documentElement?.getAttribute("data-origin-gui-url")
+  if (guiOverride) {
+    window.__ORIGIN_GUI_URL_OVERRIDE__ = guiOverride
+    console.log("[Origin] menu URL override active")
+  } else {
+    window.__ORIGIN_GUI_URL_OVERRIDE__ = ""
   }
 }
 
@@ -163,6 +171,7 @@ function rewriteDocument(): void {
     console.warn("[Origin] No manifest URL available, cannot rewrite")
     return
   }
+  const guiOverride = window.__ORIGIN_GUI_URL_OVERRIDE__ ?? ""
 
   try {
     // Strip auth code/state params — they're one-time tokens.
@@ -197,7 +206,7 @@ function rewriteDocument(): void {
         return
       }
 
-      const inlineJs = buildInlineInjector(manifestUrl, originalGameUrl)
+      const inlineJs = buildInlineInjector(manifestUrl, originalGameUrl, guiOverride)
       const inlineInjector = `<script>${inlineJs}<\/script>`
 
       html = html.replace(scriptTagRe, inlineInjector)
@@ -234,7 +243,7 @@ function rewriteDocument(): void {
   }
 
   if (document.documentElement?.getAttribute("data-origin-ready")) {
-    readManifestUrlFromBridge()
+    readBridgeAttributes()
     rewriteDocument()
     return
   }
@@ -242,7 +251,7 @@ function rewriteDocument(): void {
   const bridgeObserver = new MutationObserver(() => {
     if (document.documentElement?.getAttribute("data-origin-ready")) {
       bridgeObserver.disconnect()
-      readManifestUrlFromBridge()
+      readBridgeAttributes()
       rewriteDocument()
     }
   })
