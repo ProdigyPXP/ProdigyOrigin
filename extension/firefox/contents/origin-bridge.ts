@@ -1,31 +1,28 @@
 import type { PlasmoCSConfig } from "plasmo"
+import { MANIFEST_URL } from "../lib/patch-urls"
 
 /**
- * Play Origin Bridge — Isolated World Content Script
+ * Play Origin Bridge (Firefox) — ISOLATED world.
  *
- * Sets the default remote game URL synchronously so the MAIN world script
- * can read it immediately. Then reads chrome.storage.local for custom
- * overrides and updates the attribute + sets a ready signal.
+ * Sets `data-origin-manifest-url` synchronously so the MAIN-world script
+ * can read it before document.write. Optionally reads chrome.storage.local
+ * for a dev override, then sets `data-origin-ready="1"`.
  */
 export const config: PlasmoCSConfig = {
   matches: ["https://math.prodigygame.com/*"],
   run_at: "document_start"
 }
 
-// Default: fetch patched game from P-NP dist/ on master
-const defaultGameUrl = "https://raw.githubusercontent.com/ProdigyPXP/P-NP/master/dist/game.min.js"
+document.documentElement.setAttribute("data-origin-manifest-url", MANIFEST_URL)
 
-// Synchronous — MAIN world can read this immediately
-document.documentElement.setAttribute("data-origin-game-url", defaultGameUrl)
-
-// Async override from storage (custom dev URLs)
-chrome.storage.local.get(["originGameUrl", "originGuiUrl"], (result) => {
-  if (result.originGameUrl) {
-    document.documentElement.setAttribute("data-origin-game-url", result.originGameUrl)
+chrome.storage.local.get(["originManifestUrl"], (result) => {
+  if (chrome.runtime.lastError) {
+    console.warn("[Origin] storage error:", chrome.runtime.lastError.message)
+    document.documentElement.setAttribute("data-origin-ready", "1")
+    return
   }
-  if (result.originGuiUrl) {
-    document.documentElement.setAttribute("data-origin-gui-url", result.originGuiUrl)
+  if (typeof result.originManifestUrl === "string" && result.originManifestUrl.length > 0) {
+    document.documentElement.setAttribute("data-origin-manifest-url", result.originManifestUrl)
   }
-  // Signal that final URLs (including any overrides) are now set
   document.documentElement.setAttribute("data-origin-ready", "1")
 })
