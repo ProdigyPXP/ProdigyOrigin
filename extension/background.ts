@@ -161,6 +161,14 @@ const getOrBuildWrappedBundle = async (
   }
   const wrapped = wrapWithPrefixSuffix(patchedCore, manifest.prefix, manifest.suffix)
 
+  const degradedRules = manifest.rules.filter(r => (perRuleCounts[r.id] ?? 0) < r.minMatches)
+  if (degradedRules.length > 0) {
+    for (const r of degradedRules) {
+      console.warn(`[Origin] DEGRADED: rule "${r.id}" matched ${perRuleCounts[r.id] ?? 0}x (expected ≥${r.minMatches}) — skipping cache`)
+    }
+    return wrapped
+  }
+
   const entry: CacheEntry = {
     gameClientVersion,
     manifestHash: manifest.hash,

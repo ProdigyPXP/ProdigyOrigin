@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { VERSION } from "./lib/version";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Save, RotateCcw, Play, MessageCircle, ChevronDown } from "lucide-react";
 import { Button } from "./components/Button";
@@ -43,7 +44,7 @@ function Popup() {
         <img src={logoUrl} alt="Play Origin" className="popup-logo" />
         <div>
           <h1 className="popup-title">Play Origin</h1>
-          <p className="popup-eyebrow">Mod Loader · v4.4.1</p>
+          <p className="popup-eyebrow">Mod Loader · v{VERSION}</p>
         </div>
       </div>
 
@@ -109,7 +110,7 @@ function Popup() {
               {devUnlocked ? (
                 <>
                   <label className="field">
-                    <span className="field-label">patches.json URL</span>
+                    <span className="field-label">Patch manifest URL</span>
                     <input
                       type="text"
                       value={manifestUrl}

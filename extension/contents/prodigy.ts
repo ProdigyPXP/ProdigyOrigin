@@ -1,5 +1,6 @@
 import type { PlasmoCSConfig } from "plasmo"
 import { isGameScriptSrc } from "../lib/patch-urls"
+import { VERSION } from "../lib/version"
 
 export const config: PlasmoCSConfig = {
   matches: ["https://math.prodigygame.com/*"],
@@ -232,5 +233,5 @@ function scanExistingDom(): void {
   }
 
   scanExistingDom()
-  console.log("[Origin] content script active (client-side patching v4.4.0)")
+  console.log(`[Origin] content script active (client-side patching v${VERSION})`)
 })()
