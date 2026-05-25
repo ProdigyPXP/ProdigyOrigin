@@ -1,9 +1,5 @@
-// All URLs that are pinned to the v4.4.0-client working branch. Before merging
-// v4.4.0-client into master, replace "v4.4.0-client" with "master" in this file
-// (and the equivalent file in extension/firefox/lib/patch-urls.ts).
-// See: meta/PATCH_URLS.md
 export const MANIFEST_URL =
-  "https://raw.githubusercontent.com/ProdigyPXP/P-NP/v4.4.0-client/dist/manifest.json"
+  "https://raw.githubusercontent.com/ProdigyPXP/P-NP/master/dist/manifest.json"
 
 // Matches canonical Prodigy game URL: //code.prodigygame.com/code/<version>/game.min.js
 // Optional query string follows.

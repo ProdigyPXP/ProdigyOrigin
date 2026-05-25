@@ -8,10 +8,10 @@ import {
 } from "../lib/patch-urls.ts";
 
 describe("MANIFEST_URL", () => {
-  it("points at raw.githubusercontent.com on the v4.4.0-client branch", () => {
+  it("points at raw.githubusercontent.com on the master branch", () => {
     assert.equal(
       MANIFEST_URL,
-      "https://raw.githubusercontent.com/ProdigyPXP/P-NP/v4.4.0-client/dist/manifest.json"
+      "https://raw.githubusercontent.com/ProdigyPXP/P-NP/master/dist/manifest.json"
     );
   });
 
