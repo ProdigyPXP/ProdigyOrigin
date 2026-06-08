@@ -81,3 +81,6 @@ Navigate to [math.prodigygame.com](https://math.prodigygame.com/) — press **SH
 
 - [Discord](https://dsc.gg/ProdigyPXP)
 - [GitHub](https://github.com/ProdigyPXP/ProdigyOrigin)
+
+
+<br/><h1 align="center"><a href = "https://discord.playorig.in"><img src="https://readme-jokes.vercel.app/api" alt="Jokes Card" width=700/></a></h1>
