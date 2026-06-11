@@ -31,6 +31,16 @@ updates:
     assignees:
       - "alexey-max-fedorov"
 
+  # extension/firefox
+  - package-ecosystem: "npm"
+    directory: "/extension/firefox"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "[extension/firefox]"
+    assignees:
+      - "alexey-max-fedorov"
+
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"

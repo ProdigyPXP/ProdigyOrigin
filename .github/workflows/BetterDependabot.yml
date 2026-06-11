@@ -1,56 +1,52 @@
-name: Better Dependabot
+name: BetterDependabot
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  update-dependencies:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-    - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
-    - name: Install Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ matrix.node-version }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v6
-      with:
-        version: 9
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
 
-    - name: Update originGUI dependencies
-      run: |
-        cd ./originGUI/
-        pnpm update
-    - name: Update typings dependencies
-      run: |
-        cd ./typings/
-        pnpm update
-    - name: Update extension dependencies
-      run: |
-        cd ./extension/
-        pnpm update
-    - name: Commit with git
-      run: |
-        git pull
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
-        git add .
-        git diff --staged --quiet originGUI/package.json || echo "ORIGIN_GUI_CHANGED=true" >> $GITHUB_ENV
-        git commit -s -m "Update dependencies" || echo "No changes"
-    - name: Push changes to GitHub
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
-    - name: Trigger originGUI build
-      if: env.ORIGIN_GUI_CHANGED == 'true'
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh workflow run originGUI-build.yml --ref ${{ github.ref_name }}
+      - name: Install (sync lockfile state)
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Update originGUI dependencies
+        working-directory: originGUI
+        run: pnpm update
+
+      - name: Update typings dependencies
+        working-directory: typings
+        run: pnpm update
+
+      - name: Update extension dependencies
+        working-directory: extension
+        run: pnpm update
+
+      - name: Update extension/firefox dependencies
+        working-directory: extension/firefox
+        run: pnpm update
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "chore: update dependencies"
+          git push origin HEAD:${{ github.ref }}
