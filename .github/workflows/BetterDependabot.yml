@@ -25,7 +25,7 @@ jobs:
           version: latest
 
       - name: Install (sync lockfile state)
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile --ignore-scripts
 
       - name: Update originGUI dependencies
         working-directory: originGUI
