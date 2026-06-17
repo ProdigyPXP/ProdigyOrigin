@@ -13,8 +13,8 @@ Play Origin spans multiple packages that must share a single version number:
 - `originGUI/package.json` (mod menu bundle)
 - `typings/package.json` (shared type definitions)
 - `CITATION.cff` (academic citation metadata)
-- `/home/alex/P-NP/package.json` (sibling repo — game patcher)
-- `/home/alex/P-NP/src/constants.ts` (VERSION constant used at runtime)
+- `~/Projects/ProdigyTemp/P-NP/package.json` (sibling repo — game patcher)
+- `~/Projects/ProdigyTemp/P-NP/src/constants.ts` (VERSION constant used at runtime)
 
 This skill updates all of them in one go. It **only** edits version fields. Committing, tagging, and pushing are left to the caller.
 
@@ -24,7 +24,7 @@ The caller passes a target version as an argument, e.g. `4.1.0` or `4.2.0-beta.1
 
 **Invocation**:
 ```
-bash /home/alex/ProdigyMathGameHacking/.claude/skills/version-sync/bump.sh <target-version>
+bash ~/Projects/ProdigyTemp/ProdigyOrigin/.claude/skills/version-sync/bump.sh <target-version>
 ```
 
 ## Behavior
@@ -48,9 +48,9 @@ bash /home/alex/ProdigyMathGameHacking/.claude/skills/version-sync/bump.sh <targ
 ## Paths
 
 The targets are hardcoded in `bump.sh`:
-- `/home/alex/ProdigyMathGameHacking/extension/package.json`
-- `/home/alex/ProdigyMathGameHacking/originGUI/package.json`
-- `/home/alex/ProdigyMathGameHacking/typings/package.json`
-- `/home/alex/ProdigyMathGameHacking/CITATION.cff` (version: field)
-- `/home/alex/P-NP/package.json`
-- `/home/alex/P-NP/src/constants.ts` (VERSION constant)
+- `~/Projects/ProdigyTemp/ProdigyOrigin/extension/package.json`
+- `~/Projects/ProdigyTemp/ProdigyOrigin/originGUI/package.json`
+- `~/Projects/ProdigyTemp/ProdigyOrigin/typings/package.json`
+- `~/Projects/ProdigyTemp/ProdigyOrigin/CITATION.cff` (version: field)
+- `~/Projects/ProdigyTemp/P-NP/package.json`
+- `~/Projects/ProdigyTemp/P-NP/src/constants.ts` (VERSION constant)
