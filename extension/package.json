@@ -16,14 +16,14 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
-    "lucide-react": "^1.16.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "lucide-react": "^1.18.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@types/chrome": "^0.1.42",
-    "@types/react": "^19.2.15",
+    "@types/chrome": "^0.1.43",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "plasmo": "^0.90.5",
     "typescript": "^6.0.3"
