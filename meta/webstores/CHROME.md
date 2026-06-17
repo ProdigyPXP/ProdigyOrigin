@@ -15,13 +15,13 @@ DISCLAIMER
 
 Play Origin is in no way associated with Prodigy Education Inc. The extension package does not contain any of Prodigy Education's copyrighted or trademarked assets.
 
-(Note to Prodigy Education employees: I would love to help improve your codebase this summer — I am currently looking for work. You can reach me at alexey.max.fedorov@gmail.com.)
+(Note to Prodigy Education employees: I would love to help improve your codebase and fully fix security flaws this summer — I am currently looking for work. You can reach me at alexey.max.fedorov@gmail.com.)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 WHY PLAY ORIGIN EXISTS
 
-Prodigy is a great game wrapped in an aggressive monetization model. Want the cool gear? Membership. Want to evolve your pet past stage one? Membership. Want to access entire zones? Membership. For a game marketed to kids as an educational tool, the constant upsell pressure is exhausting — for students, for parents, and for teachers who just want the math practice without the merchandising.
+The math game is great game wrapped in an aggressive monetization model. Want the cool gear? Membership. Want to evolve your pet past stage one? Membership. Want to access entire zones? Membership. For a game marketed to kids as an educational tool, the constant upsell pressure is exhausting — for students, for parents, and for teachers who just want the math practice without the merchandising.
 
 Play Origin gives the game back to the player. No subscriptions. No microtransactions. No "Premium Only" walls. Just the full experience, the way it should have been from day one.
 
@@ -47,7 +47,7 @@ You install the extension. You go to math.prodigygame.com. You log in like norma
 
 That's it. There's no separate launcher. No fake game client. No sketchy download from a forum. No file you have to manually drop into a folder somewhere. Play Origin works directly inside the official game website using the same Chrome extension framework as your password manager or ad blocker.
 
-Under the hood, Play Origin replaces the standard game script with a community-patched version that exposes the game's internal systems to a clean, friendly menu. The patches are maintained automatically by the ProdigyPXP project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed.
+Under the hood, Play Origin replaces the standard game script with a community-patched version that exposes the game's internal systems to a clean, friendly menu. The patches are maintained automatically by the Play Origin project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -84,7 +84,7 @@ The game patches frequently. Most mod tools break the moment that happens and st
 
 WHO IT'S FOR
 
-Kids and teens who love Prodigy but can't afford a Membership and are tired of being locked out of half the game.
+Kids and teens who love the math game but can't afford a Membership and are tired of being locked out of half the game.
 
 Parents who already paid for one subscription this month and aren't paying for another, but still want their kid to enjoy what's supposed to be a free educational game.
 
@@ -94,9 +94,9 @@ Speedrunners and challenge-run players who want fine control over stats, levels,
 
 Modders, tinkerers, and curious developers who want to see how a commercial HTML5 game is structured under the hood. The whole project is open source on GitHub.
 
-Educators who use Prodigy in classrooms and want students to focus on the math instead of being distracted by the constant Membership upsell prompts.
+Educators who use it in classrooms and want students to focus on the math instead of being distracted by the constant Membership upsell prompts.
 
-Content creators making videos or streams about Prodigy or mod tools — Play Origin gives you a controlled environment to demonstrate features and showcase content.
+Content creators making videos or streams about the math game or mod tools — Play Origin gives you a controlled environment to demonstrate features and showcase content.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -104,7 +104,7 @@ WHAT IT IS NOT
 
 Play Origin is not a virus. It is not spyware. It does not log keystrokes, collect your password, harvest your email, sell data to advertisers, or phone home with telemetry. The complete source code is published on GitHub under the ProdigyPXP organization. Anyone can read it, audit it, build it themselves, and confirm exactly what it does. That is not a claim — it is a verifiable fact.
 
-Play Origin is not a separate game. You still play the real Prodigy on the real Prodigy website with your real Prodigy account. The extension just adds tools on top.
+Play Origin is not a separate game. You still play the real math game on the real website with your real account. The extension just adds tools on top.
 
 Play Origin is not a paid product disguised as free. There is no "pro tier." There is no upsell. There is no email signup. There are no ads inside the menu. There never will be. The project is maintained by volunteers who think kids deserve better than aggressive monetization in their math homework.
 
@@ -118,7 +118,7 @@ We take this seriously because we know a lot of users are minors.
 
 NO DATA COLLECTION. The extension does not transmit any information about you, your account, your gameplay, your IP address, or anything else. There is no analytics service, no error reporting backend, no usage tracking. Nothing.
 
-NO ACCOUNT CREDENTIALS TOUCHED. The extension never reads, intercepts, or stores your Prodigy username or password. Login still happens directly between your browser and Prodigy's servers exactly as it would without the extension installed.
+NO ACCOUNT CREDENTIALS TOUCHED. The extension never reads, intercepts, or stores your game username or password. Login still happens directly between your browser and the game's servers exactly as it would without the extension installed.
 
 OPEN SOURCE. The complete source code lives at github.com/ProdigyPXP. If something here sounds too good to be true, check for yourself. That's the whole point of open source.
 
@@ -126,7 +126,7 @@ OPEN SOURCE. The complete source code lives at github.com/ProdigyPXP. If somethi
 
 WILL THIS GET MY ACCOUNT BANNED?
 
-Honest answer: we have no way to guarantee anything about how Prodigy Education chooses to enforce their Terms of Service. In years of community use, account bans for using mod tools have been extremely rare to nonexistent — Prodigy's anti-cheat is essentially a client-side game, not a server-validated one — but the possibility is never zero.
+Honest answer: we have no way to guarantee anything about how the math game chooses to enforce their Terms of Service. In years of community use, account bans for using mod tools have been extremely rare to nonexistent — their anti-cheat is essentially a client-side game, not a server-validated one — but the possibility is never zero.
 
 If you are deeply attached to a specific account, the safest approach is to create a separate, throwaway account for modded play and keep your main account stock. That's what most experienced users do.
 
@@ -157,7 +157,7 @@ If something breaks after a game update, sit tight. The auto-patcher usually cat
 
 A NOTE ON PHILOSOPHY
 
-Prodigy markets itself as an educational platform that makes math fun for kids. That's a great mission. It's also a mission that gets undermined every time a child finishes a battle and gets a popup asking their parents to upgrade. It's undermined every time a kid sees a friend's cool pet and learns their version of the game won't let them have one. It's undermined every time math practice becomes a vehicle for upselling cosmetics.
+The math game markets itself as an educational platform that makes math fun for kids. That's a great mission. It's also a mission that gets undermined every time a child finishes a battle and gets a popup asking their parents to upgrade. It's undermined every time a kid sees a friend's cool pet and learns their version of the game won't let them have one. It's undermined every time math practice becomes a vehicle for upselling cosmetics.
 
 We built Play Origin because we believe a free educational game should actually be free. Not free-with-an-asterisk. Not free-but-most-of-it-is-locked. Just free. The math is the point. Everything else should be along for the ride.
 
@@ -167,5 +167,5 @@ If that resonates with you, install the extension, share it with someone who'd b
 
 Maintained by Alexey Fedorov. Open source forever.
 
-(To Prodigy Education employees: I am looking for work and would genuinely enjoy helping improve your codebase. Reach out at alexey.max.fedorov@gmail.com.)
+(To Prod. Education employees: I am looking for work and would genuinely enjoy helping improve your codebase to properly fix all security flaws. Reach out at alexey.max.fedorov@gmail.com.)
 ```
