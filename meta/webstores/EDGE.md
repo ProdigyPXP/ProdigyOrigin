@@ -1,11 +1,17 @@
 # Microsoft Edge Add-ons — Play Origin
 
+## Short description (for the Edge Add-ons summary field)
+
+```
+Free Prodigy mod menu — unlock members-only pets, gear & zones, edit gold/level & auto-answer battles. Open-source, no signup.
+```
+
 ## Listing description (plain text, for Edge Add-ons description field)
 
 ```
-PLAY ORIGIN — The Ultimate Mod Hack for Online Math Games
+PLAY ORIGIN — The Ultimate Prodigy Math Game Mod Hack
 
-Transform the way you play. Play Origin is a free, open-source browser extension that injects a powerful in-game mod menu directly into your favorite online math game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers.
+Play Origin is a free, open-source browser extension that injects a powerful in-game mod menu directly into Prodigy Math Game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers. Transform the way you play.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -39,7 +45,9 @@ HOW IT WORKS
 
 Install the extension. Go to math.prodigygame.com. Log in normally. The mod menu appears in the corner of the game.
 
-That's it. No separate launcher. No fake game client. No sketchy download. Play Origin works directly inside the official game website using the same Edge extension framework as your password manager or ad blocker. Patches refresh automatically every two hours.
+That's it. No separate launcher. No fake game client. No sketchy download. Play Origin works directly inside the official game website using the same Edge extension framework as your password manager or ad blocker.
+
+Under the hood, Play Origin loads the game's own official script from Prodigy's servers and applies a small set of community-maintained patches to it locally, in your browser, then runs the result — so the game code that runs is Prodigy's own, just patched on your device. The patch rules refresh automatically every couple of hours.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -59,7 +67,7 @@ BATTLE HELPERS — One-hit win, auto-answer, damage multipliers, disable enemy m
 
 ZONE AND QUEST ACCESS — Teleport anywhere, skip Member-only gates, replay finished quests.
 
-AUTOMATIC UPDATES — Two-hour patching pipeline. Downtime measured in minutes, not days.
+AUTOMATIC UPDATES — Two-hour patch-rule pipeline; your browser re-patches the game's latest script locally. Downtime measured in minutes, not days.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -90,6 +98,25 @@ NO DATA COLLECTION. The extension transmits nothing — no analytics, no error r
 NO ACCOUNT CREDENTIALS TOUCHED. Login goes directly between your browser and Prodigy's servers, exactly as it would without the extension.
 
 OPEN SOURCE. github.com/ProdigyPXP. If something sounds too good to be true, check for yourself.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FREQUENTLY ASKED QUESTIONS
+
+How do I get free Membership in Prodigy?
+Install Play Origin and open Prodigy. The mod menu unlocks Members-only pets, gear, outfits, and zones instantly — no subscription, no payment, no account upgrade needed. Everything runs locally in your browser.
+
+How do I get free pets, gold, or stars in Prodigy?
+Open the mod menu's pet and currency tabs. Catch any pet from any zone, evolve it to its final form instantly, and set Gold, Stars, Hearts, or Crystals to any number you want.
+
+Is the Prodigy mod menu safe?
+Yes. Play Origin collects no data, never touches your login or password, and is fully open-source — audit every line at github.com/ProdigyPXP. It runs entirely on your own device.
+
+Is it free?
+Completely. No pro tier, no upsell, no email signup, no ads. Ever.
+
+Does it still work after a Prodigy update?
+Almost always within a couple of hours. An automated pipeline refreshes the patch rules every two hours, and your browser re-patches the latest Prodigy script locally.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
