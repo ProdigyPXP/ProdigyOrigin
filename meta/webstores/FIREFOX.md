@@ -1,11 +1,17 @@
 # Firefox Add-ons (AMO) — Play Origin
 
+## Short description (for the AMO summary field)
+
+```
+Free Prodigy mod menu — unlock members-only pets, gear & zones, edit gold/level & auto-answer battles. Open-source, no signup.
+```
+
 ## Listing description (Markdown, for AMO description field)
 
 ```markdown
-# PLAY ORIGIN — The Ultimate Mod Hack for Online Math Games
+# PLAY ORIGIN — The Ultimate Prodigy Math Game Mod Hack
 
-Transform the way you play. **Play Origin** is a free, open-source browser extension that injects a powerful in-game mod menu directly into your favorite online math game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers.
+**Play Origin** is a free, open-source browser extension that injects a powerful in-game mod menu directly into Prodigy Math Game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers. Transform the way you play.
 
 If you've ever wished you could just enjoy the adventure without farming the same battles for hours, this extension is built for you.
 
@@ -47,7 +53,7 @@ You install the extension. You go to [math.prodigygame.com](https://math.prodigy
 
 That's it. No separate launcher. No fake game client. No sketchy download from a forum. Play Origin works directly inside the official game website using the same Firefox extension framework as your password manager or ad blocker.
 
-Under the hood, Play Origin replaces the standard game script with a community-patched version that exposes the game's internal systems to a clean, friendly menu. The patches are maintained automatically by the **ProdigyPXP** project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed.
+Under the hood, Play Origin loads the game's own official script straight from Prodigy's servers and applies a small set of community-maintained patches to it right on your device — in your own browser, never on a server — then runs the result. Those patches expose the game's internal systems to a clean, friendly menu. The patch rules are maintained automatically by the **ProdigyPXP** project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed. Because the game code that actually runs is Prodigy's own — just patched locally — there's no opaque pre-built game file being shipped to you.
 
 ---
 
@@ -75,7 +81,7 @@ One-hit win. Auto-answer math questions. Damage multipliers. Disable enemy moves
 Teleport to any zone in the game. Skip Member-only gates. Replay quests you've already finished.
 
 **Automatic Updates**
-The game patches frequently. Most mod tools break when that happens and stay broken for days. Play Origin uses an automated patching pipeline that re-applies fixes every two hours — downtime is measured in minutes, not days.
+The game patches frequently. Most mod tools break when that happens and stay broken for days. Play Origin uses an automated pipeline that refreshes its patch rules every two hours — your browser picks up the new rules and re-patches the game's latest script locally, so downtime is measured in minutes, not days.
 
 ---
 
@@ -109,6 +115,25 @@ The game patches frequently. Most mod tools break when that happens and stay bro
 **NO ACCOUNT CREDENTIALS TOUCHED.** The extension never reads, intercepts, or stores your Prodigy username or password. Login happens directly between your browser and Prodigy's servers, exactly as it would without the extension.
 
 **OPEN SOURCE.** The complete source code lives at [github.com/ProdigyPXP](https://github.com/ProdigyPXP). If something sounds too good to be true, check for yourself.
+
+---
+
+## Frequently Asked Questions
+
+**How do I get free Membership in Prodigy?**
+Install Play Origin and open Prodigy. The mod menu unlocks Members-only pets, gear, outfits, and zones instantly — no subscription, no payment, no account upgrade needed. Everything runs locally in your browser.
+
+**How do I get free pets, gold, or stars in Prodigy?**
+Open the mod menu's pet and currency tabs. Catch any pet from any zone, evolve it to its final form instantly, and set Gold, Stars, Hearts, or Crystals to any number you want.
+
+**Is the Prodigy mod menu safe?**
+Yes. Play Origin collects no data, never touches your login or password, and is fully open-source — audit every line at [github.com/ProdigyPXP](https://github.com/ProdigyPXP). It runs entirely on your own device.
+
+**Is it free?**
+Completely. No pro tier, no upsell, no email signup, no ads. Ever.
+
+**Does it still work after a Prodigy update?**
+Almost always within a couple of hours — an automated pipeline refreshes the patch rules every two hours and your browser re-patches the latest Prodigy script locally.
 
 ---
 

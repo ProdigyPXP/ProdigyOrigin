@@ -16,14 +16,14 @@ if ! [[ "$TARGET" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.]+)?$ ]]; then
 fi
 
 PKG_FILES=(
-  "/home/alex/ProdigyMathGameHacking/extension/package.json"
-  "/home/alex/ProdigyMathGameHacking/originGUI/package.json"
-  "/home/alex/ProdigyMathGameHacking/typings/package.json"
-  "/home/alex/P-NP/package.json"
+  "$HOME/Projects/ProdigyTemp/ProdigyOrigin/extension/package.json"
+  "$HOME/Projects/ProdigyTemp/ProdigyOrigin/originGUI/package.json"
+  "$HOME/Projects/ProdigyTemp/ProdigyOrigin/typings/package.json"
+  "$HOME/Projects/ProdigyTemp/P-NP/package.json"
 )
 
-CITATION_FILE="/home/alex/ProdigyMathGameHacking/CITATION.cff"
-CONSTS_FILE="/home/alex/P-NP/src/constants.ts"
+CITATION_FILE="$HOME/Projects/ProdigyTemp/ProdigyOrigin/CITATION.cff"
+CONSTS_FILE="$HOME/Projects/ProdigyTemp/P-NP/src/constants.ts"
 
 for f in "${PKG_FILES[@]}"; do
   if [[ ! -f "$f" ]]; then

@@ -1,31 +1,48 @@
 import type { PlasmoCSConfig } from "plasmo"
+import { MANIFEST_URL } from "../lib/patch-urls"
 
 /**
- * Play Origin Bridge — Isolated World Content Script
+ * Play Origin Bridge (Firefox) — ISOLATED world.
  *
- * Sets the default remote game URL synchronously so the MAIN world script
- * can read it immediately. Then reads chrome.storage.local for custom
- * overrides and updates the attribute + sets a ready signal.
+ * Sets `data-origin-manifest-url` and `data-origin-gui-url` synchronously so
+ * the MAIN-world script can read them before document.write. Reads optional
+ * overrides from chrome.storage.local, then signals readiness with
+ * `data-origin-ready="1"`.
  */
 export const config: PlasmoCSConfig = {
   matches: ["https://math.prodigygame.com/*"],
   run_at: "document_start"
 }
 
-// Default: fetch patched game from P-NP dist/ on master
-const defaultGameUrl = "https://raw.githubusercontent.com/ProdigyPXP/P-NP/master/dist/game.min.js"
+document.documentElement.setAttribute("data-origin-manifest-url", MANIFEST_URL)
+document.documentElement.setAttribute("data-origin-gui-url", "")
 
-// Synchronous — MAIN world can read this immediately
-document.documentElement.setAttribute("data-origin-game-url", defaultGameUrl)
-
-// Async override from storage (custom dev URLs)
-chrome.storage.local.get(["originGameUrl", "originGuiUrl"], (result) => {
-  if (result.originGameUrl) {
-    document.documentElement.setAttribute("data-origin-game-url", result.originGameUrl)
+chrome.storage.local.get(
+  ["originManifestUrl", "originGuiUrl"],
+  (result) => {
+    if (chrome.runtime.lastError) {
+      console.warn("[Origin] storage error:", chrome.runtime.lastError.message)
+      document.documentElement.setAttribute("data-origin-ready", "1")
+      return
+    }
+    if (
+      typeof result.originManifestUrl === "string" &&
+      result.originManifestUrl.length > 0
+    ) {
+      document.documentElement.setAttribute(
+        "data-origin-manifest-url",
+        result.originManifestUrl
+      )
+    }
+    if (
+      typeof result.originGuiUrl === "string" &&
+      result.originGuiUrl.length > 0
+    ) {
+      document.documentElement.setAttribute(
+        "data-origin-gui-url",
+        result.originGuiUrl
+      )
+    }
+    document.documentElement.setAttribute("data-origin-ready", "1")
   }
-  if (result.originGuiUrl) {
-    document.documentElement.setAttribute("data-origin-gui-url", result.originGuiUrl)
-  }
-  // Signal that final URLs (including any overrides) are now set
-  document.documentElement.setAttribute("data-origin-ready", "1")
-})
+)

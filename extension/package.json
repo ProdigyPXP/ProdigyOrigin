@@ -1,6 +1,6 @@
 {
   "name": "prodigy-origin-extension",
-  "version": "4.3.0",
+  "version": "4.4.1",
   "private": true,
   "description": "Plasmo-based Play Origin browser extension",
   "scripts": {
@@ -10,12 +10,13 @@
     "build:firefox": "plasmo build --target=firefox-mv3",
     "package": "plasmo package",
     "package:firefox": "plasmo package --target=firefox-mv3",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test \"tests/**/*.test.ts\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
-    "lucide-react": "^1.18.0",
+    "lucide-react": "^1.20.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwind-merge": "^3.6.0"
@@ -33,7 +34,8 @@
     "author": "ProdigyPXP",
     "permissions": [
       "declarativeNetRequest",
-      "storage"
+      "storage",
+      "unlimitedStorage"
     ],
     "host_permissions": [
       "*://*.prodigygame.com/*",

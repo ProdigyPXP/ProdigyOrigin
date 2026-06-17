@@ -1,4 +1,6 @@
 import type { PlasmoCSConfig } from "plasmo"
+import { isGameScriptSrc } from "../lib/patch-urls"
+import { buildInlineInjector } from "../lib/inline-injector"
 
 export const config: PlasmoCSConfig = {
   matches: ["https://math.prodigygame.com/*"],
@@ -10,28 +12,10 @@ declare global {
   interface Window {
     __ORIGIN_INJECTED__?: boolean
     __ORIGIN_REWRITTEN__?: boolean
-    __ORIGIN_GAME_URL__?: string
-    __ORIGIN_GUI_URL__?: string
+    __ORIGIN_MANIFEST_URL__?: string
+    __ORIGIN_GUI_URL_OVERRIDE__?: string
   }
 }
-
-/**
- * Play Origin Content Script — SRI Bypass via Document Rewrite + Direct URL Replacement
- *
- * The bridge script (ISOLATED world) sets data-origin-game-url synchronously
- * with the default remote GitHub URL for the patched game, then asynchronously
- * reads
- * chrome.storage.local for custom overrides and sets data-origin-ready="1"
- * when done.
- *
- * This script (MAIN world):
- * - Immediately sets up prototype overrides and appendChild interceptors
- *   (Phase 2-4) — these don't need the URL upfront, they read it lazily
- * - Waits for data-origin-ready before running the document rewrite (Phase 1)
- *   so custom URLs from storage are available
- * - DNR blocks the original game.min.js at the network level, so the brief
- *   wait for storage is safe
- */
 
 // ─── Save originals ───
 const origAppendChild = Node.prototype.appendChild
@@ -42,22 +26,17 @@ const origSetAttribute = Element.prototype.setAttribute
 const origGetAttribute = Element.prototype.getAttribute
 const origCreateElement = Document.prototype.createElement
 
-// ─── Phase 2: Prototype Overrides (set up immediately) ───
-
+// ─── Prototype overrides (integrity bypass) ───
 function lockIntegrity(el: HTMLElement): void {
   Object.defineProperty(el, "integrity", {
-    set() {},
-    get() { return "" },
-    configurable: true,
+    set() {}, get() { return "" }, configurable: true,
   })
 }
 
 Document.prototype.createElement = function (tagName: string, options?: ElementCreationOptions): HTMLElement {
   const el = origCreateElement.call(this, tagName, options) as HTMLElement
   const tag = tagName.toLowerCase()
-  if (tag === "script" || tag === "link") {
-    lockIntegrity(el)
-  }
+  if (tag === "script" || tag === "link") lockIntegrity(el)
   return el
 }
 
@@ -68,18 +47,16 @@ Element.prototype.setAttribute = function (name: string, value: string) {
 
 for (const Proto of [HTMLScriptElement.prototype, HTMLLinkElement.prototype]) {
   Object.defineProperty(Proto, "integrity", {
-    set() {},
-    get() { return "" },
-    configurable: true,
+    set() {}, get() { return "" }, configurable: true,
   })
 }
 
-// ─── Phase 3: appendChild override (set up immediately, reads URL lazily) ───
+// ─── appendChild override (intercept the script tag so the original never runs) ───
 
 function isGameScript(node: Node): node is HTMLScriptElement {
   if (!(node instanceof HTMLScriptElement)) return false
-  const src = node.src || ""
-  return src.includes("game.min.js") && !origGetAttribute.call(node, "data-origin")
+  if (origGetAttribute.call(node, "data-origin") === "1") return false
+  return isGameScriptSrc(node.src || origGetAttribute.call(node, "src") || "")
 }
 
 function createNopScript(): HTMLScriptElement {
@@ -89,29 +66,29 @@ function createNopScript(): HTMLScriptElement {
   return nop
 }
 
-function injectGameViaFetch(gameUrl: string): void {
-  console.log(`[Origin] Fetching game via fetch+onreset: ${gameUrl}`)
-  fetch(gameUrl)
-    .then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`)
-      return r.text()
-    })
-    .then(js => {
-      const semaphore = `if(window.SW&&window.SW.Load&&typeof window.SW.Load.decrementLoadSemaphore==='function')window.SW.Load.decrementLoadSemaphore();`
-      document.documentElement.setAttribute("onreset", js + "\n" + semaphore)
-      document.documentElement.dispatchEvent(new CustomEvent("reset"))
-      document.documentElement.removeAttribute("onreset")
-      console.log("[Origin] Game injected via onreset")
-    })
-    .catch(e => {
-      console.error("[Origin] Failed to fetch game:", e)
-    })
+let gameScriptHandled = false
+
+function injectGameClientSide(originalGameUrl: string): void {
+  if (gameScriptHandled) return
+  gameScriptHandled = true
+
+  const manifestUrl = window.__ORIGIN_MANIFEST_URL__
+  if (!manifestUrl) {
+    console.error("[Origin] no manifest URL available")
+    return
+  }
+  const guiOverride = window.__ORIGIN_GUI_URL_OVERRIDE__ ?? ""
+
+  console.log(`[Origin] Firefox inline-injecting (manifest=${manifestUrl}, game=${originalGameUrl}, guiOverride=${guiOverride ? "set" : "none"})`)
+  const inlineJs = buildInlineInjector(manifestUrl, originalGameUrl, guiOverride)
+  document.documentElement.setAttribute("onreset", inlineJs)
+  document.documentElement.dispatchEvent(new CustomEvent("reset"))
+  document.documentElement.removeAttribute("onreset")
 }
 
 function stripIntegrity(node: Node): void {
   if (node instanceof HTMLScriptElement || node instanceof HTMLLinkElement) {
-    const hasIntegrity = origGetAttribute.call(node, "integrity")
-    if (hasIntegrity) {
+    if (origGetAttribute.call(node, "integrity")) {
       origRemoveAttribute.call(node, "integrity")
     }
   }
@@ -119,8 +96,8 @@ function stripIntegrity(node: Node): void {
 
 Node.prototype.appendChild = function <T extends Node>(child: T): T {
   if (isGameScript(child)) {
-    const gameUrl = window.__ORIGIN_GAME_URL__ || (child as HTMLScriptElement).src
-    injectGameViaFetch(gameUrl)
+    const gameUrl = (child as HTMLScriptElement).src
+    injectGameClientSide(gameUrl)
     return origAppendChild.call(this, createNopScript()) as unknown as T
   }
   stripIntegrity(child)
@@ -129,8 +106,8 @@ Node.prototype.appendChild = function <T extends Node>(child: T): T {
 
 Node.prototype.insertBefore = function <T extends Node>(newNode: T, refNode: Node | null): T {
   if (isGameScript(newNode)) {
-    const gameUrl = window.__ORIGIN_GAME_URL__ || (newNode as HTMLScriptElement).src
-    injectGameViaFetch(gameUrl)
+    const gameUrl = (newNode as HTMLScriptElement).src
+    injectGameClientSide(gameUrl)
     return origInsertBefore.call(this, createNopScript(), refNode) as unknown as T
   }
   stripIntegrity(newNode)
@@ -138,10 +115,10 @@ Node.prototype.insertBefore = function <T extends Node>(newNode: T, refNode: Nod
 }
 
 Element.prototype.append = function (...nodes: (Node | string)[]) {
-  const processed = nodes.map(node => {
+  const processed = nodes.map((node) => {
     if (node instanceof Node && isGameScript(node)) {
-      const gameUrl = window.__ORIGIN_GAME_URL__ || (node as HTMLScriptElement).src
-      injectGameViaFetch(gameUrl)
+      const gameUrl = (node as HTMLScriptElement).src
+      injectGameClientSide(gameUrl)
       return createNopScript()
     }
     if (node instanceof Node) stripIntegrity(node)
@@ -150,13 +127,12 @@ Element.prototype.append = function (...nodes: (Node | string)[]) {
   return origAppend.apply(this, processed)
 }
 
-// ─── Phase 4: MutationObserver for integrity stripping ───
+// ─── MutationObserver (strip integrity) ───
 const integrityObserver = new MutationObserver((mutations) => {
   for (const mutation of mutations) {
     for (const node of mutation.addedNodes) {
       if (node instanceof HTMLScriptElement || node instanceof HTMLLinkElement) {
-        const hasIntegrity = origGetAttribute.call(node, "integrity")
-        if (hasIntegrity) {
+        if (origGetAttribute.call(node, "integrity")) {
           origRemoveAttribute.call(node, "integrity")
         }
       }
@@ -164,18 +140,20 @@ const integrityObserver = new MutationObserver((mutations) => {
   }
 })
 
-// ─── Phase 1: Document Rewrite (runs after bridge signals ready) ───
+// ─── Document rewrite (load page only) ───
 
-function readUrlsFromBridge(): void {
-  const url = document.documentElement?.getAttribute("data-origin-game-url")
-  if (url) {
-    window.__ORIGIN_GAME_URL__ = url
-    console.log("[Origin] Extension game URL:", url)
+function readBridgeAttributes(): void {
+  const manifestUrl = document.documentElement?.getAttribute("data-origin-manifest-url")
+  if (manifestUrl) {
+    window.__ORIGIN_MANIFEST_URL__ = manifestUrl
+    console.log("[Origin] manifest URL:", manifestUrl)
   }
-  const guiUrl = document.documentElement?.getAttribute("data-origin-gui-url")
-  if (guiUrl) {
-    window.__ORIGIN_GUI_URL__ = guiUrl
-    console.log("[Origin] Custom mod bundle URL:", guiUrl)
+  const guiOverride = document.documentElement?.getAttribute("data-origin-gui-url")
+  if (guiOverride) {
+    window.__ORIGIN_GUI_URL_OVERRIDE__ = guiOverride
+    console.log("[Origin] menu URL override active")
+  } else {
+    window.__ORIGIN_GUI_URL_OVERRIDE__ = ""
   }
 }
 
@@ -188,15 +166,15 @@ function rewriteDocument(): void {
     return
   }
 
-  const extensionGameUrl = window.__ORIGIN_GAME_URL__
-  if (!extensionGameUrl) {
-    console.warn("[Origin] No extension game URL available, cannot rewrite")
+  const manifestUrl = window.__ORIGIN_MANIFEST_URL__
+  if (!manifestUrl) {
+    console.warn("[Origin] No manifest URL available, cannot rewrite")
     return
   }
+  const guiOverride = window.__ORIGIN_GUI_URL_OVERRIDE__ ?? ""
 
   try {
-    // Strip auth code/state params — they're one-time tokens and re-fetching
-    // them triggers a redirect to play.prodigygame.com (CORS block).
+    // Strip auth code/state params — they're one-time tokens.
     const rewriteUrl = new URL(location.href)
     rewriteUrl.searchParams.delete("code")
     rewriteUrl.searchParams.delete("state")
@@ -209,7 +187,6 @@ function rewriteDocument(): void {
 
       html = html.replace(/\s+integrity\s*=\s*"[^"]*"/gi, "")
       html = html.replace(/\s+integrity\s*=\s*'[^']*'/gi, "")
-
       html = html.replace(
         /<link[^>]*rel=["']preload["'][^>]*game\.min\.js[^>]*>/gi,
         "<!-- Origin: preload removed -->"
@@ -219,25 +196,22 @@ function rewriteDocument(): void {
         "<!-- Origin: preload removed -->"
       )
 
-      // Replace the entire game script tag with an inline fetch+onreset injector.
-      // We cannot use <script src="raw.githubusercontent.com/..."> because GitHub
-      // serves JS as text/plain, which Chrome's strict MIME check rejects.
-      // An inline script fetches the content as text and injects it via onreset,
-      // which executes in MAIN world without any MIME type restriction.
-      const gameUrl = JSON.stringify(extensionGameUrl)
-      const semaphore = `if(window.SW&&window.SW.Load&&typeof window.SW.Load.decrementLoadSemaphore==='function')window.SW.Load.decrementLoadSemaphore();`
-      // Prepend 'var URL=window.URL;' to shadow document.URL (a string) with the real
-      // URL constructor. HTML event handlers include the document in their scope chain,
-      // so 'URL' inside an onreset handler resolves to document.URL (the page URL string)
-      // instead of window.URL (the URL class), breaking 'new URL(...)' calls in the game.
-      const inlineInjector = `<script>(async()=>{try{const js=await(await fetch(${gameUrl})).text();document.documentElement.setAttribute("onreset","var URL=window.URL;\\n"+js+"\\n${semaphore}");document.documentElement.dispatchEvent(new CustomEvent("reset"));document.documentElement.removeAttribute("onreset");console.log("[Origin] Game injected via onreset")}catch(e){console.error("[Origin] Failed to inject game:",e)}})();<\/script>`
+      // Find the original game.min.js URL from the script tag.
+      const scriptTagRe =
+        /<script[^>]*src=["']([^"']*code\.prodigygame\.com\/code\/[^/]+\/game\.min\.js[^"']*)["'][^>]*>\s*(<\/script>)?/i
+      const m = html.match(scriptTagRe)
+      const originalGameUrl = m?.[1]
+      if (!originalGameUrl) {
+        console.warn("[Origin] could not locate game.min.js script tag in document HTML; aborting rewrite")
+        return
+      }
 
-      html = html.replace(
-        /<script[^>]*code\.prodigygame\.com\/code\/[^"']*game\.min\.js[^>]*>\s*(<\/script>)?/gi,
-        inlineInjector
-      )
+      const inlineJs = buildInlineInjector(manifestUrl, originalGameUrl, guiOverride)
+      const inlineInjector = `<script>${inlineJs}<\/script>`
 
-      console.log("[Origin] Rewriting document: integrity stripped + game script replaced with fetch+onreset injector")
+      html = html.replace(scriptTagRe, inlineInjector)
+
+      console.log("[Origin] Rewriting document: integrity stripped + game script replaced with client-side injector")
 
       document.open()
       document.write(html)
@@ -255,7 +229,6 @@ function rewriteDocument(): void {
   if (window.__ORIGIN_INJECTED__) return
   window.__ORIGIN_INJECTED__ = true
 
-  // Start integrity observer immediately
   const root = document.documentElement || document
   integrityObserver.observe(root, { childList: true, subtree: true })
 
@@ -269,23 +242,17 @@ function rewriteDocument(): void {
     earlyObserver.observe(document, { childList: true })
   }
 
-  // Check if bridge already set the ready signal (sync default URL case)
   if (document.documentElement?.getAttribute("data-origin-ready")) {
-    readUrlsFromBridge()
+    readBridgeAttributes()
     rewriteDocument()
-    console.log("[Origin] Content script loaded — document rewrite + direct URL replacement active")
     return
   }
 
-  // Otherwise wait for the ready signal (async storage case)
-  // Use MutationObserver on attributes — yields the event loop so the
-  // ISOLATED world's storage callback can fire and set the attributes
   const bridgeObserver = new MutationObserver(() => {
     if (document.documentElement?.getAttribute("data-origin-ready")) {
       bridgeObserver.disconnect()
-      readUrlsFromBridge()
+      readBridgeAttributes()
       rewriteDocument()
-      console.log("[Origin] Content script loaded — document rewrite + direct URL replacement active (async)")
     }
   })
   bridgeObserver.observe(document.documentElement, {
@@ -293,5 +260,5 @@ function rewriteDocument(): void {
     attributeFilter: ["data-origin-ready"]
   })
 
-  console.log("[Origin] Content script loaded — waiting for bridge ready signal")
+  console.log("[Origin] Firefox content script loaded — waiting for bridge ready signal")
 })()

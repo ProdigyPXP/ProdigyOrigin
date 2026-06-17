@@ -2,13 +2,13 @@
 
 # Play Origin
 
-**Free and open-source mods for online math games.**
+**Free, open-source mods & in-game cheat menu for Prodigy Math Game, the online math game.**
 
 > Formerly **Prodigy Origin** — see [`meta/REBRAND.md`](meta/REBRAND.md) for the rebrand summary. The repo name and `prodigyorigin.com` domain stay.
 
-Play Origin is a free, open-source mod loader for online math games — delivered as a simple browser extension. It adds a full cheat menu to your favorite math game with one click.
+Play Origin is a free, open-source mod menu for **Prodigy Math Game**, delivered as a simple browser extension. It adds a full in-game cheat menu to Prodigy with one click — unlock Members-only pets, gear, and zones, edit your gold, level, and stats, and auto-answer battles. It also works as a general mod loader for other online math games.
 
-> **Looking for math-game hacks?** Play Origin is the ultimate open-source mod loader and cheat tool for online math games.
+> **Looking for a Prodigy hack, a Prodigy mod menu, or free Prodigy Membership?** Play Origin is the ultimate open-source Prodigy Math Game mod and cheat tool — no subscription, no signup, and no data collected.
 
 ## [Install](https://extension.playorig.in)
 
@@ -73,14 +73,41 @@ Load the unpacked extension from `extension/build/chrome-mv3-dev/` in Chrome.
 
 Navigate to [math.prodigygame.com](https://math.prodigygame.com/) — press **SHIFT** to toggle the mod menu.
 
+## How it works (v4.4.0)
+
+The extension fetches `manifest.json` from the sibling [P-NP](https://github.com/ProdigyPXP/P-NP)
+repo, fetches the original `game.min.js` directly from `code.prodigygame.com`, applies
+the manifest's regex find/replace rules locally in the background service worker,
+wraps the patched output with the manifest's prefix and suffix, and caches the result
+in `chrome.storage.local` keyed by `{gameClientVersion, manifestHash}`. The patched
+bundle is then injected into the page via the `onreset` attribute trick.
+
+P-NP's GitHub Action runs every 2 hours, verifies the rules against the latest
+Prodigy build, and commits a fresh `manifest.json` whenever rules or wrappers change.
+The Firefox build uses a document-rewrite variant of the same pipeline.
+
+## FAQ
+
+**Is Play Origin a Prodigy hack?**
+Play Origin is an open-source mod menu (cheat menu) for Prodigy Math Game. It unlocks content the base game locks behind Membership and grinding — Members-only pets, gear, and zones — plus currency, level, and stat editing and battle helpers.
+
+**How do I get free Membership in Prodigy?**
+Install the Play Origin browser extension and open Prodigy. The mod menu unlocks Members-only pets, gear, outfits, and zones instantly — no subscription, no payment, no account upgrade needed.
+
+**Is the Prodigy mod menu safe?**
+Yes. Play Origin collects no data, never touches your login or password, and is fully open-source — every line that runs in your browser is in this repository. It runs entirely on your own device.
+
+**Does it still work after a Prodigy update?**
+Almost always within a couple of hours. P-NP's pipeline re-verifies the patch rules against the latest Prodigy build every 2 hours, and your browser re-patches the current game script locally.
+
+**Is it free?**
+Completely. No pro tier, no upsell, no email signup, no ads.
+
 ## License
 
 [Mozilla Public License 2.0](LICENSE.txt)
 
 ## Links
 
-- [Discord](https://dsc.gg/ProdigyPXP)
-- [GitHub](https://github.com/ProdigyPXP/ProdigyOrigin)
-
-
-<br/><h1 align="center"><a href = "https://discord.playorig.in"><img src="https://readme-jokes.vercel.app/api" alt="Jokes Card" width=700/></a></h1>
+- [Discord](https://discord.playorig.in)
+- [GitHub](https://github.playorig.in)

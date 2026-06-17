@@ -1,11 +1,17 @@
 # Chrome Web Store — Play Origin
 
+## Short description (132-char max, for the Chrome Web Store summary field)
+
+```
+Free in-game mod menu for your favorite math game — unlock members-only pets, gear & zones, edit gold/level, auto-answer battles.
+```
+
 ## Listing description (plain text, for Chrome Web Store description field)
 
 ```
 PLAY ORIGIN — The Ultimate Mod Hack for Online Math Games
 
-Transform the way you play. Play Origin is a free, open-source browser extension that injects a powerful in-game mod menu directly into your favorite online math game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers.
+Play Origin is a free, open-source browser extension that injects a powerful in-game mod menu directly into your favorite online math game, unlocking features the base game keeps locked behind paywalls, level grinds, and Membership tiers. Transform the way you play.
 
 If you've ever wished you could just enjoy the adventure without farming the same battles for hours, this extension is built for you.
 
@@ -15,13 +21,13 @@ DISCLAIMER
 
 Play Origin is in no way associated with Prodigy Education Inc. The extension package does not contain any of Prodigy Education's copyrighted or trademarked assets.
 
-(Note to Prodigy Education employees: I would love to help improve your codebase and fully fix security flaws this summer — I am currently looking for work. You can reach me at alexey.max.fedorov@gmail.com.)
+(Note to Prodigy Education employees: I would love to help improve your codebase this summer — I am currently looking for work. You can reach me at alexey.max.fedorov@gmail.com.)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 WHY PLAY ORIGIN EXISTS
 
-The math game is great game wrapped in an aggressive monetization model. Want the cool gear? Membership. Want to evolve your pet past stage one? Membership. Want to access entire zones? Membership. For a game marketed to kids as an educational tool, the constant upsell pressure is exhausting — for students, for parents, and for teachers who just want the math practice without the merchandising.
+The game is great — and wrapped in an aggressive monetization model. Want the cool gear? Membership. Want to evolve your pet past stage one? Membership. Want to access entire zones? Membership. For a game marketed to kids as an educational tool, the constant upsell pressure is exhausting — for students, for parents, and for teachers who just want the math practice without the merchandising.
 
 Play Origin gives the game back to the player. No subscriptions. No microtransactions. No "Premium Only" walls. Just the full experience, the way it should have been from day one.
 
@@ -43,11 +49,11 @@ WHAT YOU GET (THE QUICK VERSION)
 
 HOW IT WORKS (IN PLAIN ENGLISH)
 
-You install the extension. You go to math.prodigygame.com. You log in like normal. The mod menu appears in the corner of the game.
+You install the extension. You go to math.prod·igygame.com. You log in like normal. The mod menu appears in the corner of the game.
 
 That's it. There's no separate launcher. No fake game client. No sketchy download from a forum. No file you have to manually drop into a folder somewhere. Play Origin works directly inside the official game website using the same Chrome extension framework as your password manager or ad blocker.
 
-Under the hood, Play Origin replaces the standard game script with a community-patched version that exposes the game's internal systems to a clean, friendly menu. The patches are maintained automatically by the Play Origin project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed.
+Under the hood, Play Origin loads the official game script straight from the game's own servers and applies a small set of community-maintained patches to it right on your device — in your own browser, never on a server — then runs the result. Those patches expose the game's internal systems to a clean, friendly menu. The patch rules are maintained automatically by the ProdigyPXP project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed. Because the game code that actually runs is the game's own — just patched locally — there's no opaque pre-built game file being shipped to you.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -78,13 +84,13 @@ CUSTOM LOGIN PAGE
 Optional cosmetic touches like a custom background and a refreshed logo, so the experience feels distinct from the moment you load the page.
 
 AUTOMATIC UPDATES
-The game patches frequently. Most mod tools break the moment that happens and stay broken until someone manually fixes them, sometimes for days. Play Origin uses an automated patching pipeline that re-applies fixes every two hours, so downtime is measured in minutes, not days.
+The game patches frequently. Most mod tools break the moment that happens and stay broken until someone manually fixes them, sometimes for days. Play Origin uses an automated pipeline that refreshes its patch rules every two hours — your browser picks up the new rules and re-patches the game's latest script locally, so downtime is measured in minutes, not days.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 WHO IT'S FOR
 
-Kids and teens who love the math game but can't afford a Membership and are tired of being locked out of half the game.
+Kids and teens who love the game but can't afford a Membership and are tired of being locked out of half the game.
 
 Parents who already paid for one subscription this month and aren't paying for another, but still want their kid to enjoy what's supposed to be a free educational game.
 
@@ -94,9 +100,9 @@ Speedrunners and challenge-run players who want fine control over stats, levels,
 
 Modders, tinkerers, and curious developers who want to see how a commercial HTML5 game is structured under the hood. The whole project is open source on GitHub.
 
-Educators who use it in classrooms and want students to focus on the math instead of being distracted by the constant Membership upsell prompts.
+Educators who use the game in classrooms and want students to focus on the math instead of being distracted by the constant Membership upsell prompts.
 
-Content creators making videos or streams about the math game or mod tools — Play Origin gives you a controlled environment to demonstrate features and showcase content.
+Content creators making videos or streams about the game or mod tools — Play Origin gives you a controlled environment to demonstrate features and showcase content.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -104,7 +110,7 @@ WHAT IT IS NOT
 
 Play Origin is not a virus. It is not spyware. It does not log keystrokes, collect your password, harvest your email, sell data to advertisers, or phone home with telemetry. The complete source code is published on GitHub under the ProdigyPXP organization. Anyone can read it, audit it, build it themselves, and confirm exactly what it does. That is not a claim — it is a verifiable fact.
 
-Play Origin is not a separate game. You still play the real math game on the real website with your real account. The extension just adds tools on top.
+Play Origin is not a separate game. You still play the real game on the real game website with your real account. The extension just adds tools on top.
 
 Play Origin is not a paid product disguised as free. There is no "pro tier." There is no upsell. There is no email signup. There are no ads inside the menu. There never will be. The project is maintained by volunteers who think kids deserve better than aggressive monetization in their math homework.
 
@@ -124,9 +130,28 @@ OPEN SOURCE. The complete source code lives at github.com/ProdigyPXP. If somethi
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+FREQUENTLY ASKED QUESTIONS
+
+How do I get free Membership in the math game?
+Install Play Origin and open the game. The mod menu unlocks Members-only pets, gear, outfits, and zones instantly — no subscription, no payment, no account upgrade needed. Everything runs locally in your browser.
+
+How do I get free pets, gold, or stars?
+Open the mod menu's pet and currency tabs. Catch any pet from any zone, evolve it to its final form instantly, and set Gold, Stars, Hearts, or Crystals to any number you want.
+
+Is the mod menu safe?
+Yes. Play Origin collects no data, never touches your login or password, and is fully open-source — anyone can audit every line at github.com/ProdigyPXP. It runs entirely on your own device.
+
+Is it free?
+Completely. No pro tier, no upsell, no email signup, no ads. Ever.
+
+Does it still work after a game update?
+Almost always within a couple of hours. An automated pipeline refreshes the patch rules every two hours, and your browser re-patches the latest game script locally.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 WILL THIS GET MY ACCOUNT BANNED?
 
-Honest answer: we have no way to guarantee anything about how the math game chooses to enforce their Terms of Service. In years of community use, account bans for using mod tools have been extremely rare to nonexistent — their anti-cheat is essentially a client-side game, not a server-validated one — but the possibility is never zero.
+Honest answer: we have no way to guarantee anything about how the game's publisher chooses to enforce their Terms of Service. In years of community use, account bans for using mod tools have been extremely rare to nonexistent — the game's anti-cheat is essentially a client-side game, not a server-validated one — but the possibility is never zero.
 
 If you are deeply attached to a specific account, the safest approach is to create a separate, throwaway account for modded play and keep your main account stock. That's what most experienced users do.
 
@@ -136,7 +161,7 @@ INSTALLATION
 
 1. Click "Add to Chrome" at the top of this page.
 2. Confirm the install when Chrome asks.
-3. Open a new tab and go to math.prodigygame.com.
+3. Open a new tab and go to math.prod·igygame.com.
 4. Log in to your account as you normally would.
 5. The mod menu will appear in the corner of the screen once the game finishes loading.
 6. Click the menu, explore the tabs, and play the way you've always wanted to.
@@ -157,7 +182,7 @@ If something breaks after a game update, sit tight. The auto-patcher usually cat
 
 A NOTE ON PHILOSOPHY
 
-The math game markets itself as an educational platform that makes math fun for kids. That's a great mission. It's also a mission that gets undermined every time a child finishes a battle and gets a popup asking their parents to upgrade. It's undermined every time a kid sees a friend's cool pet and learns their version of the game won't let them have one. It's undermined every time math practice becomes a vehicle for upselling cosmetics.
+The game markets itself as an educational platform that makes math fun for kids. That's a great mission. It's also a mission that gets undermined every time a child finishes a battle and gets a popup asking their parents to upgrade. It's undermined every time a kid sees a friend's cool pet and learns their version of the game won't let them have one. It's undermined every time math practice becomes a vehicle for upselling cosmetics.
 
 We built Play Origin because we believe a free educational game should actually be free. Not free-with-an-asterisk. Not free-but-most-of-it-is-locked. Just free. The math is the point. Everything else should be along for the ride.
 
@@ -167,5 +192,5 @@ If that resonates with you, install the extension, share it with someone who'd b
 
 Maintained by Alexey Fedorov. Open source forever.
 
-(To Prod. Education employees: I am looking for work and would genuinely enjoy helping improve your codebase to properly fix all security flaws. Reach out at alexey.max.fedorov@gmail.com.)
+(To Prodigy Education employees: I am looking for work and would genuinely enjoy helping improve your codebase. Reach out at alexey.max.fedorov@gmail.com.)
 ```

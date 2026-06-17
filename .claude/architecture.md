@@ -8,6 +8,10 @@
   - Removes CSP/X-Frame-Options headers
   - Injects patched game code + mod menu bundle via the `onreset` attribute trick
   - Custom login background and logo redirects
+  - Fetches `manifest.json` from the sibling `P-NP` repo's `dist/`
+  - Fetches the original `game.min.js` directly from `code.prodigygame.com`
+  - Applies the manifest's regex rules + wraps with prefix/suffix in the background service worker
+  - Caches the patched result in `chrome.storage.local` keyed by `{gameClientVersion, manifestHash}`
 - **typings/** — Reverse-engineered TypeScript type definitions for Prodigy's game objects
 - **meta/** — Documentation, guides
 
@@ -36,6 +40,12 @@ extension/
   contents/origin-bridge.ts — Bridge script (ISOLATED world): URL communication
   popup.tsx               — Extension popup UI
   package.json            — Plasmo config + manifest overrides
+  lib/
+    patch-urls.ts          — MANIFEST_URL + game-URL regex helpers
+    patches.ts             — applyPatchRules + wrapWithPrefixSuffix
+    manifest.ts            — Manifest type + validateManifest
+    bundle-cache.ts        — chrome.storage.local cache wrapper
+  tests/                   — unit + integration tests (node --test)
 originGUI/
   build.mjs               — esbuild build script
   src/index.ts            — Entry point
