@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "framer-motion": "^12.42.0",
+    "framer-motion": "^12.42.2",
     "lucide-react": "^1.22.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@types/chrome": "^0.2.0",
+    "@types/chrome": "^0.2.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "plasmo": "^0.90.5",
