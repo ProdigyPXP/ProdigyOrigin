@@ -20,9 +20,15 @@ jobs:
         with:
           node-version: '22'
 
+      # Pinned instead of "latest": pnpm 11.12.0 (published 2026-07-13) ships a
+      # broken self-installer that crashes with
+      # "Cannot use 'in' operator to search for 'integrity' in undefined"
+      # whenever action-setup switches to it (see run 29232206286). Pin to the
+      # last known-good release until upstream ships a fix, and bump this
+      # explicitly going forward instead of trusting "latest".
       - uses: pnpm/action-setup@v6
         with:
-          version: latest
+          version: '11.11.0'
 
       - name: Install (sync lockfile state)
         run: pnpm install --no-frozen-lockfile --ignore-scripts
