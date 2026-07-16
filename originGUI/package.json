@@ -21,7 +21,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.64.0",
     "@typescript-eslint/parser": "^8.64.0",
-    "autoprefixer": "^10.5.2",
+    "autoprefixer": "^10.5.3",
     "esbuild": "^0.28.1",
     "eslint": "^10.7.0",
     "eslint-config-standard": "^17.1.0",
