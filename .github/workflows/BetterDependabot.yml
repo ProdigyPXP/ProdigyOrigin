@@ -26,7 +26,7 @@ jobs:
       # whenever action-setup switches to it (see run 29232206286). Pin to the
       # last known-good release until upstream ships a fix, and bump this
       # explicitly going forward instead of trusting "latest".
-      - uses: pnpm/action-setup@v6.0.9
+      - uses: pnpm/action-setup@v6.0.10
         with:
           version: '11.11.0'
 
