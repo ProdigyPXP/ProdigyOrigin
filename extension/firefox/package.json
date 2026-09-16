@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "framer-motion": "^13.2.0",
-    "lucide-react": "^1.45.0",
+    "framer-motion": "^13.3.0",
+    "lucide-react": "^1.46.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwind-merge": "^3.7.0"
