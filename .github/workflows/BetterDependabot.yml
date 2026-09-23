@@ -22,7 +22,7 @@ jobs:
       # whenever action-setup switches to it (see run 29232206286). Pin to the
       # last known-good release until upstream ships a fix, and bump this
       # explicitly going forward instead of trusting "latest".
-      - uses: pnpm/setup@v2
+      - uses: pnpm/setup@v3
         with:
           version: '11.11.0'
           runtime: node@22
