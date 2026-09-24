@@ -18,14 +18,14 @@ Success criteria:
 
 ## Why hooks work here
 
-`game.min.js` is one webpack bundle. Its runtime tags every ESM exports object via `Object.defineProperty(exports, Symbol.toStringTag, {value: "Module"})`. A MAIN-world content script at `document_start` wraps `Object.defineProperty`, keeps a list of those exports objects, and passes everything else straight through. Targets are resolved lazily, after the game boots, by name or shape. Module ids are never used.
+`game.min.js` is one webpack bundle. Its runtime helper `__webpack_require__.d` defines every export as `Object.defineProperty(exports, key, {enumerable: true, get})`. That's 1238 modules; only 5 also get the `Symbol.toStringTag` "Module" tag. A MAIN-world content script at `document_start` wraps `Object.defineProperty`, keeps a set of every object that receives a descriptor of exactly that shape (or the "Module" tag), and passes each call straight through. Targets are resolved lazily, after the game boots, by name or shape. Module ids are never used.
 
 | Old P-NP rule | Packaged replacement |
 |---|---|
 | `singleton-exposure` | Export that is a class with a static `instance` getter and a `prodigy` prototype getter (module 35120 `q` today). `_.instance` = `q.instance`. |
 | `expose-constants` | Export whose `.constants` object has key `"GameConstants.Build.VERSION"` (module 34829 today). Same Map-like `get`/`set`/`has` + `.constants` self-alias as the old suffix. |
 | `answer-question-bypass` | Component registry (export object with key `OpenQuestionInterface`, filled by the `EV(name, path)` decorator). Wrap `OpenQuestionInterface.prototype.answerQuestion`. |
-| `external-factory-bypass` | Action registry (export object with key `AnswerQuestion`, filled by `ba9(name)`). Wrap `AnswerQuestion.prototype.execute`; bypass calls `this.finish({answerCorrect, responseTime: 0})`. |
+| `external-factory-bypass` | The action registry (`Ie` in module 62459) is not exported. Instead, find the exported base action class (the only class whose prototype *owns* `init`, `execute`, `finish`, `findParameter`, `validateParameters`) and wrap its `init`. The action factory calls `init(data)` with `data.Type === "AnswerQuestion"`; on the first such call, wrap that subclass's own `execute`. The bypass calls `this.finish({answerCorrect, responseTime: 0})`. |
 | `open-question-bypass` | Exported class whose prototype has `openQuestionInterfaceThenEmitNotifications` (module 82142 `gT` today). Wrap it; bypass calls the callback `(true, 10, 1, false, false, {})`. |
 | `safe-bind`, semaphore guard | Dropped. They only guarded against `onreset` running the game twice. |
 
@@ -39,9 +39,11 @@ Registry keys are prefab serialization names, so minification can't rename them.
   - `modules.ts`: `defineProperty` hook + the captured-exports list.
   - `resolve.ts`: `findSingletonClass`, `findConstants`, `findRegistry(key)`, `findClassWithMethod(name)`, each taking the exports list.
   - `bypasses.ts`: the three prototype wraps. Idempotent, marked with a symbol so they never double-wrap.
-  - `api.ts`: builds the `window._` surface ported from P-NP `wrappers.ts` (`instance`, `constants`, `player`, `network`, `gameData`, `localizer`, `membership`, `hack`, `functions.escapeBattle`, `functions.setMembership`, `__pnp_discoverService`). It re-applies itself when lodash replaces `window._`, same as the old 500 ms poll. When the singleton and constants are resolved, it dispatches `origin:ready` on `window`.
+  - `api.ts`: builds the `window._` surface the menu actually reads, ported from P-NP `wrappers.ts`: `instance`, `constants`, `player`, `network`, `gameData`, `membership`, `functions.setMembership`. `localizer`, `hack`, `variables` and `escapeBattle` are dropped because nothing in originGUI reads them. `setMembership` is attached to whatever `_.functions` already is (lodash's `functions`), not replacing it. The API re-applies itself when lodash replaces `window._`, same as the old 500 ms poll.
+  - `ready.ts`: `origin:ready` event + flag. Fired once the singleton has `prodigy` and `_.player` resolves (the menu captures `_.player` at load).
+  - Every lib/runtime module imports only *types* from its siblings. The node test runner can't resolve extensionless value imports, so the wiring lives in `contents/runtime.ts`.
 - **`extension/contents/runtime.ts`**: MAIN world, `document_start`, `https://math.prodigygame.com/*`. Installs the hook, then the API and bypasses once resolution succeeds. If a target is still missing after the game boots, it logs `[Origin] hook target missing: <name>` and continues with what it has (graceful degradation).
-- **`extension/contents/menu.ts`**: MAIN world, `document_idle`. Imports the built originGUI bundle so the menu code sits inside the content script. Waits for `origin:ready` before running the menu.
+- **`extension/contents/menu.ts`**: MAIN world, `document_idle`. `originGUI/build.mjs` also emits `dist/menu.js` (`export default function startOriginMenu () { <IIFE bundle> }`, gitignored), and Parcel bundles it into this content script. The script waits for `origin:ready`, then calls `startOriginMenu()`. The extension's `dev`/`build`/`package`/`typecheck` scripts build originGUI first.
 - **originGUI changes** (on this branch only): remove "Update menu", the beta branch loader, the eval console, and the dev socket `eval`. Replace the template-string `eval`s in `player.ts` and `pets.ts` with closures. Data `fetch`es (status message JSON, Prodigy API, asset URLs) stay; they load data, not code.
 
 ## Removed from the Chrome extension
