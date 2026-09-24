@@ -10,6 +10,8 @@ Monorepo for modding online math games (formerly modding Prodigy Math Game), mai
 
 ## Critical Rules
 
+> **Branch `chrome/packaged-runtime` is the Chrome Web Store exclusive line (v4.5.x).** It is never merged into `master`. `master` stays on the v4.4.x P-NP pipeline for Edge and Firefox. CWS listing and privacy answers for this line: `meta/webstores/CHROME.md`, `meta/webstores/JUSTIFICATIONS.md`.
+
 1. Use **pnpm**, never npm
 2. **No force pushes**, no history rewrites
 3. **esbuild** for originGUI, **Plasmo** for extension — no webpack
