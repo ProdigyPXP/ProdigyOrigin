@@ -4,13 +4,14 @@
   "private": true,
   "description": "Plasmo-based Play Origin browser extension",
   "scripts": {
-    "dev": "plasmo dev",
+    "menu": "pnpm --dir ../originGUI build",
+    "dev": "pnpm run menu && plasmo dev",
     "dev:firefox": "plasmo dev --target=firefox-mv3",
-    "build": "plasmo build",
+    "build": "pnpm run menu && plasmo build",
     "build:firefox": "plasmo build --target=firefox-mv3",
-    "package": "plasmo package",
+    "package": "pnpm run menu && plasmo package",
     "package:firefox": "plasmo package --target=firefox-mv3",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "pnpm run menu && tsc --noEmit",
     "test": "node --experimental-strip-types --test \"tests/**/*.test.ts\""
   },
   "dependencies": {

@@ -109,16 +109,7 @@ new Hack(category.utility, "Save Character", "Helps fix bugs where not all hacks
 
 
 
-// Begin Update menu
-new Hack(category.utility, "Update menu", "Updates menu to the latest version without needing to reload.").setClick(async () => {
-    document.getElementById("origin-menu")?.remove();
-    document.getElementById("origin-toggler")?.remove();
-    (async () => {
-        eval(await (await fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyOrigin/master/originGUI/dist/bundle.js?updated=${Date.now()}`)).text()); // updated parameter is so browser ignores cached version
-    })();
-    return Toast.fire("Updated!", "Mod menu was updated.", "success");
-});
-// End Update menu
+
 
 
 
@@ -165,38 +156,7 @@ new Toggler(category.utility, "Pause Game").setEnabled(async () => {
 
 
 
-// Begin Eval Console
-new Hack(category.utility, "Eval Console", "Evaluate JavaScript code without opening F12").setClick(async () => {
 
-
-    if (!(await Confirm.fire({
-            title: "Important",
-            html: "This hack is potentially dangerous, as it evaluates plain JavaScript code, with access to Prodigy's typings. <strong>Please do not paste code from random people on the internet here, that may be dangerous.</strong><br><br>Proceed?",
-            icon: "warning"
-        })).value) {
-        return console.log("Cancelled.");
-    }
-
-
-
-    const code = await Input.fire("Code:", "Enter the code you want to evaluate.");
-    if (!code.value) return;
-    try {
-        eval(code.value);
-    } catch (err) {
-
-        if (err) {
-            return Swal.fire({
-                title: "Error",
-                html: `Oops! There was an error with the code! <br> <code>&nbsp;${err}&nbsp;</code>`,
-                icon: "error"
-            });
-        }
-    }
-
-    return Toast.fire("Evaluated!", "Code was evaluated.", "success");
-});
-// End Eval Console
 
 
 

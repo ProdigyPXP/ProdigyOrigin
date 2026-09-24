@@ -67,3 +67,7 @@ extension/firefox/.plasmo/
 .mcp.json
 .worktrees/
 .superpowers/
+
+# Generated menu module for the Chrome extension
+originGUI/dist/menu.js
+originGUI/dist/menu.d.ts
