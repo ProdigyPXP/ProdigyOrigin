@@ -21,4 +21,6 @@ cd extension && pnpm dev
 - Load unpacked extension from `extension/build/chrome-mv3-dev/` (dev) or `extension/build/chrome-mv3-prod/` (prod)
 - Navigate to https://math.prodigygame.com/ to test
 - Check browser console for `[Origin]` log messages
-- Verify DNR rules are active: chrome://extensions → service worker → inspect
+- Network tab: `code.prodigygame.com/code/*/game.min.js` is 200 (loaded by Prodigy, not blocked)
+- Console: `[Origin] packaged runtime active`, three `[Origin] hook installed:` lines, no `hook target missing`, then `[Origin] menu started`
+- Console check: `[!!_.instance?.prodigy, _.constants.get("GameConstants.Build.VERSION"), !!_.player?.data, window.__ORIGIN_READY__]`

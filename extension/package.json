@@ -34,9 +34,7 @@
     "description": "The ultimate open-source mod loader for online math games.",
     "author": "ProdigyPXP",
     "permissions": [
-      "declarativeNetRequest",
-      "storage",
-      "unlimitedStorage"
+      "declarativeNetRequest"
     ],
     "web_accessible_resources": [
       {
@@ -45,8 +43,7 @@
       }
     ],
     "host_permissions": [
-      "*://*.prodigygame.com/*",
-      "https://raw.githubusercontent.com/*"
+      "*://*.prodigygame.com/*"
     ],
     "browser_specific_settings": {
       "gecko": {

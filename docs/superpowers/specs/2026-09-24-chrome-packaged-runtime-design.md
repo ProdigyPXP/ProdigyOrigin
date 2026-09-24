@@ -48,9 +48,11 @@ Registry keys are prefab serialization names, so minification can't rename them.
 
 ## Removed from the Chrome extension
 
-`background.ts` patch pipeline (the service worker keeps only the DNR image redirects), `contents/prodigy.ts`, `contents/origin-bridge.ts`, `lib/{bundle-cache,manifest,patches,patch-urls}.ts` and their tests, DNR rules 1 (block `game.min.js`) and 2 (strip CSP/XFO; MAIN-world content scripts aren't subject to page CSP), the `raw.githubusercontent.com` host permission, the popup's manifest/menu URL overrides, and the `unlimitedStorage` permission.
+`background.ts` patch pipeline (the service worker keeps only the DNR image redirects), `contents/prodigy.ts`, `contents/origin-bridge.ts`, `lib/{bundle-cache,manifest,patches,patch-urls}.ts` and their tests, DNR rules 1 (block `game.min.js`) and 2 (strip CSP/XFO), the `raw.githubusercontent.com` host permission, the popup's manifest/menu URL overrides, and the `unlimitedStorage` permission.
 
-The image redirects to GitHub-hosted PNGs stay. They're images, not code.
+The image redirects stay, but point at packaged PNGs (`extensionPath`, web-accessible). They're images, not code.
+
+**Amendment (live checkpoint B):** MAIN-world scripts *execute* regardless of the page CSP, but their network loads don't get that exemption. With the CSP strip gone, Prodigy's CSP blocked the GitHub-hosted logo redirect (`img-src`), the menu's `statusmessage.json` (`connect-src`), its Google Fonts, and the Teleport zone art. Resolution: keep Prodigy's CSP intact. Serve the login art from the package via `extensionPath` (verified live), drop the status message, and label zone tiles by name. Fonts fall back to system sans-serif.
 
 ## Testing
 
