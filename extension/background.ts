@@ -2,7 +2,8 @@
 //
 // Only job: register the DNR rules that swap Prodigy's login background and
 // logo for Play Origin art. No script blocking, no header stripping, and no
-// code fetching; the game runs its own game.min.js.
+// code fetching; the game runs its own game.min.js. The art is packaged and
+// web-accessible, because Prodigy's img-src CSP blocks a GitHub-hosted copy.
 
 const RULES: chrome.declarativeNetRequest.Rule[] = [
   {
@@ -10,7 +11,7 @@ const RULES: chrome.declarativeNetRequest.Rule[] = [
     priority: 2,
     action: {
       type: chrome.declarativeNetRequest.RuleActionType.REDIRECT,
-      redirect: { url: "https://raw.githubusercontent.com/ProdigyPXP/ProdigyOrigin/master/.github/origin-bg.png" }
+      redirect: { extensionPath: "/assets/origin-bg.png" }
     },
     condition: {
       urlFilter: "*://cdn.prodigygame.com/game/assets/v1_cache/single-images/login-bg-13/1/login-bg-13.png",
@@ -27,7 +28,7 @@ const RULES: chrome.declarativeNetRequest.Rule[] = [
     priority: 2,
     action: {
       type: chrome.declarativeNetRequest.RuleActionType.REDIRECT,
-      redirect: { url: "https://raw.githubusercontent.com/ProdigyPXP/ProdigyOrigin/master/.github/origin-logo.png" }
+      redirect: { extensionPath: "/assets/origin-logo.png" }
     },
     condition: {
       urlFilter: "*://code.prodigygame.com/assets/svg/*logo*-*.svg",

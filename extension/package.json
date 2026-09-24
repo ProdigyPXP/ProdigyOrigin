@@ -38,6 +38,12 @@
       "storage",
       "unlimitedStorage"
     ],
+    "web_accessible_resources": [
+      {
+        "resources": ["assets/origin-bg.png", "assets/origin-logo.png"],
+        "matches": ["*://*.prodigygame.com/*"]
+      }
+    ],
     "host_permissions": [
       "*://*.prodigygame.com/*",
       "https://raw.githubusercontent.com/*"

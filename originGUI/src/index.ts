@@ -3,7 +3,6 @@
 
 import "./style.scss"; // Import SCSS style
 import { _ } from "./utils/util"; // Import Prodigy typings
-import { statusMessage } from "./utils/status"; // Import status message
 import Swal from "sweetalert2"; // Import Swal
 
 
@@ -168,6 +167,4 @@ document.addEventListener("keydown", function (event) {
 
 
 
-// Display status message.
-statusMessage();
 
