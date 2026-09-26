@@ -5,11 +5,18 @@
     "ignoreDeprecations": "6.0",
     "types": [
       "chrome"
-    ]
+    ],
+    "moduleResolution": "bundler"
   },
   "include": [
     ".plasmo/index.d.ts",
     "**/*.ts",
     "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "firefox",
+    "tests"
   ]
 }
