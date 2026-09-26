@@ -30,8 +30,8 @@
     "eslint-plugin-promise": "^7.3.0",
     "postcss": "^8.5.28",
     "sass": "^1.105.0",
-    "socket.io": "^4.8.3",
-    "socket.io-client": "^4.8.3",
+    "socket.io": "^4.8.4",
+    "socket.io-client": "^4.8.4",
     "typescript": "^7.0.2"
   },
   "bugs": {

@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "framer-motion": "^13.4.2",
+    "framer-motion": "^13.4.3",
     "lucide-react": "^1.48.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
