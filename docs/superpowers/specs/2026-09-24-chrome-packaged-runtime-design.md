@@ -1,0 +1,67 @@
+# Chrome packaged runtime (no remote code)
+
+Branch: `chrome/packaged-runtime`. Master stays on the P-NP `manifest.json` + `onreset` pipeline so the Edge and Firefox listings keep fast-patching. This branch is the Chrome Web Store build only.
+
+Background: `../GIZMO_MIGRATION.md` (workspace root). Blue Argon = executing JavaScript that was not in the reviewed package.
+
+## Goal
+
+Prodigy loads its own, unmodified `game.min.js`. Every line of JavaScript Play Origin runs ships inside the extension zip. No `fetch` + `eval`, no `onreset`, no prefix/suffix from GitHub.
+
+Success criteria:
+
+1. With the dev extension loaded, `math.prodigygame.com` loads the original `game.min.js` from `code.prodigygame.com` (network tab: 200, not blocked).
+2. `window._.instance.prodigy`, `_.constants.get("GameConstants.Build.VERSION")`, `_.player`, `_.network` and `_.membership` resolve.
+3. With `GameConstants.Debug.EDUCATION_ENABLED` false, a battle question auto-answers through each of the three bypasses (battle `OpenQuestionInterface`, `AnswerQuestion` action, Tower Town).
+4. The menu opens, and Shift still toggles it.
+5. `grep -rE "eval\(|new Function|onreset|raw\.githubusercontent" extension/build/chrome-mv3-prod` finds nothing written by Play Origin.
+
+## Why hooks work here
+
+`game.min.js` is one webpack bundle. Its runtime helper `__webpack_require__.d` defines every export as `Object.defineProperty(exports, key, {enumerable: true, get})`. That's 1238 modules; only 5 also get the `Symbol.toStringTag` "Module" tag. A MAIN-world content script at `document_start` wraps `Object.defineProperty`, keeps a set of every object that receives a descriptor of exactly that shape (or the "Module" tag), and passes each call straight through. Targets are resolved lazily, after the game boots, by name or shape. Module ids are never used.
+
+| Old P-NP rule | Packaged replacement |
+|---|---|
+| `singleton-exposure` | Export that is a class with a static `instance` getter and a `prodigy` prototype getter (module 35120 `q` today). `_.instance` = `q.instance`. |
+| `expose-constants` | Export whose `.constants` object has key `"GameConstants.Build.VERSION"` (module 34829 today). Same Map-like `get`/`set`/`has` + `.constants` self-alias as the old suffix. |
+| `answer-question-bypass` | Component registry (export object with key `OpenQuestionInterface`, filled by the `EV(name, path)` decorator). Wrap `OpenQuestionInterface.prototype.answerQuestion`. |
+| `external-factory-bypass` | The action registry (`Ie` in module 62459) is not exported. Instead, find the exported base action class (the only class whose prototype *owns* `init`, `execute`, `finish`, `findParameter`, `validateParameters`) and wrap its `init`. The action factory calls `init(data)` with `data.Type === "AnswerQuestion"`; on the first such call, wrap that subclass's own `execute`. The bypass calls `this.finish({answerCorrect, responseTime: 0})`. |
+| `open-question-bypass` | Exported class whose prototype has `openQuestionInterfaceThenEmitNotifications` (module 82142 `gT` today). Wrap it; bypass calls the callback `(true, 10, 1, false, false, {})`. |
+| `safe-bind`, semaphore guard | Dropped. They only guarded against `onreset` running the game twice. |
+
+Each bypass has the same gate as the old regex: active only when `_.constants.get("GameConstants.Debug.EDUCATION_ENABLED")` is falsy, correct with probability `AUTO_ANSWER_CORRECT_PERCENT` (default 1). Otherwise the original method runs.
+
+Registry keys are prefab serialization names, so minification can't rename them. Method names were already what the regex rules depended on.
+
+## Components
+
+- **`extension/lib/runtime/`**: pure, testable modules.
+  - `modules.ts`: `defineProperty` hook + the captured-exports list.
+  - `resolve.ts`: `findSingletonClass`, `findConstants`, `findRegistry(key)`, `findClassWithMethod(name)`, each taking the exports list.
+  - `bypasses.ts`: the three prototype wraps. Idempotent, marked with a symbol so they never double-wrap.
+  - `api.ts`: builds the `window._` surface the menu actually reads, ported from P-NP `wrappers.ts`: `instance`, `constants`, `player`, `network`, `gameData`, `membership`, `functions.setMembership`. `localizer`, `hack`, `variables` and `escapeBattle` are dropped because nothing in originGUI reads them. `setMembership` is attached to whatever `_.functions` already is (lodash's `functions`), not replacing it. The API re-applies itself when lodash replaces `window._`, same as the old 500 ms poll.
+  - `ready.ts`: `origin:ready` event + flag. Fired once the singleton has `prodigy` and `_.player` resolves (the menu captures `_.player` at load).
+  - Every lib/runtime module imports only *types* from its siblings. The node test runner can't resolve extensionless value imports, so the wiring lives in `contents/runtime.ts`.
+- **`extension/contents/runtime.ts`**: MAIN world, `document_start`, `https://math.prodigygame.com/*`. Installs the hook, then the API and bypasses once resolution succeeds. If a target is still missing after the game boots, it logs `[Origin] hook target missing: <name>` and continues with what it has (graceful degradation).
+- **`extension/contents/menu.ts`**: MAIN world, `document_idle`. `originGUI/build.mjs` also emits `dist/menu.js` (`export default function startOriginMenu () { <IIFE bundle> }`, gitignored), and Parcel bundles it into this content script. The script waits for `origin:ready`, then calls `startOriginMenu()`. The extension's `dev`/`build`/`package`/`typecheck` scripts build originGUI first.
+- **originGUI changes** (on this branch only): remove "Update menu", the beta branch loader, the eval console, and the dev socket `eval`. Replace the template-string `eval`s in `player.ts` and `pets.ts` with closures. Data `fetch`es (status message JSON, Prodigy API, asset URLs) stay; they load data, not code.
+
+## Removed from the Chrome extension
+
+`background.ts` patch pipeline (the service worker keeps only the DNR image redirects), `contents/prodigy.ts`, `contents/origin-bridge.ts`, `lib/{bundle-cache,manifest,patches,patch-urls}.ts` and their tests, DNR rules 1 (block `game.min.js`) and 2 (strip CSP/XFO), the `raw.githubusercontent.com` host permission, the popup's manifest/menu URL overrides, and the `unlimitedStorage` permission.
+
+The image redirects stay, but point at packaged PNGs (`extensionPath`, web-accessible). They're images, not code.
+
+**Amendment (live checkpoint B):** MAIN-world scripts *execute* regardless of the page CSP, but their network loads don't get that exemption. With the CSP strip gone, Prodigy's CSP blocked the GitHub-hosted logo redirect (`img-src`), the menu's `statusmessage.json` (`connect-src`), its Google Fonts, and the Teleport zone art. Resolution: keep Prodigy's CSP intact. Serve the login art from the package via `extensionPath` (verified live), drop the status message, and label zone tiles by name. Fonts fall back to system sans-serif.
+
+## Testing
+
+- Unit (node test runner, like the existing tests): run `resolve.ts` and `bypasses.ts` against fixtures that copy the real shapes (a fake exports list with a registry object, a class with a static `instance` getter, and so on). Cover idempotent wrapping, the gate on/off, and a missing-target log.
+- No offline run of the real `game.min.js`: it needs a real DOM and a Phaser boot. Live verification covers it.
+- Live: `pnpm dev`, load `extension/build/chrome-mv3-dev` unpacked, then walk through success criteria 1–5.
+
+## Out of scope
+
+- Firefox and Edge (stay on master).
+- P-NP becoming a CI check that loads the latest `game.min.js` and asserts every hook target resolves. That's the next spec once the hooks are proven live.
+- Store listing text and version bump.

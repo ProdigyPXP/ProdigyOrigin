@@ -62,29 +62,3 @@ export const saveCharacter = () => {
 	_.player.forceSaveCharacter();
 };
 
-/** The URL to the assets directory */
-export const assetURL = "https://raw.githubusercontent.com/ProdigyPXP/ProdigyOrigin/master/originGUI/src/assets/";
-
-/** Gets the full URL of an asset */
-export const joinAsset = (asset: string) => `${assetURL}${asset}`;
-
-/** Location images */
-export const locations = {
-	academy: joinAsset("academy.png"),
-	bonfire_spire: joinAsset("bonfire_spire.png"),
-	forest: joinAsset("forest.png"),
-	shipwreck_shore: joinAsset("shipwreck_shore.png"),
-	shiverchill: joinAsset("shiverchill.png"),
-	skywatch: joinAsset("skywatch.png"),
-	dyno: joinAsset("dyno.png"),
-	elemental_guardian: joinAsset("elemental_guardian.png"),
-	darktower: joinAsset("darktower.png"),
-	earthtower: joinAsset("earthtower.png"),
-	crystal_caverns: joinAsset("crystal_caverns.png"),
-	archives: joinAsset("archives.png"),
-	house: joinAsset("house.png"),
-	toyzone: joinAsset("toyzone.png"),
-	tower_town: joinAsset("tower_town.png"),
-	lamplight: joinAsset("lamplight.png")
-};
-

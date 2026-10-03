@@ -5,7 +5,7 @@ import { category } from "../index"; // Import the mod menu bases.
 import Toggler from "../class/Toggler";
 import Hack from "../class/Hack";
 import { Input, NumberInput, Swal, Toast } from "../utils/swal"; // Import Swal, Toast, and NumberInput from swal
-import { _, locations, prodigy, player } from "../utils/util"; // Import Prodigy typings
+import { _, prodigy, player } from "../utils/util"; // Import Prodigy typings
 import { toHouse } from "../utils/hackify"; // Import toHouse
 // END IMPORTS
 
@@ -96,10 +96,8 @@ new Hack(category.location, "Teleport To Map (interactive)").setClick(
             const radio = document.createElement("DIV");
             radio.classList.add("radioDiv");
             radio.setAttribute("zone", zone);
-            const locationURL = locations[zone as keyof typeof locations];
-            if (locationURL) {
-                radio.style.backgroundImage = `url(${locationURL})`;
-            } else radio.innerText = zone;
+            // Zone art used to load from GitHub; Prodigy's CSP blocks that, so label by name.
+            radio.innerText = zone;
             radio.onclick = () => {
                 document
                     .querySelectorAll(".radioDiv[checked]")

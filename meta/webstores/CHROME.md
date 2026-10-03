@@ -42,7 +42,7 @@ WHAT YOU GET (THE QUICK VERSION)
 — Battle helpers including instant win, auto-answer, and damage modifiers
 — Full inventory unlocks
 — Custom login background and clean UI tweaks
-— Automatic, hands-off updates as the game patches
+— Everything ships inside the extension — no code downloaded at runtime
 — Zero account risk on your end — everything runs locally in your browser
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -53,7 +53,7 @@ You install the extension. You go to math.prod·igygame.com. You log in like nor
 
 That's it. There's no separate launcher. No fake game client. No sketchy download from a forum. No file you have to manually drop into a folder somewhere. Play Origin works directly inside the official game website using the same Chrome extension framework as your password manager or ad blocker.
 
-Under the hood, Play Origin loads the official game script straight from the game's own servers and applies a small set of community-maintained patches to it right on your device — in your own browser, never on a server — then runs the result. Those patches expose the game's internal systems to a clean, friendly menu. The patch rules are maintained automatically by the ProdigyPXP project and refreshed every couple of hours, so when the game pushes an update, the mod is usually working again before you even notice anything changed. Because the game code that actually runs is the game's own — just patched locally — there's no opaque pre-built game file being shipped to you.
+Under the hood, the game loads its own official script from its own servers, completely unmodified. Play Origin never downloads, rewrites, or replaces it. The extension's own scripts, which are included in the package you install from the Chrome Web Store, run alongside the game in your browser and connect the mod menu to the game's internal systems. Nothing is fetched from anywhere else and run, and nothing runs on a server. What you install is exactly what runs.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -83,8 +83,8 @@ Teleport to any zone in the game. Skip Member-only gates. Replay quests you've a
 CUSTOM LOGIN PAGE
 Optional cosmetic touches like a custom background and a refreshed logo, so the experience feels distinct from the moment you load the page.
 
-AUTOMATIC UPDATES
-The game patches frequently. Most mod tools break the moment that happens and stay broken until someone manually fixes them, sometimes for days. Play Origin uses an automated pipeline that refreshes its patch rules every two hours — your browser picks up the new rules and re-patches the game's latest script locally, so downtime is measured in minutes, not days.
+BUILT TO SURVIVE GAME UPDATES
+The game patches frequently, and most mod tools break the moment that happens. Play Origin doesn't patch the game's source. It hooks into parts of the game that rarely change, so most game updates don't affect it at all. When one does, a fixed version ships through the Chrome Web Store and Chrome updates the extension for you.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -145,7 +145,7 @@ Is it free?
 Completely. No pro tier, no upsell, no email signup, no ads. Ever.
 
 Does it still work after a game update?
-Almost always within a couple of hours. An automated pipeline refreshes the patch rules every two hours, and your browser re-patches the latest game script locally.
+Usually, yes. Play Origin hooks into parts of the game that rarely change. When an update does break something, the fix ships as a new version through the Chrome Web Store, and Chrome installs it automatically.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -166,7 +166,7 @@ INSTALLATION
 5. The mod menu will appear in the corner of the screen once the game finishes loading.
 6. Click the menu, explore the tabs, and play the way you've always wanted to.
 
-If anything looks off, open the Play Origin popup from your Chrome toolbar. It shows the current status and a one-click "reload" button that fixes 99 percent of problems instantly.
+If anything looks off, reload the game tab. The Play Origin popup in your Chrome toolbar shows the installed version and has a one-click shortcut to open the game.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -176,7 +176,7 @@ Bug reports, feature requests, and questions go to the GitHub issue tracker at g
 
 For real-time chat with other users — including help getting set up, troubleshooting weird behavior, and sharing tips — join the community Discord linked from the GitHub page.
 
-If something breaks after a game update, sit tight. The auto-patcher usually catches it within a couple of hours. If it doesn't, post on GitHub and someone will look at it.
+If something breaks after a game update, post on GitHub. Fixes ship as a new Chrome Web Store version, and Chrome installs it for you automatically.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
