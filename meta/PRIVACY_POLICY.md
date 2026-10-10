@@ -1,6 +1,6 @@
 # Play Origin Privacy Policy
 
-_Last updated: May 24, 2026_
+_Last updated: October 10, 2026_
 
 Play Origin (formerly Prodigy Origin) is a free, open-source browser extension.
 
@@ -8,7 +8,7 @@ Play Origin (formerly Prodigy Origin) is a free, open-source browser extension.
 
 This privacy policy covers the browser extension itself. However, please note:
 
-- The website [playorig.in](https://playorig.in) uses [Vercel Web Analytics](https://vercel.com/docs/analytics) and is subject to their privacy policy.
+- The website [playorig.in](https://playorig.in) is hosted on GitHub Pages behind Cloudflare and uses [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/), a cookieless service that reports aggregate page views and basic performance metrics without fingerprinting visitors or tracking them across sites. The website sets no cookies. Cloudflare's [privacy policy](https://www.cloudflare.com/privacypolicy/) applies to that processing.
 - Browser extension web stores may collect analytics data independently. Each platform maintains its own respective privacy policy:
   - [Chrome Web Store Privacy Policy](https://policies.google.com/privacy)
   - [Microsoft Edge Add-ons Privacy Policy](https://learn.microsoft.com/en-us/legal/microsoft-edge/privacy)
@@ -18,7 +18,7 @@ This privacy policy covers the browser extension itself. However, please note:
 
 Play Origin does **not** collect, store, or transmit any personal data.
 
-The extension operates entirely locally in your browser. No analytics, no telemetry, no user tracking.
+The extension operates entirely locally in your browser. The extension itself makes no analytics or telemetry requests and does no user tracking. (The playorig.in website, which is separate from the extension, uses the cookieless Cloudflare Web Analytics described above.)
 
 ## Permissions
 
