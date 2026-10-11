@@ -419,7 +419,7 @@ new Hack(category.player, "Uncap player level (client side only)").setClick(asyn
     const level = await NumberInput.fire("Level", "What would you like to set your level to? (Can be >100)", "question");
     if (!level.value) return;
     localStorage.setItem("level", level.value);
-    eval(`player.getLevel = () => {return ${level.value}}`);
+    player.getLevel = () => Number(level.value);
     return Toast.fire("Updated!", "Your level has been successfully updated", "success");
 });
 // End Uncap player level

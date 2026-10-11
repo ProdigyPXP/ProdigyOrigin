@@ -166,8 +166,7 @@ new Hack(category.pets, "Uncap pet level [Client Side]", "Change your pet's leve
     const amt = await NumberInput.fire("Level", "What would you like to set your pet's level to? (Can be set over 100)", "question");
     if (!amt.value) return;
     const num = amt.value;
-    // sorry in advance
-    eval(`player.kennel.petTeam[parseInt(${pet.value})+1].getLevel = () => {return ${num}}`);
+    player.kennel.petTeam[parseInt(pet.value) + 1].getLevel = () => Number(num);
     return Toast.fire("Updated!", "The level of your pet was successfully updated. Note: this hack is client-side.", "success");
 });
 // End Uncap pet level
