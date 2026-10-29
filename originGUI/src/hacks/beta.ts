@@ -18,37 +18,7 @@ import { PopupInterval } from "../utils/popupCloser";
 // BEGIN BETA HACKS
 
 
-// Begin Switch Branch
-new Hack(category.beta, "Switch Branch", "Loads a different branch of Play Origin for you.").setClick(async () => {
 
-    const branches_fetch : string = await (await fetch("https://api.github.com/repos/ProdigyPXP/ProdigyOrigin/branches")).text()
-    let branches : Map<string, string> = new Map();
-
-    JSON.parse(branches_fetch).forEach((e : any) => {
-        branches.set(e.name, e.name);
-    });
-
-    const branch = await (await Swal.fire({
-        title: "Select Branch",
-        html: `Select which branch you'd like to use.`,
-        input: "select",
-        inputOptions: branches,
-    })).value;
-
-    if (!branch) return;
-
-    if (branch !== "master") {
-        if (!(await Confirm.fire({
-            title: "Warning: Untrusted Code",
-            html: "Loading a non-master branch will execute untrusted JavaScript in your Prodigy session. This may compromise your account or data.<br><br>Are you sure you want to continue?",
-            icon: "warning"
-        })).value) {
-            return;
-        }
-    }
-
-    return await eval(await (await fetch(`https://raw.githubusercontent.com/ProdigyPXP/ProdigyOrigin/${branch}/originGUI/dist/bundle.js`)).text());
-});
 
 
 

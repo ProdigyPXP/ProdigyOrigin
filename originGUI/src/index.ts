@@ -1,10 +1,8 @@
 // @ts-nocheck
 // Play Origin Mod Menu
 
-import { io } from "socket.io-client"; // Import socket.io-client
 import "./style.scss"; // Import SCSS style
 import { _ } from "./utils/util"; // Import Prodigy typings
-import { statusMessage } from "./utils/status"; // Import status message
 import Swal from "sweetalert2"; // Import Swal
 
 
@@ -165,22 +163,8 @@ document.addEventListener("keydown", function (event) {
 }, { capture: true, signal: _originAbort.signal });
 
 
-if (process.env.NODE_ENV === "development") {
-	const socket = io("http://localhost:3001");
-	let used = false;
-	socket.on("update", data => {
-		if (used) return;
-		used = true;
-		socket.disconnect();
-		document.getElementById("origin-menu")?.remove();
-		document.getElementById("origin-toggler")?.remove();
-		eval(data);
-	});
-}
 
 
 
 
-// Display status message.
-statusMessage();
 
